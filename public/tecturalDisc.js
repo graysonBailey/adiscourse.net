@@ -58,7 +58,8 @@ function setup() {
   cnv = createCanvas(windowWidth, windowHeight)
   centerCanvas(cnv)
   textFont(tFont)
-  socket = io.connect('node-express-env.eba-vgwp4pvw.eu-central-1.elasticbeanstalk.com')
+  socket = io()
+  //socket = io.connect('node-express-env.eba-vgwp4pvw.eu-central-1.elasticbeanstalk.com')
   socket.on('mouseRep', newDrawing)
   refresh()
 
@@ -96,12 +97,11 @@ ellipse(data.x, data.y, 3, 3);
 
 
 function mouseDragged() {
+  console.log("it's dragging")
 
-  var tex = "loser";
   var data = {
     x: mouseX,
-    y: mouseY,
-    talk: tex
+    y: mouseY
   }
   console.log(data);
   socket.emit('mouse', data);
