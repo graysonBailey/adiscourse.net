@@ -89,6 +89,7 @@ function setPositions() {
 function newDrawing(data) {
   noStroke();
   fill(255, 0, 100);
+  console.log("what is this")
 
 ellipse(data.x, data.y, 3, 3);
 }
