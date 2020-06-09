@@ -15,23 +15,19 @@ var entire = new Datastore({
 io.on('connection', newConnection);
 
 function newConnection(socket) {
-  console.log('new connection: ' + socket.id);
 
-  socket.on('mouse',mouseMsg);
-  //socket.on('text', textTalk);
+  socket.on('unit', data => {
+    socket.broadcast.emit('unit', data)
+    entire.insert(data);
+  })
 
-//  function textPlace(tex){
-//console.log(tex);
+  socket.on('relation', data => {
+      entire.update({ u: data.u }, { $push: { r: data.r } }, {}, function (){})
+  })
 
-
-  //}
-
-  function mouseMsg(data){
-    socket.broadcast.emit('mouse',data);
-    console.log(data);
-    console.log(data.talk);
-  //  console.log(tex);
-  }
+  socket.on('mouse', data => {
+    socket.broadcast.emit('mouse', data)
+  });
 
 
 }
