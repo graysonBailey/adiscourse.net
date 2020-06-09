@@ -59,7 +59,7 @@ function setup() {
   centerCanvas(cnv)
   textFont(tFont)
   socket = io.connect('http://node-express-env.eba-vgwp4pvw.eu-central-1.elasticbeanstalk.com/')
-  socket.on('mouse', newDrawing)
+  socket.on('mouseRep', newDrawing)
   refresh()
 
 }
@@ -86,11 +86,11 @@ function setPositions() {
   document.getElementById("y-coord").innerHTML = mouseY
 }
 
-function newDrawing(data, tex) {
+function newDrawing(data) {
   noStroke();
   fill(255, 0, 100);
-  fill(230, 47, 240);
-  text(data.talk, data.x, data.y);
+
+ellipse(data.x, data.y, 3 3);
 }
 
 
@@ -103,6 +103,7 @@ function mouseDragged() {
     talk: tex
   }
   socket.emit('mouse', data);
+  console.log(data);
 
   noStroke();
   fill(47, 230, 240)
