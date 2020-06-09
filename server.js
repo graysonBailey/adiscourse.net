@@ -1,15 +1,22 @@
-var express = require('express');
+const express = require('express');
+const socket = require('socket.io');
+
+
+
+
+
+
 var app = express();
-
-
 app.use(express.static('dist'));
-
+app.use(express.jason({
+  limit:'1mb'
+}));
 var server = app.listen(8081,'0.0.0.0');
-
+var io = socket(server);
 console.log("My socket server is running");
 
-var socket = require('socket.io');
-var io = socket(server);
+
+
 
 io.on('connection', newConnection);
 
