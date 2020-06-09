@@ -1,15 +1,10 @@
 var express = require('express');
-var app = express();
-
-
-app.use(express.static('dist'));
-
-var server = app.listen(8081,'0.0.0.0');
-
-console.log("My socket server is running");
-
 var socket = require('socket.io');
+var app = express();
+app.use(express.static('dist'));
+var server = app.listen(8081,'0.0.0.0');
 var io = socket(server);
+console.log("My socket server is running");
 
 io.on('connection', newConnection);
 
