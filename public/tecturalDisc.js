@@ -42,7 +42,7 @@ function displayDiscourse() {
 
 
 function refresh() {
-  background(31);
+  background(200);
 
 
   cursor("assets/swift.png");
