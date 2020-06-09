@@ -2,7 +2,7 @@ var express = require('express');
 var Datastore = require('nedb')
 var socket = require('socket.io');
 var app = express();
-app.use(express.static('dist'));
+app.use(express.static('public'));
 var server = app.listen(process.env.PORT || 8081);
 var io = socket(server);
 console.log("My socket server is running Mboy");

@@ -113,7 +113,7 @@ function mouseDragged() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  background(0);
+  background(240, 13, 57);
   refresh();
 }
 
