@@ -49,7 +49,8 @@ export const overlay = new p5((p) => {
 
     console.log("setting up")
     p.textFont(tFont)
-    socket.on('mouse', p.newDrawing)
+    socket.on('mouseRep', p.newDrawing)
+    socket.on('dataRep', p.printItOut)
     p.refresh()
     p.fill(255)
   }
@@ -79,9 +80,15 @@ export const overlay = new p5((p) => {
 
 
   p.newDrawing = function(data) {
+    console.log("got sent something")
     p.noStroke();
     p.fill(255, 0, 100);
     p.ellipse(data.x, data.y,3,3);
+  }
+
+  p.printItOut = function(data){
+    console.log(data);
+
   }
 
 
@@ -184,7 +191,7 @@ document.getElementById("vertPos").innerHTML = position
 
 window.onload = function() {
 
-  document.getElementById('overlay').addEventListener("wheel", event => reposition(event));
+  document.getElementById('overlay').addEventListener("wheel", event => reposition(event), {passive: true});
 
 
   document.getElementById('vert30').onclick = () => {
@@ -215,5 +222,7 @@ window.onload = function() {
   }
 
 
-  getBase('/entire')
+
+let datas = "frisk"
+  socket.emit('gimmeData', datas);
 }

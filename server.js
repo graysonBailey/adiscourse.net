@@ -18,19 +18,6 @@ var entire = new Datastore({
 
 io.on('connection', newConnection);
 
-app.get('/entire', (request, response) => {
-  entire.find({}, (err, docs) => {
-
-    if (err) {
-      console.log("error in retrieval find process...")
-      response.end();
-      return;
-    }
-    console.log("it got grabbed")
-    response.json(docs)
-  })
-})
-
 function newConnection(socket) {
 
   console.log("a new connection!")
@@ -46,7 +33,22 @@ function newConnection(socket) {
 
   socket.on('mouse', data => {
     socket.broadcast.emit('mouseRep', data)
-    //console.log(data);
+    console.log(data);
+  });
+
+  socket.on('gimmeData', data => {
+
+    entire.find({}, (err, docs) => {
+
+      if (err) {
+        console.log("error in retrieval find process...")
+        response.end();
+        return;
+      }
+      console.log("it got grabbed")
+      socket.emit('dataRep', docs)
+    })
+
   });
 
 
