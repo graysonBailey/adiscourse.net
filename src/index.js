@@ -3,7 +3,10 @@ import './style.css';
 import p5 from 'p5/lib/p5.min.js';
 import io from 'socket.io-client';
 import discourseJSON from './allgemeine.json';
-import { present } from './dUnit.js';
+import {
+  present,
+  getBase
+} from './content.js';
 
 let path = require('path');
 
@@ -210,4 +213,7 @@ window.onload = function() {
     document.getElementById('about-window-overlay').classList.add('disabled');
     console.log("pressed it")
   }
+
+
+  getBase('/entire')
 }

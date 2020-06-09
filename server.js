@@ -18,6 +18,19 @@ var entire = new Datastore({
 
 io.on('connection', newConnection);
 
+app.get('/entire', (request, response) => {
+  entire.find({}, (err, docs) => {
+
+    if (err) {
+      console.log("error in retrieval find process...")
+      response.end();
+      return;
+    }
+    console.log("it got grabbed")
+    response.json(docs)
+  })
+})
+
 function newConnection(socket) {
 
   console.log("a new connection!")
