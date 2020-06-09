@@ -58,7 +58,7 @@ function setup() {
   cnv = createCanvas(windowWidth, windowHeight)
   centerCanvas(cnv)
   textFont(tFont)
-  socket = io.connect('tecturaldiscourse-base.eba-mxiurpsc.us-east-1.elasticbeanstalk.com')
+  socket = io.connect('node-express-env.eba-vgwp4pvw.eu-central-1.elasticbeanstalk.com/')
   socket.on('mouse', newDrawing)
   refresh()
 
