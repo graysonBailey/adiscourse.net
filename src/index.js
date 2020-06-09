@@ -4,7 +4,11 @@ import p5 from 'p5/lib/p5.min.js';
 import io from 'socket.io-client';
 import discourseJSON from './allgemeine.json';
 import { present } from './dUnit.js';
+
 let path = require('path');
+
+export let position = 0;
+let vertSpeed = 30;
 
 const socket = io();
 
@@ -12,14 +16,9 @@ const socket = io();
 
 
 
-// new p5();
 
 
-
-
-//const containerElement = document.getElementById('p5-container');
-
-const sketch = (p) => {
+export const overlay = new p5((p) => {
   let x = 100;
   let y = 100;
   let can;
@@ -29,7 +28,7 @@ const sketch = (p) => {
   let curs;
   let discourse;
   let pointers = [];
-  let position = 0
+
   let cnv;
 
 
@@ -132,11 +131,11 @@ const sketch = (p) => {
   }
 
   p.mouseMoved = function() {
-    p.setPositions()
+
   }
 
   p.mouseWheel = function(event){
-  position-= event.delta/2;
+
   p.refresh();
   }
 
@@ -165,14 +164,43 @@ const sketch = (p) => {
 
 
 
-};
+}, 'overlay')
 
-let baseSketch = new p5(sketch);
+
+let reposition = function(event) {
+
+const delta = Math.sign(event.deltaY);
+position = position - (delta * vertSpeed)
+
+document.getElementById("vertPos").innerHTML = position
+}
+
 
 
 
 
 window.onload = function() {
+
+  document.getElementById('overlay').addEventListener("wheel", event => reposition(event));
+
+
+  document.getElementById('vert30').onclick = () => {
+      vertSpeed = 30;
+      console.log(vertSpeed)
+    }
+  document.getElementById('vert60').onclick = () => {
+    vertSpeed = 60;
+    console.log(vertSpeed)
+  }
+  document.getElementById('vert90').onclick = () => {
+    vertSpeed = 90;
+    console.log(vertSpeed)
+  }
+
+
+
+
+
   console.log(present);
   document.getElementById('about-this-website').onclick = () => {
     document.getElementById('about-window-overlay').classList.remove('disabled');
