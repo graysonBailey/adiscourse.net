@@ -5,7 +5,7 @@ var app = express();
 app.use(express.static('dist'));
 var server = app.listen(8081,'0.0.0.0');
 var io = socket(server);
-console.log("My socket server is running");
+console.log("My socket server is running Mboy");
 
 var entire = new Datastore({
   filename: 'entire.db',
@@ -15,6 +15,8 @@ var entire = new Datastore({
 io.on('connection', newConnection);
 
 function newConnection(socket) {
+
+  console.log("oh a connecion")
 
   socket.on('unit', data => {
     socket.broadcast.emit('unit', data)
