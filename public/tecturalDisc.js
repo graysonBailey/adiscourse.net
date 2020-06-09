@@ -58,7 +58,7 @@ function setup() {
   cnv = createCanvas(windowWidth, windowHeight)
   centerCanvas(cnv)
   textFont(tFont)
-  socket = io.connect('http://node-express-env.eba-vgwp4pvw.eu-central-1.elasticbeanstalk.com/')
+  socket = io.connect('node-express-env.eba-vgwp4pvw.eu-central-1.elasticbeanstalk.com')
   socket.on('mouseRep', newDrawing)
   refresh()
 
@@ -102,8 +102,9 @@ function mouseDragged() {
     y: mouseY,
     talk: tex
   }
-  socket.emit('mouse', data);
   console.log(data);
+  socket.emit('mouse', data);
+
 
   noStroke();
   fill(47, 230, 240)
