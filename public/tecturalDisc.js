@@ -90,7 +90,7 @@ function newDrawing(data) {
   noStroke();
   fill(255, 0, 100);
 
-ellipse(data.x, data.y, 3 3);
+ellipse(data.x, data.y, 3, 3);
 }
 
 
