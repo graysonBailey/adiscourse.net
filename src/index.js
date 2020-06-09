@@ -2,11 +2,15 @@ import _ from 'lodash';
 import './style.css';
 import p5 from 'p5/lib/p5.min.js';
 import io from 'socket.io-client';
+import $ from 'jQuery'
 import discourseJSON from './allgemeine.json';
 import {
-  present,
   getBase
 } from './content.js';
+import {
+  back
+} from './threeCanvases.js';
+import switchModeInstructions from './modeSwitch.js'
 
 let path = require('path');
 
@@ -50,13 +54,12 @@ export const overlay = new p5((p) => {
     console.log("setting up")
     p.textFont(tFont)
     socket.on('mouseRep', p.newDrawing)
-    socket.on('dataRep', p.printItOut)
+
     p.refresh()
     p.fill(255)
   }
 
   p.refresh = function() {
-    p.background(0);
 
 
     p.cursor("228ed835800150758bdcfe3a458531a8.png");
@@ -73,7 +76,6 @@ export const overlay = new p5((p) => {
 
   p.windowResized = function() {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
-    //p.background(0);
     p.refresh();
     console.log("resized!")
   }
@@ -107,11 +109,6 @@ export const overlay = new p5((p) => {
 
   p.displayDiscourse = function() {
 
-    for(let i = 0; i <p.windowHeight; i+=25){
-      p.stroke(255)
-      p.strokeWeight(.1)
-      p.line(100,i,p.windowWidth-100,i)
-    }
     p.noStroke();
     p.fill(255);
     p.textSize(16);
@@ -140,12 +137,8 @@ export const overlay = new p5((p) => {
     }
   }
 
-  p.mouseMoved = function() {
-
-  }
 
   p.mouseWheel = function(event){
-
   p.refresh();
   }
 
@@ -178,11 +171,9 @@ export const overlay = new p5((p) => {
 
 
 let reposition = function(event) {
-
-const delta = Math.sign(event.deltaY);
-position = position - (delta * vertSpeed)
-
-document.getElementById("vertPos").innerHTML = position
+  const delta = Math.sign(event.deltaY);
+  position = position - (delta * vertSpeed)
+  document.getElementById("vertPos").innerHTML = position
 }
 
 
@@ -192,7 +183,9 @@ document.getElementById("vertPos").innerHTML = position
 window.onload = function() {
 
   document.getElementById('overlay').addEventListener("wheel", event => reposition(event), {passive: true});
-
+  socket.on('dataRep', data =>{
+    console.log(data);
+  })
 
   document.getElementById('vert30').onclick = () => {
       vertSpeed = 30;
@@ -207,11 +200,6 @@ window.onload = function() {
     console.log(vertSpeed)
   }
 
-
-
-
-
-  console.log(present);
   document.getElementById('about-this-website').onclick = () => {
     document.getElementById('about-window-overlay').classList.remove('disabled');
     console.log("pressed it")
@@ -222,7 +210,52 @@ window.onload = function() {
   }
 
 
+  document.getElementById('rp-b').onclick = () => {
+      document.getElementById('gp-b').classList.remove('current');
+      document.getElementById('rp-b').classList.add('current');
+      switchModeInstructions(2)
+      //discourses.vis()
+    }
+    document.getElementById('gp-b').onclick = () => {
+      document.getElementById('rp-b').classList.remove('current');
+      document.getElementById('gp-b').classList.add('current');
+      switchModeInstructions(1)
+      //discourses.vis()
+    }
+    document.getElementById('discourseLoad').onclick = () => {
+      let datas = "frisk"
+        socket.emit('gimmeData', datas);
+        //  let presenter = new discursiveOverlay(overlay)
+        //  presenter.giveChoices()
 
-let datas = "frisk"
-  socket.emit('gimmeData', datas);
+    }
+    document.getElementById('switchLoad').onclick = () => {
+      document.getElementById('rp-b').classList.remove('current')
+      document.getElementById('gp-b').classList.remove('current')
+      document.getElementById('gp-b').classList.toggle('away')
+      document.getElementById('rp-b').classList.toggle('away')
+      document.getElementById('filterKey').textContent = "--"
+      //content.clear()
+      switchModeInstructions(0)
+      //let presenter = new discursiveOverlay(overlay)
+      overlay.clear()
+      //presenter.giveChoices()
+      position = 0
+      document.getElementById('vertPos').innerText = position
+
+      //discourses.resetPositions()
+
+      // for (let each in discourses.set) {
+      //   discourses.set[each].p = discourses.p5.createVector(discourses.set[each].rp.x,discourses.set[each].rp.y)
+      //   discourses.set[each].bound.x = discourses.set[each].p.x - 5
+      //   discourses.set[each].bound.y = discourses.set[each].p.y - 5
+      //   discourses.set[each].centroid = discourses.set[each].p5.createVector(discourses.set[each].p.x + (discourses.set[each].wid / 2), discourses.set[each].p.y + (discourses.set[each].bound.z / 2))
+      // }
+
+
+
+    }
+
+
+
 }

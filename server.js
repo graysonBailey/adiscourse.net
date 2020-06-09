@@ -7,7 +7,6 @@ const fetch = require('node-fetch')
 var app = express();
 app.use(express.static('dist'));
 var server = app.listen(process.env.PORT || 8080);
-//var server = app.listen(8081);
 var io = socket(server);
 console.log("My socket server is running Mboy");
 
@@ -37,9 +36,7 @@ function newConnection(socket) {
   });
 
   socket.on('gimmeData', data => {
-
     entire.find({}, (err, docs) => {
-
       if (err) {
         console.log("error in retrieval find process...")
         response.end();
@@ -48,8 +45,5 @@ function newConnection(socket) {
       console.log("it got grabbed")
       socket.emit('dataRep', docs)
     })
-
   });
-
-
 }
