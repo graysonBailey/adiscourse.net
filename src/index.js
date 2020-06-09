@@ -3,21 +3,27 @@ import './style.css';
 import p5 from 'p5/lib/p5.min.js';
 import io from 'socket.io-client';
 import $ from 'jQuery'
-import discourseJSON from './allgemeine.json';
 import {
-  getBase
+  discourseSet
 } from './content.js';
 import {
-  back
+  discursiveOverlay
+} from './present.js'
+import {
+  back,
+  content
 } from './threeCanvases.js';
 import switchModeInstructions from './modeSwitch.js'
 
 let path = require('path');
+export let discourses = []
+
+
 
 export let position = 0;
 let vertSpeed = 30;
 
-const socket = io();
+export const socket = io();
 
 
 
@@ -33,7 +39,7 @@ export const overlay = new p5((p) => {
 
   let tFont;
   let curs;
-  let discourse;
+
   let pointers = [];
 
   let cnv;
@@ -42,8 +48,8 @@ export const overlay = new p5((p) => {
 
   p.preload = function() {
     tFont = p.loadFont("f7f26928c6b1edc770c616475459ecc8.otf");
-   discourse = discourseJSON
-   console.log(discourse)
+
+
   }
 
 
@@ -63,7 +69,7 @@ export const overlay = new p5((p) => {
 
 
     p.cursor("228ed835800150758bdcfe3a458531a8.png");
-    p.displayDiscourse();
+
     pointers = [p.createVector(0, 0), p.createVector(0, 0)]
 
     p.translate(0,position);
@@ -90,12 +96,10 @@ export const overlay = new p5((p) => {
 
   p.printItOut = function(data){
     console.log(data);
-
   }
 
 
   p.mouseDragged = function() {
-
     var data = {
       x: p.mouseX,
       y: p.mouseY,
@@ -104,21 +108,6 @@ export const overlay = new p5((p) => {
     p.noStroke();
     p.fill(47, 230, 240)
     p.ellipse(p.mouseX, p.mouseY, 20, 20);
-  }
-
-
-  p.displayDiscourse = function() {
-
-    p.noStroke();
-    p.fill(255);
-    p.textSize(16);
-    let units = discourse.units
-    for (let each in units) {
-      let unit = units[each];
-      if(unit.PosX > 0 && unit.PosX < p.windowWidth && unit.PosY+position > -30 && unit.PosY+position < p.windowHeight) {
-        p.text(unit.Base, unit.PosX, unit.PosY+position, 400, 1000)
-      }
-    }
   }
 
   p.mouseClicked = function() {
@@ -171,12 +160,20 @@ export const overlay = new p5((p) => {
 
 
 let reposition = function(event) {
+  content.clear()
   const delta = Math.sign(event.deltaY);
   position = position - (delta * vertSpeed)
+  discourses.vis()
   document.getElementById("vertPos").innerHTML = position
 }
 
-
+function loadDiscourseUnitsToArray(units) {
+  discourses = new discourseSet(content)
+  for (let each in units) {
+    let unit = units[each]
+    discourses.addUnit(unit.c, unit.p, unit.t, unit.u, unit.r, unit.d, unit.db)
+  }
+}
 
 
 
@@ -184,7 +181,9 @@ window.onload = function() {
 
   document.getElementById('overlay').addEventListener("wheel", event => reposition(event), {passive: true});
   socket.on('dataRep', data =>{
-    console.log(data);
+    loadDiscourseUnitsToArray(data)
+
+    console.log(discourses);
   })
 
   document.getElementById('vert30').onclick = () => {
@@ -214,19 +213,18 @@ window.onload = function() {
       document.getElementById('gp-b').classList.remove('current');
       document.getElementById('rp-b').classList.add('current');
       switchModeInstructions(2)
-      //discourses.vis()
+      discourses.vis()
     }
     document.getElementById('gp-b').onclick = () => {
       document.getElementById('rp-b').classList.remove('current');
       document.getElementById('gp-b').classList.add('current');
       switchModeInstructions(1)
-      //discourses.vis()
+      discourses.vis()
     }
     document.getElementById('discourseLoad').onclick = () => {
-      let datas = "frisk"
-        socket.emit('gimmeData', datas);
-        //  let presenter = new discursiveOverlay(overlay)
-        //  presenter.giveChoices()
+
+        let presenter = new discursiveOverlay(overlay)
+        presenter.giveChoices()
 
     }
     document.getElementById('switchLoad').onclick = () => {
@@ -235,27 +233,18 @@ window.onload = function() {
       document.getElementById('gp-b').classList.toggle('away')
       document.getElementById('rp-b').classList.toggle('away')
       document.getElementById('filterKey').textContent = "--"
-      //content.clear()
+      content.clear()
       switchModeInstructions(0)
-      //let presenter = new discursiveOverlay(overlay)
+      let presenter = new discursiveOverlay(overlay)
       overlay.clear()
-      //presenter.giveChoices()
+      presenter.giveChoices()
       position = 0
       document.getElementById('vertPos').innerText = position
-
-      //discourses.resetPositions()
-
-      // for (let each in discourses.set) {
-      //   discourses.set[each].p = discourses.p5.createVector(discourses.set[each].rp.x,discourses.set[each].rp.y)
-      //   discourses.set[each].bound.x = discourses.set[each].p.x - 5
-      //   discourses.set[each].bound.y = discourses.set[each].p.y - 5
-      //   discourses.set[each].centroid = discourses.set[each].p5.createVector(discourses.set[each].p.x + (discourses.set[each].wid / 2), discourses.set[each].p.y + (discourses.set[each].bound.z / 2))
-      // }
-
-
-
     }
 
 
+
+    let datas = "frisk"
+    socket.emit('gimmeData', datas);
 
 }

@@ -8,16 +8,7 @@ import {
 import {
   position
 } from './index.js'
-export let discourses = [];
 
-
-function loadDiscourseUnitsToArray(units) {
-  discourses = new discourseSet(content)
-  for (let each in units) {
-    let unit = units[each]
-    discourses.addUnit(unit.c, unit.p, unit.t, unit.u, unit.r, unit.d, unit.db)
-  }
-}
 
 export class discourseUnit {
   constructor(p5, c, p, t, u, r, d, db) {
@@ -191,6 +182,7 @@ export class discourseSet {
   addUnit(c, p, t, u, r, d, db) {
     this.set.push(new discourseUnit(this.p5, c, p, t, u, r, d, db))
     this.checkNameSpaces(db)
+    console.log(this.nameSpaces)
 
   }
 

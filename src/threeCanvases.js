@@ -1,4 +1,7 @@
 import p5 from 'p5/lib/p5.min.js';
+import{
+  discourses
+} from './index.js'
 
 export const content = new p5((j) => {
 
@@ -15,7 +18,7 @@ export const content = new p5((j) => {
 
   j.refresh = function() {
     j.clear();
-    //discourses.vis()
+    discourses.vis()
   }
 }, 'content')
 

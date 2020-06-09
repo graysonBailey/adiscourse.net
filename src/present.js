@@ -1,11 +1,8 @@
 import p5 from 'p5/lib/p5.min.js';
 import {
+  discourses,
   overlay
 } from './index.js'
-import {
-  discourses,
-  getBase
-} from './content.js';
 
 export class discursiveOverlay {
   constructor(p5) {
@@ -22,6 +19,7 @@ export class discursiveOverlay {
 
       for(let each in discourses.nameSpaces){
         let text = discourses.nameSpaces[each]
+        console.log(text)
          let tempBut = this.p5.createButton(text).class('spatialChoice').id(each).value(each)
          tempBut.position(210,160+(each*20))
          tempBut.mousePressed(() => {
@@ -39,6 +37,7 @@ export class discursiveOverlay {
 
          })
       }
+      
       newBut.mousePressed(() => {
         let newDisc = this.p5.createInput()
 
