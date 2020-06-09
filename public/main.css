@@ -1,0 +1,270 @@
+@font-face {
+  font-family: OCRA;
+  src: url(assets/miso.otf);
+}
+@font-face {
+  font-family: OCRA-bold;
+  src: url(assets/miso-bold.otf);
+}
+
+div{
+cursor : url("assets/swift.png"), pointer;
+}
+
+
+.overlay-content {
+  position: fixed;
+  top: 0;
+  height: 20px;
+  left: 0;
+  font-family: "OCRA";
+  font-size: 11pt;
+  padding: 5px 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  opacity: 0.5;
+  color: rgb(47,230,240);
+  z-index: 1;
+}
+
+.noselect {
+user-select: none;
+}
+
+.g-corntent {
+  position: fixed;
+  top: 32px;
+  height:100vh;
+  left: 0;
+  font-family: "OCRA";
+  font-size: 11pt;
+  padding: 5px 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  /* background-color: black; */
+  z-index:1;
+}
+
+.g-overlay-left {
+
+  transform: rotate(0deg) translateX(0px);
+  transform-origin: top right 0;
+  color: #D400D0;
+}
+
+.overlay-content-element {
+  flex: 1;
+}
+
+/* Custom style for each one of the 4 page borders */
+
+.overlay-top {
+  width: 120vw;
+}
+.overlay-left {
+  width: calc(100vh - 70px);
+  transform: rotate(0deg) translateX(0px) translateY(0vh);
+  transform-origin: top right 0;
+}
+
+
+
+
+
+
+.overlay-right {
+  width: calc(100vh - 70px);
+  transform: rotate(90deg) translateX(0px) translateY(-100vw);
+  transform-origin: top left 0;
+}
+.overlay-bottom {
+  width: calc(100vw - 70px);
+  transform: translateY(calc(100vh - 30px));
+}
+
+/* Text inside the 4 page borders */
+.overlay-content span {
+  padding: 0 5px;
+}
+
+/* Button styles */
+.button {  }
+.button:hover {
+  color: blue;
+}
+.button.highlight {
+  color: red;
+}
+
+.overlay-close-button {
+  position: fixed;
+  right: 38%;
+  top: 8px;
+  font-family: "OCRA", sans-serif;
+  font-size: 16pt;
+  border:none;
+  overflow: hidden;
+  background-repeat:no-repeat;
+  background-color: transparent;
+}
+
+.overlay-close-button:hover {
+  color: black;
+}
+
+
+
+
+
+
+
+
+
+.hidden {
+  visibility: hidden;
+}
+.disabled {
+  display: none;
+}
+ABOUT_THIS_WEBSITE
+
+.g-window-overlay {
+  position: fixed;
+  top: 25px;
+  left: 0;
+  width: 100px;
+  bottom: 0;
+  font-family: "OCRA", sans-serif;
+  font-size: 13pt;
+  padding: 10px;
+  background-color: pink;
+  color :pink;
+
+
+}
+
+.g-about-text {
+  padding-left:10 px;
+  width: 10%;
+  text-overflow: wrap;
+  font-size : 18;
+}
+
+#about-window-overlay {
+  /* overflow-y: scroll; */
+  opacity: 1;
+  background-color: rgb(255,0,0);
+  align-items: right;
+  justify-content: right;
+
+}
+
+
+
+
+
+
+
+
+.window-overlay {
+  position: fixed;
+  top: 0;
+  left:58%;
+  right: 0;
+  bottom: 0;
+  font-family: "OCRA", sans-serif;
+  font-size: 11pt;
+  padding: 10px;
+  background-color: white;
+  color :black;
+  align-items: right;
+  justify-content: right;
+
+
+
+}
+
+
+
+.animated {
+  opacity: 80;
+  transition:opacity 0.15s linear;
+}
+
+.animated.animated-visible {
+  opacity: 1;
+}
+
+.grid-container {
+  margin-right: 30px;
+  display: flex;
+  justify-content: space-between;
+  overflow: scroll;
+}
+
+.grid-column {
+  width: 24%;
+  text-overflow: wrap;
+}
+
+a.version-link {
+  text-decoration: none;
+  color: black;
+}
+
+a.version-link.current {
+  color: red;
+}
+
+a.version-link:hover {
+  color: blue;
+}
+
+.version-link-container {
+  margin-bottom: 10px;
+}
+
+#versions-window-overlay {
+  overflow-y: scroll;
+}
+
+#about-window-overlay {
+  /* overflow-y: scroll; */
+  color:white;
+  width: 40%;
+  font-family: "OCRA";
+  z-index:2;
+
+}
+
+#about-window-overlay-close {
+
+border:none;
+
+}
+
+.about-text {
+  padding-left:10 px;
+
+  text-overflow: wrap;
+  font-size : 18;
+  text-align:right;
+
+}
+
+.about-text a {
+  text-decoration: none;
+  color: blue;
+
+}
+
+.about-text a:hover {
+
+  text-decoration: none;
+  color: rgb(47,230,240);
+}
