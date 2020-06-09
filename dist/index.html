@@ -5,62 +5,78 @@
   <title>object discour.se</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <script src="/socket.io/socket.io.js"></script> -->
   <script src="bundle.js"></script>
-
-  <!-- <script src="libraries/p5.min.js"></script> -->
-  <!-- <script src="tecturalDisc.js"></script> -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-
   <script>
     function shutDown() {
       document.getElementById('about-window-overlay').className = "window-overlay disabled animated";
     }
   </script>
-
-
   <style>
     body {
       padding: 0;
       margin: 10;
     }
   </style>
-
-  <!-- <link rel="shortcut icon" href="assets/fav.ico"> -->
-  <!-- <link rel="stylesheet" href="main.css"> -->
 </head>
 
 
 <body style="margin: 0; overflow: hidden">
 
-  <div class="g-corntent noselect">
-    <div class="g-overlay-left g-overlay-content-element">
-      <br /><br />
-      <br /><br />
-      <br /><br />
-      <span>{. _ geist plane _ .}</span>
-      <br /><br />
-      <br /><br />
-      <span><. _ relation plane _ .></span>
-      <br /><br />
+  <div id="back" style="position: absolute; top: 0; left: 0;z-index:-2"></div>
+  <div id="low" style="position: absolute; top: 0; left: 0;z-index:-1"></div>
+  <div id="content" style="position: absolute; top: 0; left: 0;"></div>
+  <div id="overlay" style="position: absolute; top: 0; left: 0;"></div>
+
+
+
+  <div class="left-cascade noselect" id="leftCascade">
+    <div  id="discourseLoad" class="lc-load lc-con button current">
+      <span>() =>  loadDiscourses()</span>
     </div>
+    <div  id="switchLoad" class="lc-load lc-con button away darkhorse">
+      <span>() =>  switch()</span>
+    </div>
+
+    <div  id="gp-b" class="lc-top lc-con button away">
+      <span>{. _ geist plane _ .}</span>
+    </div>
+    <div id = "rp-b"class="lc-mid lc-con button away">
+      <span >< _ relation plane _ .></span>
+    </div>
+    <div  id="sp-b" class="lc-low lc-con button away">
+      <span># .. screen plane .. #</span>
+    </div>
+    <div  id="appendix" class="lc-bottom">
+      <span id="instructions"></span>
+    </div>
+
+
   </div>
+
+
+
+
+
 
   <!-- ---------------------------------------------------- -->
 
-  <div class="overlay-content overlay-top noselect">
+  <div class="top-cascade noselect">
 
-    <div class="overlay-top-left overlay-content-element">
+    <div class="tc-con">
       <span>how</span>
     </div>
-    <div class="overlay-top-center overlay-content-element">
-      <span>object discour.se</span>
+    <div class="tc-con">
+      <span style="color: rgb(47,230,240) "><b>adiscour.se :</b> <i>networked discursion</i></span>
     </div>
-    <div class="overlay-right-center overlay-content-element noselect">
-      <span>x:</span><span id="x-coord">0,</span>
-      <span>y:</span><span id="y-coord">0</span>
+    <div class="tc-con">
+      <span>discourseSet:</span><span id="filterKey">--</span>
+
     </div>
-    <div class="overlay-top-right overlay-content-element noselect">
+    <div class="tc-con">
+      <span>vertical position:</span><span id="vertPos">0</span><span id="vert30" class = button>.     30</span><span id="vert60" class = button>/ 60</span><span id="vert90" class = button>/ 90</span>
+
+    </div>
+    <div class="noselect tc-con">
       <span id="about-this-website" class="button">what</span>
 
     </div>
@@ -82,9 +98,16 @@
   <div id="about-window-overlay" class="window-overlay disabled animated">
     <div id="about-window-overlay-close" class="overlay-close-button"> ✕ </div>
     <div class="about-text">
-      =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-      Object Discour.se
-      <br /><br /><br />
+      <span>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-</span>
+      <br />
+      <span style = "font-size: 20px"><b>adiscour.se</b><br><i>an exploration of discursive practice and production</i></span>
+      <br />
+      <span><i>"Whoever produces in the act of consumption has no real acquaintance with books."</i><br>Friedrich Kittler, Aufschreibsysteme 1800/1900</span>
+
+      <span>
+This space is an experiment and possibly an aberation. It is a space of indeterminate written discourse "on the network" or maybe "in network" or perhaps "through the network". Within the browser portal units of discourse from books and articles and types of references are mixed with units of the mind. Rather than some impulse towards finding a clear and thoroughly organized result from various submissions, the discontinuous aggregate is quite the point - a mediation without composition.
+      </span>
+      <br /><br />
 
     </div>
   </div>

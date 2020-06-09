@@ -4,176 +4,84 @@
 }
 @font-face {
   font-family: OCRA-bold;
-  src: url(assets/OCRAStd.otf);
+  src: url(assets/miso-bold.otf);
 }
 
 textarea
 {
+   font-family:"OCRA";
+   font-size: 12px;
+   background-color:red;
    border:none;
    outline:none;
+   height:300;
+   width:400;
    resize:none;
-}
-
-textarea::placeholder
-{
-font-size:10pt;
-}
-
-.pend {
-  background-color: rgba(153,0,102,.5);
-  font-family: OCRA-bold;
-  font-size: 12px;
-  height:25;
-  width:400;
-  pointer-events: none;
-  color:white;
-  user-select: none;
-}
-
-.geist {
-  background-color:white;
-  font-family:"OCRA";
-  font-size: 16px;
-  height:300;
-  width:400;
-}
-.geistButton {
-  background-color:rgba(220,220,220,.5);
-  font-family:"OCRA-bold";
-  font-size: 12px;
-  border: none;
-  user-select: none;
-}
-.geistButton:hover {
-  background-color:black;
-  color:white
-}
-.response{
-  background-color: rgb(90,90,90) !important;
-  color: white !important;
-}
-.quotation{
-  background-color: rgb(190,190,190) !important;
-  color:black;
-}
-
-.spatialChoice {
-  background-color:rgba(255,255,255,.8);
-  font-family:"OCRA-bold";
-  font-size: 12px;
-  border: none;
-  user-select: none;
-}
-.spatialChoice:hover {
-  background-color:black;
-  color:white
 }
 
 * {
 cursor : url("assets/swift.png"), pointer;
-white-space: pre-line;
+}
+
+
+.overlay-content {
+  position: fixed;
+  top: 0;
+  height: 20px;
+  left: 0;
+  font-family: "OCRA";
+  font-size: 11pt;
+  padding: 5px 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  opacity: 0.5;
+  color: rgb(47,230,240);
+  z-index: 1;
 }
 
 .noselect {
 user-select: none;
 }
 
-
-.top-cascade{
+.g-corntent {
   position: fixed;
-  top: 0;
-  height: 20px;
+  top: 0px;
+  height:0;
   left: 0;
-  padding: 5px 35px;
-  display: flex;
-  flex-direction: row;
-  background: rgba(0,0,0,.6);
-  z-index: 1;
-  width: 100vw;
-  align-items: center;
-  justify-content: center;
-}
-
-.tc-con {
-  font-family: "OCRA-bold";
-  font-size: 7pt;
-  flex: 1;
-  align-self:center;
-  left:10vw;
-user-select: none;
-
-  color:white;
-}
-
-.overlay-top {
-
-}
-
-
-.left-cascade {
-  user-select: none;
-  position: fixed;
-  top: 0;
-  height:100vh;
-  left: 10;
-  font-family: "OCRA-bold";
-  font-size: 8pt;
+  font-family: "OCRA";
+  font-size: 11pt;
   padding: 5px 5px;
   display: flex;
   flex-direction: row;
   align-items: left;
   justify-content: left;
-  z-index:1;
-}
-
-.lc-load {
-  top: 15vh;
-}
-.lc-low {
-  top: 45vh;
-}
-
-.lc-top {
-  top: 35vh;
-}
-
-.lc-mid {
-  top: 40vh;
-}
-.lc-bottom {
-  top: 60vh !important;
-  width:10%;
-  background-color:none !important;
-  color:white !important;
-  font-size:8pt;
-  position: fixed;
-}
-
-
-
-.lc-con:hover{
-  background-color:#33FFCC;
-  color:FFCC00;
-  font-size:8pt;
-}
-
-.lc-con{
-  color: #660000;
-  background-color:white;
-  font-size: 8pt;
+  background-color: red;
   z-index:3;
-  padding: 5px 5px;
-  height:20px;
-  left: 10;
-  position: fixed;
-
 }
 
+.g-overlay-left {
 
+  transform: rotate(0deg) translateX(0px);
+  transform-origin: top right 0;
+  color: #D400D0;
+}
 
+.overlay-content-element {
+  flex: 1;
+}
 
+/* Custom style for each one of the 4 page borders */
+
+.overlay-top {
+  width: 120vw;
+}
 .overlay-left {
   width: calc(100vh - 70px);
+  transform: rotate(0deg) translateX(0px) translateY(0vh);
+  transform-origin: top right 0;
 }
 
 
@@ -196,19 +104,19 @@ user-select: none;
   padding: 0 5px;
 }
 
+/* Button styles */
 .button {  }
 .button:hover {
-  color: #f9a800;
+  color: blue;
 }
-
 .button.highlight {
   color: red;
 }
 
 .overlay-close-button {
-  position: absolute;
-  left: 20px;
-  top: 20px;
+  position: fixed;
+  right: 38%;
+  top: 8px;
   font-family: "OCRA", sans-serif;
   font-size: 16pt;
   border:none;
@@ -218,9 +126,7 @@ user-select: none;
 }
 
 .overlay-close-button:hover {
-
   color: black;
-
 }
 
 
@@ -355,7 +261,7 @@ border:none;
 }
 
 .about-text {
-  padding-left:10%;
+  padding-left:10 px;
 
   text-overflow: wrap;
   font-size : 18;
@@ -373,21 +279,4 @@ border:none;
 
   text-decoration: none;
   color: rgb(47,230,240);
-}
-
-
-.current{
-  background-color:#FFCC00;
-  color:black
-}
-
-.away{
-display: none;
-}
-
-.darkhorse{
-  background-color: black;
-  color: white;
-
-
 }

@@ -1,12 +1,12 @@
 import _ from 'lodash';
 import './style.css';
-import p5 from 'p5';
+import p5 from 'p5/lib/p5.min.js';
 import io from 'socket.io-client';
 import discourseJSON from './allgemeine.json';
-import dUnit from './dUnit.js';
+import { present } from './dUnit.js';
 let path = require('path');
 
-const socket = io('tecturaldiscourse-base.eba-mxiurpsc.us-east-1.elasticbeanstalk.com');
+const socket = io();
 
 
 
@@ -37,6 +37,7 @@ const sketch = (p) => {
   p.preload = function() {
     tFont = p.loadFont("f7f26928c6b1edc770c616475459ecc8.otf");
    discourse = discourseJSON
+   console.log(discourse)
   }
 
 
@@ -46,7 +47,7 @@ const sketch = (p) => {
 
     console.log("setting up")
     p.textFont(tFont)
-    socket.on('mouse', newDrawing)
+    socket.on('mouse', p.newDrawing)
     p.refresh()
     p.fill(255)
   }
@@ -75,24 +76,20 @@ const sketch = (p) => {
   }
 
 
-  // p.newDrawing = function(data, tex) {
-  //   p.noStroke();
-  //   p.fill(255, 0, 100);
-  //   p.fill(230, 47, 240);
-  //   p.text(data.talk, data.x, data.y);
-  // }
+  p.newDrawing = function(data) {
+    p.noStroke();
+    p.fill(255, 0, 100);
+    p.ellipse(data.x, data.y,3,3);
+  }
 
 
   p.mouseDragged = function() {
 
-    var tex = "loser";
     var data = {
       x: p.mouseX,
       y: p.mouseY,
-      talk: tex
     }
     socket.emit('mouse', data);
-    socket.emit('text', tex);
     p.noStroke();
     p.fill(47, 230, 240)
     p.ellipse(p.mouseX, p.mouseY, 20, 20);
@@ -151,8 +148,7 @@ const sketch = (p) => {
   }
 
   p.setPositions = function() {
-    document.getElementById("x-coord").innerHTML = p.mouseX
-    document.getElementById("y-coord").innerHTML = p.mouseY
+    document.getElementById("vertPos").innerHTML = position
   }
 
   p.mousePressed = function() {
@@ -173,10 +169,11 @@ const sketch = (p) => {
 
 let baseSketch = new p5(sketch);
 
-let cramp = function()
+
 
 
 window.onload = function() {
+  console.log(present);
   document.getElementById('about-this-website').onclick = () => {
     document.getElementById('about-window-overlay').classList.remove('disabled');
     console.log("pressed it")
