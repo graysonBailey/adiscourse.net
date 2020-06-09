@@ -1,7 +1,9 @@
-var express = require('express');
-var Datastore = require('nedb')
-var socket = require('socket.io');
-var fetch = require('node-fetch')
+const express = require('express');
+const Datastore = require('nedb')
+const socket = require('socket.io');
+const fetch = require('node-fetch')
+
+
 var app = express();
 app.use(express.static('public'));
 var server = app.listen(process.env.PORT || 8081);
@@ -31,7 +33,7 @@ function newConnection(socket) {
 
   socket.on('mouse', data => {
     socket.broadcast.emit('mouseRep', data)
-    console.log(data);
+    //console.log(data);
   });
 
 
