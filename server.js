@@ -6,8 +6,8 @@ const fetch = require('node-fetch')
 
 var app = express();
 app.use(express.static('dist'));
-//var server = app.listen(process.env.PORT || 8080);
-var server = app.listen(8081);
+var server = app.listen(process.env.PORT || 8080);
+//var server = app.listen(8081);
 var io = socket(server);
 console.log("My socket server is running Mboy");
 
