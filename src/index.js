@@ -73,9 +73,9 @@ export const overlay = new p5((p) => {
     p.line(data.x - 3, data.y + 3, data.x + 3, data.y - 3)
   }
 
-  p.printItOut = function(data) {
-    console.log(data);
-  }
+  // p.printItOut = function(data) {
+  //   console.log(data);
+  // }
 
 
   p.mouseDragged = function() {
