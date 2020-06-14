@@ -229,15 +229,12 @@ window.onload = function() {
 
   document.getElementById('vert30').onclick = () => {
     vertSpeed = 30;
-    console.log(vertSpeed)
   }
   document.getElementById('vert60').onclick = () => {
     vertSpeed = 60;
-    console.log(vertSpeed)
   }
   document.getElementById('vert90').onclick = () => {
     vertSpeed = 90;
-    console.log(vertSpeed)
   }
 
   document.getElementById('about-this-website').onclick = () => {
