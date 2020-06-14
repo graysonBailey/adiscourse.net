@@ -52,8 +52,9 @@ export const back = new p5((d) => {
     }
   }
 
-  d.windowResized = function() {
-    d.resizeCanvas(d.windowWidth, d.windowHeight)
-    d.refreshed()
-  }
+  // d.windowResized = function() {
+  //   d.resizeCanvas(d.windowWidth, d.windowHeight)
+  //   content.resizeCanvas(d.windowWidth,d.windowHeight)
+  //   d.refreshed()
+  // }
 }, 'back')

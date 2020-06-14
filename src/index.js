@@ -169,6 +169,14 @@ export const overlay = new p5((p) => {
       p.fullscreen(!fs);
     }
   }
+
+  p.windowResized = function(){
+    p.resizeCanvas(p.windowWidth,p.windowHeight);
+    back.resizeCanvas(back.windowWidth, back.windowHeight)
+    content.resizeCanvas(content.windowWidth,content.windowHeight)
+    back.refreshed()
+    discourses.vis()
+  }
 }, 'overlay')
 
 $(document).on('keydown', '.geist', function() {
@@ -234,11 +242,14 @@ window.onload = function() {
 
   document.getElementById('about-this-website').onclick = () => {
     document.getElementById('about-window-overlay').classList.remove('disabled');
-    console.log("pressed it")
+
   }
   document.getElementById('about-window-overlay-close').onclick = () => {
     document.getElementById('about-window-overlay').classList.add('disabled');
-    console.log("pressed it")
+  }
+  document.getElementById('fs').onclick = () => {
+    let fs = overlay.fullscreen();
+    overlay.fullscreen(!fs);
   }
 
 
@@ -274,7 +285,6 @@ window.onload = function() {
     position = 0
     document.getElementById('vertPos').innerText = position
   }
-
 
 
   let datas = "frisk"

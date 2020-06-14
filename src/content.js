@@ -175,7 +175,7 @@ export class discourseSet {
     this.p5 = p5
     this.set = []
     this.pendingRelation = []
-    this.nameSpaces = ["0-verbunden"]
+    this.nameSpaces = ["[complete]-verbunden"]
   }
 
 
@@ -206,6 +206,7 @@ export class discourseSet {
     if (cCount == 0) {
       this.nameSpaces.push(db)
     }
+    this.nameSpaces.sort()
     this.nameSpaces.sort()
   }
 

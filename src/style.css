@@ -95,14 +95,17 @@ user-select: none;
 }
 
 .tc-con {
+
   font-family: "OCRA-bold";
   font-size: 7pt;
   flex: 1;
-  align-self:center;
+  /* align-self:center; */
+  display: inline-block;
+  text-align:center;
   left:10vw;
-user-select: none;
-
+  user-select: none;
   color:white;
+  vertical-align: middle;
 }
 
 .overlay-top {
@@ -199,6 +202,7 @@ user-select: none;
 .button {  }
 .button:hover {
   color: #f9a800;
+  text-decoration: none;
 }
 
 .button.highlight {
@@ -316,6 +320,11 @@ ABOUT_THIS_WEBSITE
 .grid-column {
   width: 24%;
   text-overflow: wrap;
+}
+
+a{
+  text-decoration: none;
+  color:white;
 }
 
 a.version-link {
