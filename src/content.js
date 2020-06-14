@@ -149,7 +149,7 @@ export class discourseUnit {
     let insideScreen = this.p.x > 0 && this.p.x < this.p5.width && this.p.y + position > -30 && this.p.y + position < this.p5.height
     let insideSet
     let fKey = String(document.getElementById("filterKey").textContent)
-    if (String(this.db) == fKey || fKey == "0-verbunden") {
+    if (String(this.db) == fKey || fKey == "[complete]-verbunden") {
       insideSet = true
     } else {
       insideSet = false
