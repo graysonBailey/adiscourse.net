@@ -30,10 +30,6 @@ export class discourseUnit {
     this.db = db
   }
 
-
-
-
-
   checkType() {
     if (this.c.charAt(0) == 'r' && this.c.charAt(1) == '/') {
       return 1
@@ -182,8 +178,6 @@ export class discourseSet {
   addUnit(c, p, t, u, r, d, db) {
     this.set.push(new discourseUnit(this.p5, c, p, t, u, r, d, db))
     this.checkNameSpaces(db)
-    console.log(this.nameSpaces)
-
   }
 
   resetPositions(){
@@ -225,7 +219,7 @@ export class discourseSet {
       for (let those in connections) {
 
         let fKey = String(document.getElementById("filterKey").textContent)
-        if ((connections[those].db == fKey && theRelated[each].db == fKey) || fKey == "0-verbunden") {
+        if ((connections[those].db == fKey && theRelated[each].db == fKey) || fKey == "[complete]-verbunden") {
 
           this.p5.noFill()
           this.p5.stroke('#ffA908')

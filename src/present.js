@@ -21,7 +21,6 @@ export class discursiveOverlay {
 
     for (let each in discourses.nameSpaces) {
       let text = discourses.nameSpaces[each]
-      console.log(text)
       let tempBut = this.p5.createButton(each+"-"+text).class('spatialChoice').id(each).value(each)
       tempBut.position(210, 160 + (each * 20))
       tempBut.mousePressed(() => {
