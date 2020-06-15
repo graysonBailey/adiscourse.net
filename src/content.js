@@ -71,7 +71,7 @@ export class discourseUnit {
 
   constructBound() {
     let lines = this.buildLines()
-    let tbound = this.p5.createVector(this.p.x - 5, this.p.y - 5, (lines * 18) + 10)
+    let tbound = this.p5.createVector(this.p.x - 5, this.p.y - 5, (lines * 19) + 10)
     return tbound
   }
 
@@ -112,7 +112,9 @@ export class discourseUnit {
     this.p5.fill(color)
     this.p5.noStroke()
     this.p5.textSize(16)
+    this.p5.textLeading(18)
     this.p5.text(this.body, this.p.x, this.p.y + position, this.wid, this.bound.z)
+    this.p5.textLeading(16)
     this.p5.textSize(14)
     this.p5.fill(255)
     this.p5.text(this.ref, this.p.x, this.p.y + position + this.bound.z, this.wid, 300)
@@ -180,9 +182,9 @@ export class discourseSet {
     this.checkNameSpaces(db)
   }
 
-  resetPositions(){
+  resetPositions() {
     for (let each in this.set) {
-      this.set[each].p = this.p5.createVector(this.set[each].rp.x,this.set[each].rp.y)
+      this.set[each].p = this.p5.createVector(this.set[each].rp.x, this.set[each].rp.y)
       this.set[each].bound.x = this.set[each].p.x - 5
       this.set[each].bound.y = this.set[each].p.y - 5
       this.set[each].centroid = this.set[each].p5.createVector(this.set[each].p.x + (this.set[each].wid / 2), this.set[each].p.y + (this.set[each].bound.z / 2))
@@ -244,14 +246,14 @@ export class discourseSet {
 
 
         if (Math.abs(distX) > 0 && Math.abs(distX) < 425) {
-          if (Math.abs(distY) > 0 && Math.abs(distY) < e.bound.z+25) {
-            if (Math.abs(distX) > Math.abs(distY) && e.p.x >400) {
-              let vec = Math.sign(distX)*(100)
+          if (Math.abs(distY) > 0 && Math.abs(distY) < e.bound.z + 25) {
+            if (Math.abs(distX) > Math.abs(distY) && e.p.x > 400) {
+              let vec = Math.sign(distX) * (100)
               e.p.x += vec
               e.bound.x += vec
               e.centroid.x += vec
             } else {
-              let vec = Math.sign(distY)*(100)
+              let vec = Math.sign(distY) * (100)
               e.p.y += vec
               e.bound.y += vec
               e.centroid.y += vec
@@ -286,10 +288,12 @@ export class discourseSet {
             u: this.pendingRelation[0].u,
             r: theConcerned[each].u
           }
-          socket.emit('relation', data)
+          if (document.getElementById('filterKey').textContent !== "**") {
+            socket.emit('relation', data);
+          }
+          this.vis()
+          this.pendingRelation = []
         }
-        this.vis()
-        this.pendingRelation = []
       }
     }
   }
