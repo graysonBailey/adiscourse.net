@@ -49,7 +49,7 @@ export const overlay = new p5((p) => {
 
   p.setup = function() {
     cnv = p.createCanvas(p.windowWidth, p.windowHeight)
-    console.log("setting up")
+    console.log("overlay canvas set up")
     p.textFont(tFont)
     p.cursor("228ed835800150758bdcfe3a458531a8.png")
     socket.on('mouseRep', p.newDrawing)
@@ -134,7 +134,6 @@ export const overlay = new p5((p) => {
   }
 
   p.newDrawing = function(data) {
-    console.log("got sent something")
     p.noFill();
     p.stroke(255, 0, 100);
     p.strokeWeight(1.5);
@@ -157,7 +156,6 @@ export const overlay = new p5((p) => {
     if (document.getElementById('rp-b').classList.contains('current')) {
       discourses.concern()
     }
-    console.log(p.mouseX + " , " + p.mouseY)
   }
 
   p.submitUnit = function() {
@@ -375,15 +373,15 @@ window.onload = function() {
     discourses = general
     let presenter = new discursiveOverlay(overlay)
     presenter.giveChoices()
-    document.getElementById('gp-b').classList.toggle('away')
-    document.getElementById('rp-b').classList.toggle('away')
+    document.getElementById('gp-b').classList.add('away')
+    document.getElementById('rp-b').classList.add('away')
   }
 
   document.getElementById('switchLoad').onclick = () => {
     document.getElementById('rp-b').classList.remove('current')
     document.getElementById('gp-b').classList.remove('current')
-    document.getElementById('gp-b').classList.toggle('away')
-    document.getElementById('rp-b').classList.toggle('away')
+    document.getElementById('gp-b').classList.add('away')
+    document.getElementById('rp-b').classList.add('away')
     document.getElementById('filterKey').textContent = "--"
     content.clear()
     switchModeInstructions(0)

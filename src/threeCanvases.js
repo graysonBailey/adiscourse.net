@@ -23,12 +23,20 @@ export const content = new p5((j) => {
 }, 'content')
 
 export const back = new p5((d) => {
+
+ let persistM = 0;
+
   d.setup = () => {
     d.createCanvas(d.windowWidth, d.windowHeight + 50)
     d.refreshed()
   }
 
   d.refreshed = function(m) {
+    if(m == undefined){
+      m = persistM;
+    } else {
+      persistM = m
+    }
     let back
     let lin
     switch (m) {

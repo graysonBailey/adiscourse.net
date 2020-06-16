@@ -14,6 +14,10 @@ export class discursiveOverlay {
   giveChoices() {
     switchModeInstructions(-1)
 
+    while (document.getElementsByClassName("spatialChoice")[0] != null) {
+      document.getElementsByClassName("spatialChoice")[0].remove()
+    }
+
     let newBut = this.p5.createButton('+ new discourse space').class('spatialChoice').id('newDSpace')
     newBut.position(210, 140)
 
