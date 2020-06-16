@@ -19,6 +19,7 @@ let path = require('path');
 export let discourses = []
 export let general = []
 let splashUnits = []
+let allData= []
 
 
 
@@ -26,12 +27,6 @@ export let position = 0;
 let vertSpeed = 30;
 
 export const socket = io();
-
-
-
-
-
-
 
 export const overlay = new p5((p) => {
   let tFont;
@@ -43,21 +38,21 @@ export const overlay = new p5((p) => {
 
   p.preload = function() {
     tFont = p.loadFont("f7f26928c6b1edc770c616475459ecc8.otf");
+    curs = p.loadImage("swift.png")
   }
 
 
 
   p.setup = function() {
     cnv = p.createCanvas(p.windowWidth, p.windowHeight)
+    p.cursor(curs)
     console.log("overlay canvas set up")
     p.textFont(tFont)
-    p.cursor("228ed835800150758bdcfe3a458531a8.png")
     socket.on('mouseRep', p.newDrawing)
     socket.on('unit', p.logUnit)
     p.fill(255)
     p.intSetStart();
     introTexts();
-
   }
 
 
@@ -269,6 +264,7 @@ let reposition = function(event) {
 }
 
 function loadDiscourseUnitsToArray(units) {
+
   let discs = new discourseSet(content)
   for (let each in units) {
     let unit = units[each]
@@ -319,7 +315,17 @@ function introTexts() {
   overlay.text("<--- #2 _ a plane for relating things (try relating something)", 220, overlay.windowHeight * .43)
 }
 
+function downloadThatData(){
 
+  let stringData = JSON.stringify(allData)
+ let a = document.createElement("a")
+ let file = new Blob([stringData], {type:'text/plain'})
+ a.href = URL.createObjectURL(file)
+ a.download ='adiscourseNet.JSON'
+ a.click();
+ URL.revokeObjectURL(a.href)
+
+}
 
 window.onload = function() {
 
@@ -327,6 +333,7 @@ window.onload = function() {
     passive: true
   });
   socket.on('dataRep', data => {
+    allData = data;
     general = loadDiscourseUnitsToArray(data)
   })
 
@@ -391,6 +398,13 @@ window.onload = function() {
     position = 0
     document.getElementById('vertPos').innerText = position
   }
+
+  document.getElementById('downData').onclick = () => {
+    //downloadThatData()
+    console.log(allData)
+    downloadThatData()
+  }
+
 
 
   let datas = "frisk"
