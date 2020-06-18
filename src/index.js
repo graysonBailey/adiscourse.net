@@ -21,8 +21,6 @@ export let general = []
 let splashUnits = []
 let allData= []
 
-
-
 export let position = 0;
 let vertSpeed = 30;
 
@@ -33,13 +31,10 @@ export const overlay = new p5((p) => {
   let pointers = [p.createVector(0, 0), p.createVector(0, 0)];
   let cnv;
 
-
-
   p.preload = function() {
 
     curs = p.loadImage("swift.png")
   }
-
 
 
   p.setup = function() {
@@ -50,71 +45,200 @@ export const overlay = new p5((p) => {
     socket.on('unit', p.logUnit)
     p.fill(255)
     p.intSetStart();
-    introTexts();
   }
 
-
   p.intSetStart = function() {
-    // splashUnits.push({
-    //   "c": "r/ These roles of interpersonal / social negotiation align with Colin Ward's critique of the role of the police, insomuch that the police exist to distance us from our social collaborators, creating space for impersonal violence in exchange for avoiding the awkwardness and tension of negotiations within a shared society. Recently the CHAZ in Seattle is an obvious attempt to deconstruct this relationship, but it's always a gamble when people are armed..." ,
-    //   "p": {
-    //     "x": 844,
-    //     "y": 380
-    //   },
-    //   "t": 0,
-    //   "u": 0,
-    //   "r": [],
-    //   "d": [2020, 6, 13, 6, 33, 30],
-    //   "db": "**"
-    // })
-    // splashUnits.push({
-    //   "c": "q/ \"A radical concept of freedom, therefore, can only be one that deals with freedom in cooperation: I am free if I am free in my negotiation with other, i.e., uninhibited by any higher authority and not restricted by anybody through force. But this simply means that I am equal to others in cooperation: that my cooperation is not a forced one but that I can negotiate it with others at eye level and that there is nobody above me to whose rules and controle I am subjugated. In a radical concept of freedom and of equality both coincide in one.\" // Christoph Spehr, \"Free Cooperation\", The Art of Free Cooperation, 2007, 92",
-    //   "p": {
-    //     "x": 260,
-    //     "y": 525
-    //   },
-    //   "t": 0,
-    //   "u": 1,
-    //   "r": [0],
-    //   "d": [2020, 6, 13, 6, 33, 30],
-    //   "db": "**"
-    // })
-    // splashUnits.push({
-    //   "c": "q/ \"As we see it, contracting in gross and building's incorporation into capitalism brought about a shift away from what Karl Marx calls \"direct social relations between things\" that were now enacted through the specification. Specifications, and the contractual documents of which they were part, took voer what had previously been lived, personal negotiations between architects and builders on site\" // Katie Lloyd Thomas & Tilo Amhoff, \"Writing Work\", The Architect as Worker, 2015, 125",
-    //   "p": {
-    //     "x": 537,
-    //     "y": 145
-    //   },
-    //   "t": 0,
-    //   "u": 2,
-    //   "r": [0],
-    //   "d": [2020, 6, 13, 6, 33, 30],
-    //   "db": "**"
-    // })
-    // splashUnits.push({
-    //   "c": "q/ \"The practice of articulation, therefore, consists in the construction of nodal points which partially fix meaning; and the partial character of this fixation proceeds from the openness of the social, a result, in its turn, of the constant overflowing of every discourse by the infinitude of the field of discursivity.\" // Ernesto Laclau & Chantal Mouffe, Hegemony and Socialist Strategy, 1985, 100",
-    //   "p": {
-    //     "x": 1102,
-    //     "y": 672
-    //   },
-    //   "t": 0,
-    //   "u": 4,
-    //   "r": [0],
-    //   "d": [2020, 6, 13, 6, 33, 30],
-    //   "db": "**"
-    // })
-    // splashUnits.push({
-    //   "c": "r/ First and foremost these negotiations need to be done in discursive terms, creating these nodal points around collective reality can be built - I'm not sure this means that material negotiations need to come after, but the immanent practices of articulation seem to be constructive towards having a subject position from which to negotiate. Oh boy, Post-Marxists make my head hurt...",
-    //   "p": {
-    //     "x": 700,
-    //     "y": 890
-    //   },
-    //   "t": 0,
-    //   "u": 5,
-    //   "r": [4],
-    //   "d": [2020, 6, 13, 6, 33, 30],
-    //   "db": "**"
-    // })
+    splashUnits.push({
+      "c":"[non-linear] : another challenge is to the idea that critical written discourse needs to be forced into a linear structure to be understood. ",
+      "p":{
+        "x":1187,
+        "y":777
+      },
+      "t":0,
+      "u":"intro25",
+      "r":[],
+      "d":[2020,6,18,13,25,49],
+      "db":"**",
+      "_id":"QgMOCwAxFIRVaOGc"
+    })
+    splashUnits.push({
+      "c":"~ introduction:\n\nin case you haven't been here before, you can follow these loose instructions for a better idea of the operations and spaces of this site.",
+      "p":{"x":290,"y":235},
+      "t":0,
+      "u":"intro21",
+      "r":["intro22"],
+      "d":[2020,6,18,13,9,15],
+      "db":"**",
+      "_id":"WUnR1zbmuEslErcl"
+    })
+
+    splashUnits.push({
+      "c":"r/ Updates: \n\n+ introductions page\n+ packing behavior\n+ unit id system ",
+      "p":{"x":1170,"y":135},
+      "t":0,
+      "u":"updates",
+      "r":["intro21"],
+      "d":[2020,6,18,13,9,15],
+      "db":"**",
+      "_id":"WUnR1zbmuEslErcl"
+    })
+    splashUnits.push({
+      "c":"The intention of -this- discursive interface <adiscourse.net> is to challenge a slew of inherited assumptions about \"discursive practice\" which remain largely unexamined. ",
+      "p":{"x":324,"y":836},
+      "t":0,
+      "u":"intro29",
+      "r":["intro25","intro26"],
+      "d":[2020,6,18,14,51,3],
+      "db":"**",
+      "_id":"dR3HROYPoZ39dXUo"
+    })
+    splashUnits.push({
+      "c":"[non-authorial] : one challenge is to the very idea that direct authorship - a rather entrenched (but not very old) idea that direct lines of credit is somehow the best way to generate discourse.",
+      "p":{"x":1162,"y":665},
+      "t":0,
+      "u":"intro24",
+      "r":["intro29"],
+      "d":[2020,6,18,13,21,24],
+      "db":"**",
+      "_id":"keI7nqa16smq1SWY"
+    })
+    splashUnits.push({
+      "c":"\"discursive practices\" are about as varied as discursive interfaces - coffee shop meetings, the conversations and tactics of Social Media, the presentation of a paper at a symposium.\n\nUsually in academic spheres these practices might involve submission of an abstract, response of acceptance of denial, the coalescing of sources into a resolved, linear, authorial argument which contributes to the general sphere of -that- area of discourse.",
+      "p":{"x":366,"y":922},
+      "t":0,
+      "u":"intro27",
+      "r":["intro29"],
+      "d":[2020,6,18,13,36,23],
+      "db":"**",
+      "_id":"rEkgawKOsAQsViGX"
+    })
+    splashUnits.push({
+      "c":"for starters, what you are using now is \"discursive interface\" - sounds very special, but I'm sure you've been using one type or other of discursive interface for years. \n\nEspecially if you're on Twitter (a discursive interface), use e-mail (a discursive interface), or have written anything at any time (lots of discursive interfaces there). There are many differences among them all. They have very different intentions. Social Media has a certain flair for discourse, as does using a pen or pencil to write out ideas in a notebook which no one is allowed to look at.",
+      "p":{"x":416,"y":419},
+      "t":0,
+      "u":"intro22",
+      "r":["intro23","intro29"],
+      "d":[2020,6,18,13,14,45],
+      "db":"**",
+      "_id":"wloGufkYljWntfrg"
+    })
+    splashUnits.push({
+      "c":"[irresolution] : a third general challenge is to the idea of resolution, something that is quite arcane to think of in many ways, but still heavily involved in crtical discourses.",
+      "p":{"x":1154,"y":873},
+      "t":0,
+      "u":"intro26",
+      "r":[],
+      "d":[2020,6,18,13,31,15],
+      "db":"**",
+      "_id":"zYiDkGG2WO466P8V"
+    })
+    splashUnits.push({
+      "c":"But, before this gets too long (which isn't really a problem),  you should test out each of the steps and actions out so that when you're in the full database everything makes more sense.\n\n",
+      "p":{"x":627,"y":1512},
+      "t":0,
+      "u":"intro1592486711884",
+      "r":["intro1592488799565"],
+      "d":[2020,6,18,15,25,11],
+      "db":"**",
+      "_id":"62Y9kunnpNIqNovT"
+    })
+    splashUnits.push({
+      "c":"<adiscourse.net> is both an alternative to these usual modes of producing critical discourse, as well as an opening to deconstruct what \"modes of discourse production\" really are.  Very often the work of composing concepts and thoughts is thrown to the idea of a genius moment, but we all know that's bullshit. Instead, there are a whole process of material events (labor acts) which contribute to the output of discourse in whatever format...",
+      "p":{"x":325,"y":1221},
+      "t":0,
+      "u":"intro1592486128168",
+      "r":["intro1592486711884","intro27"],
+      "d":[2020,6,18,15,15,28],
+      "db":"**",
+      "_id":"m7ZlUeu2SClOSNqE"
+    })
+    splashUnits.push({
+      "c":"#1 : drag your cursor while having the LEFT-MOUSE-BUTTON engaged. Do you see those blue circles? They are some drawn remnants you're leaving behind, but also sending out. If you see different markers appear which you haven't drawn... that's because its other people using the interface. ",
+      "p":{"x":1178,"y":1469},
+      "t":0,
+      "u":"intro1592487165230",
+      "r":["intro1592486711884"],
+      "d":[2020,6,18,15,32,45],
+      "db":"**",
+      "_id":"sCEBHI5TYb1KKJeg"
+    })
+    splashUnits.push({
+      "c":"q/ \"different types of input have different attributes, which allow for the intermixing of attempts at composition (aquamarine), quotes/references (black), and responses (reddish). Each of these elements are pretty central to discursive production, and the usage of each is a bit emergent, since it's all based on collaborative use.\" // grayson daniel bailey, adiscourse.net, a few days after turning 30",
+      "p":{"x":1460,"y":1859},
+      "t":0,
+      "u":"intro1592487556253",
+      "r":[],
+      "d":[2020,6,18,15,39,16],
+      "db":"**",
+      "_id":"MZt3NRXgxp0wkqPy"
+    })
+    splashUnits.push({
+      "c":"#2 : Go on over to the left side of the screen and press the Geist Plane button.\nThe background changes and suddenly there's some instructions over there in the bottom left...\n\n...These explain how to provide input like your currently reading.",
+      "p":{"x":1099,"y":1693},
+      "t":0,
+      "u":"intro1592487328632",
+      "r":["intro1592487556253","intro1592486711884"],
+      "d":[2020,6,18,15,35,28],
+      "db":"**",
+      "_id":"tS3x9vkMmcs99F1i"
+    })
+    splashUnits.push({
+      "c":"#3 : lets make some relations! Once you've input a few different elements, try relating them if they are conceptually comparable or if one is derivative of the other or if one is trying to dispute the other. First, click the Relation Plane button, then click two elements to relate them.",
+      "p":{"x":571,"y":1748},
+      "t":0,
+      "u":"intro1592487751332",
+      "r":["intro1592486711884","intro1592488124638","intro1592487906533"],
+      "d":[2020,6,18,15,42,31],
+      "db":"**",
+      "_id":"9v4iJODfGQFqwjNF"
+    })
+    splashUnits.push({
+      "c":"r/ these relations exist all the time within networks and human communication - usually its in the form of metadata or another structure of information which couches comments within threads, an original post within a reblog, or whatever have you. ",
+      "p":{"x":814,"y":2041},
+      "t":0,
+      "u":"intro1592487906533",
+      "r":[],
+      "d":[2020,6,18,15,45,6],
+      "db":"**",
+      "_id":"UVVVfr2037oqEcKO"
+    })
+    splashUnits.push({
+      "c":"r/ notice how things move about a bit when they get cramped, but only when scrolling? That's so that overlapping can be minimized without depending on constant animation. It's also an aesthetic choice, as everything is...",
+      "p":{"x":161,"y":1597},
+      "t":0,
+      "u":"intro1592488124638",
+      "r":[],
+      "d":[2020,6,18,15,48,44],
+      "db":"**",
+      "_id":"eijkZgYQayh1hXGN"
+    })
+    splashUnits.push({
+      "c":"Now that you've tested some things out, you can move on into the actual database by clicking on the Load Discourses Button, which will take you to an area where you can check out, interact with, and contribute to the database and thematic filters. \n\nNothing on this page will be saved, so the real rubber meets the road moment is in the database. Many other aspects and potentials of the interface are going to be left unexplained - the use of the tool is emergent, meaning that it develops forms of use through being used, rather having a simple \"click this, does that\" style of interaction.\n\nWhile this means that the interface is less intuitive (in a few ways) and less understandable (in a few ways) than the usual website, that's the point. \n\nIf you have no interest in using a vague interface in collaboratively producing some critical discourse, tschüs!  If you do, let's build it together.",
+      "p":{"x":368,"y":2369},
+      "t":0,
+      "u":"intro1592488799565",
+      "r":[],
+      "d":[2020,6,18,15,59,59],
+      "db":"**",
+      "_id":"VGViBFsfFndlYGq7"
+    })
+    splashUnits.push({
+      "c":"r/ while it takes a bit too long to provide here, the various breakdowns of 'disciplinary' versus 'political' discourses, as well as the tranformation from \"written/spoken\" significations into overall fields of political  and social interaction is a wild ride. I'd definitely suggest David Howarth's \"Discourse\" as a primer, then jump into the rest.",
+      "p":{"x":968,"y":1073},
+      "t":0,
+      "u":"intro1592485929455"
+      ,"r":[],
+      "d":[2020,6,18,15,12,9],
+      "db":"intro",
+      "_id":"2umHtdquele5QeE9"
+    })
+    splashUnits.push(
+
+
+
+
+
+    )
     discourses = loadDiscourseUnitsToArray(splashUnits)
     discourses.vis()
   }
@@ -224,16 +348,22 @@ export const overlay = new p5((p) => {
   }
 
   p.windowResized = function() {
+    p.whoaSize();
+  }
+
+  p.whoaSize = function(){
     p.resizeCanvas(p.windowWidth, p.windowHeight);
-    back.resizeCanvas(p.windowWidth, p.windowHeight)
-    content.resizeCanvas(p.windowWidth, p.windowHeight)
+    back.resizeCanvas(p.windowWidth, p.windowHeight+60)
+    content.resizeCanvas(p.windowWidth, p.windowHeight+60)
     back.refreshed()
     discourses.vis()
-    if (document.getElementById('filterKey').textContent == "**") {
-      introTexts()
-    }
   }
+
 }, 'overlay')
+
+$(document).on('keydown', '.geist', function() {
+  checkInput()
+})
 
 $(document).on('keydown', '.geist', function() {
   checkInput()
@@ -271,48 +401,6 @@ function loadDiscourseUnitsToArray(units) {
     discs.addUnit(unit.c, unit.p, unit.t, unit.u, unit.r, unit.d, unit.db)
   }
   return discs;
-}
-
-function introTexts() {
-  overlay.textSize(30)
-  overlay.noStroke()
-
-  overlay.fill(0, 153, 255)
-  overlay.rect(1160, 120, 600, 20)
-  overlay.rect(1160, 160, 700, 20)
-  overlay.rect(1160, 200, 650, 20)
-
-  overlay.fill('#660066')
-
-  overlay.rect(50, overlay.windowHeight * .205, 220, 20)
-  overlay.rect(200, overlay.windowHeight * .365, 400, 10)
-  overlay.rect(200, overlay.windowHeight * .425, 400, 10)
-
-
-
-  overlay.fill('#CCFFFF')
-
-  overlay.text("* t h i s   i s   a n   a s y n c h r o n o u s   d i s c o u r s e   t o o l ,", 1165, 130)
-  overlay.text("* t h i s   i s   a   n o n - a u t h o r i a l   d i s c u r s i v e   p r a c t i c e , ", 1165, 170)
-  overlay.text("* t h i s   i s   a   d i s c o u r s e - s p a c e   w e   c o n s t r u c t . . .", 1165, 210)
-  overlay.fill(255, 153, 204)
-  overlay.text(". . . b u t   f i r s t   i t   i s   a n   i n t r o d u c t i o n ", 1165, 255)
-
-  let gpX = document.getElementById('gp-b').offsetTop
-  let gpY = document.getElementById('gp-b').offsetLeft
-
-  let rpX = document.getElementById('rp-b').offsetTop
-  let rpY = document.getElementById('rp-b').offsetLeft
-
-  let lX = document.getElementById('discourseLoad').offsetTop
-  let lY = document.getElementById('discourseLoad').offsetLeft
-
-  overlay.textSize(16)
-  overlay.fill(255, 204, 215)
-  overlay.text("#3 when you've tested everything else...", 60, overlay.windowHeight * .21)
-  overlay.text("this will take off the training wheels }", 60, overlay.windowHeight * .23)
-  overlay.text("<--- #1 _ a plane for entering things (try entering something)", 210, overlay.windowHeight * .37)
-  overlay.text("<--- #2 _ a plane for relating things (try relating something)", 220, overlay.windowHeight * .43)
 }
 
 function downloadThatData(){
@@ -397,6 +485,7 @@ window.onload = function() {
     presenter.giveChoices()
     position = 0
     document.getElementById('vertPos').innerText = position
+    //discourses.resetPositions()
   }
 
   document.getElementById('downData').onclick = () => {

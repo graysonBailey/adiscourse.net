@@ -52,20 +52,14 @@ export class discourseUnit {
     let rem = 0;
     let lrem = 0;
     let seg = []
-    let breaks = 0
+    let breaks = (this.c.match(/\n/g) || []).length;
     for (let i = 0; i < this.c.length; i++) {
       let cha = this.c.charAt(i);
       let ttemp = this.c.substring(lrem, i)
       if (cha == ' ') {
         rem = i
       }
-
       if (ttemp.length*4 > 350) {
-
-        if(ttemp.indexOf('\n') > 0){
-          console.log("get a slash")
-          breaks +=1
-        }
         seg.push(this.c.substring(lrem, rem))
         lrem = rem
       }
@@ -130,9 +124,7 @@ export class discourseUnit {
     this.p5.fill(color)
     this.p5.noStroke()
     this.p5.textSize(16)
-  //  this.p5.textLeading(16)
     this.p5.text(this.body, this.p.x, this.p.y + position, this.wid - 5, this.bound.z)
-  //  this.p5.textLeading(14)
     this.p5.textSize(14)
     this.p5.fill(255)
     this.p5.text(this.ref, this.p.x, this.p.y + position + this.bound.z, this.wid, 300)
@@ -182,13 +174,12 @@ export class discourseUnit {
 }
 
 export class discourseSet {
-  constructor(p5) {
+  constructor(p5){
     this.p5 = p5
     this.set = []
     this.pendingRelation = []
     this.nameSpaces = ["[complete]-verbunden"]
   }
-
 
   addUnit(c, p, t, u, r, d, db) {
     this.set.push(new discourseUnit(this.p5, c, p, t, u, r, d, db))
@@ -196,11 +187,11 @@ export class discourseSet {
   }
 
   resetPositions() {
-    for (let each in this.set) {
-      this.set[each].p = this.p5.createVector(this.set[each].rp.x, this.set[each].rp.y)
-      this.set[each].bound.x = this.set[each].p.x - 5
-      this.set[each].bound.y = this.set[each].p.y - 5
-      this.set[each].centroid = this.set[each].p5.createVector(this.set[each].p.x + (this.set[each].wid / 2), this.set[each].p.y + (this.set[each].bound.z / 2))
+    for (let i =0; i < this.set.length; i++) {
+      this.set[i].p.x = this.set[i].rp.x
+      this.set[i].p.y = this.set[i].rp.y
+      this.set[i].bound.x = this.set[i].constructBound()
+      this.set[i].centroid = this.set[i].p5.createVector(this.set[i].bound.x + (this.set[i].wid / 2), this.set[i].bound.y + (this.set[i].bound.z / 2))
     }
   }
 

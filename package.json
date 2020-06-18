@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "hotkeys-js": "^3.8.1",
     "html-webpack-plugin": "^4.2.0",
     "http": "0.0.1-security",
     "jquery": "^3.5.0",

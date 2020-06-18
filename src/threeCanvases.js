@@ -45,8 +45,8 @@ export const back = new p5((d) => {
         lin = d.color(255)
         break;
       case 2:
-        back = d.color(47,230,240)
-        lin = d.color(0)
+        back = d.color(204,0,153)
+        lin = d.color(255)
         break;
       default:
         back = d.color(0)
