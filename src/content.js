@@ -19,11 +19,11 @@ export class discourseUnit {
     this.t = this.checkType()
     this.u = u
     this.bound = this.constructBound()
-    this.wid = 400
+    this.wid = 410
     this.centroid = this.p5.createVector(this.p.x + (this.wid / 2), this.p.y + (this.bound.z / 2))
     this.ref = ""
     this.body = this.splitBody()
-    this.new = true;
+    this.new = true
     this.isHighlighted = false
     this.relatesTo = r
     this.d = d
@@ -58,7 +58,7 @@ export class discourseUnit {
 
       let ttemp = this.c.substring(lrem, i)
 
-      if (cha == ' ') {
+      if (cha == ' '){
         rem = i
       }
       if (this.p5.textWidth(ttemp) > 350) {
@@ -113,7 +113,7 @@ export class discourseUnit {
     this.p5.noStroke()
     this.p5.textSize(16)
     this.p5.textLeading(18)
-    this.p5.text(this.body, this.p.x, this.p.y + position, this.wid, this.bound.z)
+    this.p5.text(this.body, this.p.x, this.p.y + position, this.wid-5, this.bound.z)
     this.p5.textLeading(16)
     this.p5.textSize(14)
     this.p5.fill(255)
@@ -121,6 +121,7 @@ export class discourseUnit {
     this.p5.textSize(12)
     this.p5.text(this.d, this.p.x - 5, this.p.y - 8 + position)
     this.p5.text(this.db, this.p.x + 395 - this.p5.textWidth(this.db), this.p.y - 8 + position)
+    this.p5.text(this.u, this.p.x + 200 - this.p5.textWidth(this.db), this.p.y - 8 + position)
 
   }
 
@@ -128,7 +129,7 @@ export class discourseUnit {
     this.p5.stroke(color)
     this.p5.fill(bcolor)
     this.p5.strokeWeight(size)
-    this.p5.rect(this.p.x - 5, this.p.y - 5 + position, this.wid, this.bound.z)
+    this.p5.rect(this.bound.x, this.bound.y + position, this.wid, this.bound.z)
   }
 
   concernedHighlight() {
@@ -148,7 +149,7 @@ export class discourseUnit {
   }
 
   isInside() {
-    let insideScreen = this.p.x > 0 && this.p.x < this.p5.width && this.p.y + position > -30 && this.p.y + position < this.p5.height
+    let insideScreen = this.p.y + position > -30 && this.p.y + position < this.p5.height
     let insideSet
     let fKey = String(document.getElementById("filterKey").textContent)
     if (String(this.db) == fKey || fKey == "[complete]-verbunden") {
@@ -208,11 +209,6 @@ export class discourseSet {
 
   groupRelations() {
     let theRelated = this.set.filter(item => item.relatesTo.length)
-
-
-
-
-
     for (let each in theRelated) {
       let ties = theRelated[each].relatesTo
       let connections = this.set.filter(item => {
@@ -238,35 +234,161 @@ export class discourseSet {
 
   checkOverlap() {
     let insiders = this.set.filter(item => item.isInside())
-    insiders.forEach(e => {
-      insiders.forEach(el => {
-        let distX = e.p.x - el.p.x
+    //
+    // for (let i = 0; i < insiders.length; i++) {
+    //   let e = insiders[i]
+    //   for (let j = insiders.length - 1; j > -1; j--) {
+    //     let el = insiders[j]
+    //
+    //     while (e.p.x < 200) {
+    //       e.p.x +=25
+    //       e.bound.x+=25
+    //       e.centroid.x+=25
+    //     }
+    //     while (e.p.x > this.p5.windowWidth - 500) {
+    //       e.p.x-=25
+    //       e.bound.x-=25
+    //       e.centroid.x-=25
+    //     }
+    //
+    //     let distX = e.centroid.x - el.centroid.x
+    //     let distY = e.centroid.y - el.centroid.y
+    //
+    //     if ((Math.abs(distX) > 0 && Math.abs(distX) < 420) && (Math.abs(distY) > 0 && Math.abs(distY) < e.bound.z + 100)) {
+    //       if (Math.abs(distX) < Math.abs(distY)) {
+    //         let q =Math.sign(distX)*(1000/distX)
+    //         e.p.x+=q
+    //         e.bound.x+=q
+    //         e.centroid.x+=q
+    //       } else {
+    //         let q =Math.sign(distY)*(1000/distY)
+    //         e.p.y+=q
+    //         e.bound.y+=q
+    //         e.centroid.y+=q
+    //       }
+    //     }
+    //   }
+    // }
 
-        let distY = e.p.y - el.p.y
+    console.log("insiders length =  " + insiders.length)
+
+    // for (let i = 0; i < insiders.length; i++) {
+    //
+    //   insiders[i]
+    //   let distVec
+    //   let changeVec = this.p5.createVector(0, 0)
+    //   let minDist = Math.sqrt(Math.pow(insiders[i].wid, 2) + Math.pow(insiders[i].bound.z, 2))
+    //   console.log(minDist)
+    //
+    //   for (let j = 0; j < insiders.length; j++) {
+    //
+    //     insiders[j]
+    //
+    //     if (i != j) {
+    //
+    //       let distSimp = insiders[i].centroid.dist(insiders[j].centroid)
+    //       console.log(distSimp)
+    //
+    //       let distDiff = minDist-distSimp
+    //
+    //       distVec = this.p5.createVector(insiders[i].p.x - insiders[j].p.x, insiders[i].p.y - insiders[j].p.y)
+    //       distVec.normalize()
+    //       distVec.mult(distDiff)
+    //
+    //       if (insiders[i].centroid.dist(insiders[j].centroid) < minDist) {
+    //
+    //         this.p5.stroke(255, 0, 0)
+    //         this.p5.line(insiders[i].centroid.x, insiders[i].centroid.y+position, insiders[j].centroid.x, insiders[j].centroid.y+position)
+    //
+    //         console.log("opposition between :   " + insiders[i].u + "   and    " + insiders[j].u)
+    //         changeVec.add(distVec)
+    //       }
+    //     }
+    //   }
+    //
+    //   if (Math.abs(changeVec.x) > 0 || Math.abs(changeVec.y) > 0) {
+    //
+    //     if (insiders[i].p.x < 200 ) {
+    //       changeVec.x =10
+    //     }
+    //     if (insiders[i].p.x > this.p5.windowWidth - 500 && changeVec.x > 0) {
+    //       changeVec.x = -10
+    //     }
+    //     changeVec.normalize()
+    //     changeVec.mult(10)
+    //     console.log(insiders[i].u + "    moves    " + changeVec)
+    //
+    //
+    //     insiders[i].p.x += changeVec.x
+    //     insiders[i].p.y += changeVec.y
+    //     insiders[i].bound = insiders[i].constructBound()
+    //     insiders[i].centroid = insiders[i].p5.createVector(insiders[i].bound.x + (insiders[i].wid / 2), insiders[i].bound.y + (insiders[i].bound.z / 2))
+    //
+    //
+    //   }
+    //
+    // }
 
 
-        if (Math.abs(distX) > 0 && Math.abs(distX) < 425) {
-          if (Math.abs(distY) > 0 && Math.abs(distY) < e.bound.z + 25) {
-            if (Math.abs(distX) > Math.abs(distY) && e.p.x > 400) {
-              let vec = Math.sign(distX) * (100)
-              e.p.x += vec
-              e.bound.x += vec
-              e.centroid.x += vec
-            } else {
-              let vec = Math.sign(distY) * (100)
-              e.p.y += vec
-              e.bound.y += vec
-              e.centroid.y += vec
+    for (let i = 0; i < insiders.length; i++) {
+
+      let distVec
+      let minDist = Math.sqrt(Math.pow(insiders[i].wid, 2) + Math.pow(insiders[i].bound.z, 2))
+
+
+      if(insiders[i].p.x < 200){
+        insiders[i].p.x += 20
+        insiders[i].bound = insiders[i].constructBound()
+        insiders[i].centroid = insiders[i].p5.createVector(insiders[i].bound.x + (insiders[i].wid / 2), insiders[i].bound.y + (insiders[i].bound.z / 2))
+      } else if (insiders[i].p.x > content.windowWidth - 600){
+        insiders[i].p.x -= 20
+        insiders[i].bound = insiders[i].constructBound()
+        insiders[i].centroid = insiders[i].p5.createVector(insiders[i].bound.x + (insiders[i].wid / 2), insiders[i].bound.y + (insiders[i].bound.z / 2))
+      }
+
+      for (let j = 0; j < insiders.length; j++) {
+        if (i != j) {
+          let distSimp = insiders[i].centroid.dist(insiders[j].centroid)
+
+          if (Math.abs(insiders[i].p.x-insiders[j].p.x) < insiders[i].wid+20 && Math.abs(insiders[i].p.y-insiders[j].p.y) < insiders[i].bound.z+16) {
+
+            let distDiff = minDist-distSimp
+
+            distVec = this.p5.createVector(insiders[i].p.x - insiders[j].p.x, insiders[i].p.y - insiders[j].p.y)
+            distVec.normalize()
+            distVec.x = distVec.x*-1
+            distVec.y = distVec.y*-1
+            distVec.mult(distDiff)
+
+            this.p5.stroke(255, 0, 0)
+            //this.p5.line(insiders[i].centroid.x, insiders[i].centroid.y+position, insiders[j].centroid.x, insiders[j].centroid.y+position)
+
+
+            if(insiders[j].p.x <200){
+              distVec.x=10
+              distVec.y=distVec.y*2
+            } else if (insiders[j].p.x > content.windoWidth-600){
+              distVec.x=-10
+              distVec.y=distVec.y*2
             }
+
+            insiders[j].p.x += distVec.x
+            insiders[j].p.y += distVec.y
+            insiders[j].bound = insiders[j].constructBound()
+            insiders[j].centroid = insiders[j].p5.createVector(insiders[j].bound.x + (insiders[j].wid / 2), insiders[j].bound.y + (insiders[j].bound.z / 2))
           }
         }
-      })
-    })
+      }
+    }
+
+
+    //insiders = this.set.filter(item => item.isInside())
     return insiders
   }
 
   vis() {
     //let insiders = this.set.filter(item => item.isInside())
+    this.p5.clear();
     let insiders = this.checkOverlap()
     this.groupRelations()
     for (let each in insiders) {
@@ -291,6 +413,7 @@ export class discourseSet {
           if (document.getElementById('filterKey').textContent !== "**") {
             socket.emit('relation', data);
           }
+
           this.vis()
           this.pendingRelation = []
         }

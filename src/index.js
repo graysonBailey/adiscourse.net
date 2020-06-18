@@ -81,42 +81,42 @@ export const overlay = new p5((p) => {
       "d": [2020, 6, 13, 6, 33, 30],
       "db": "**"
     })
-    splashUnits.push({
-      "c": "q/ \"As we see it, contracting in gross and building's incorporation into capitalism brought about a shift away from what Karl Marx calls \"direct social relations between things\" that were now enacted through the specification. Specifications, and the contractual documents of which they were part, took voer what had previously been lived, personal negotiations between architects and builders on site\" // Katie Lloyd Thomas & Tilo Amhoff, \"Writing Work\", The Architect as Worker, 2015, 125",
-      "p": {
-        "x": 537,
-        "y": 145
-      },
-      "t": 0,
-      "u": 2,
-      "r": [0],
-      "d": [2020, 6, 13, 6, 33, 30],
-      "db": "**"
-    })
-    splashUnits.push({
-      "c": "q/ \"The practice of articulation, therefore, consists in the construction of nodal points which partially fix meaning; and the partial character of this fixation proceeds from the openness of the social, a result, in its turn, of the constant overflowing of every discourse by the infinitude of the field of discursivity.\" // Ernesto Laclau & Chantal Mouffe, Hegemony and Socialist Strategy, 1985, 100",
-      "p": {
-        "x": 1102,
-        "y": 672
-      },
-      "t": 0,
-      "u": 4,
-      "r": [0],
-      "d": [2020, 6, 13, 6, 33, 30],
-      "db": "**"
-    })
-    splashUnits.push({
-      "c": "r/ First and foremost these negotiations need to be done in discursive terms, creating these nodal points around collective reality can be built - I'm not sure this means that material negotiations need to come after, but the immanent practices of articulation seem to be constructive towards having a subject position from which to negotiate. Oh boy, Post-Marxists make my head hurt...",
-      "p": {
-        "x": 700,
-        "y": 890
-      },
-      "t": 0,
-      "u": 5,
-      "r": [4],
-      "d": [2020, 6, 13, 6, 33, 30],
-      "db": "**"
-    })
+    // splashUnits.push({
+    //   "c": "q/ \"As we see it, contracting in gross and building's incorporation into capitalism brought about a shift away from what Karl Marx calls \"direct social relations between things\" that were now enacted through the specification. Specifications, and the contractual documents of which they were part, took voer what had previously been lived, personal negotiations between architects and builders on site\" // Katie Lloyd Thomas & Tilo Amhoff, \"Writing Work\", The Architect as Worker, 2015, 125",
+    //   "p": {
+    //     "x": 537,
+    //     "y": 145
+    //   },
+    //   "t": 0,
+    //   "u": 2,
+    //   "r": [0],
+    //   "d": [2020, 6, 13, 6, 33, 30],
+    //   "db": "**"
+    // })
+    // splashUnits.push({
+    //   "c": "q/ \"The practice of articulation, therefore, consists in the construction of nodal points which partially fix meaning; and the partial character of this fixation proceeds from the openness of the social, a result, in its turn, of the constant overflowing of every discourse by the infinitude of the field of discursivity.\" // Ernesto Laclau & Chantal Mouffe, Hegemony and Socialist Strategy, 1985, 100",
+    //   "p": {
+    //     "x": 1102,
+    //     "y": 672
+    //   },
+    //   "t": 0,
+    //   "u": 4,
+    //   "r": [0],
+    //   "d": [2020, 6, 13, 6, 33, 30],
+    //   "db": "**"
+    // })
+    // splashUnits.push({
+    //   "c": "r/ First and foremost these negotiations need to be done in discursive terms, creating these nodal points around collective reality can be built - I'm not sure this means that material negotiations need to come after, but the immanent practices of articulation seem to be constructive towards having a subject position from which to negotiate. Oh boy, Post-Marxists make my head hurt...",
+    //   "p": {
+    //     "x": 700,
+    //     "y": 890
+    //   },
+    //   "t": 0,
+    //   "u": 5,
+    //   "r": [4],
+    //   "d": [2020, 6, 13, 6, 33, 30],
+    //   "db": "**"
+    // })
     discourses = loadDiscourseUnitsToArray(splashUnits)
     discourses.vis()
   }
@@ -225,8 +225,8 @@ export const overlay = new p5((p) => {
 
   p.windowResized = function() {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
-    back.resizeCanvas(back.windowWidth, back.windowHeight)
-    content.resizeCanvas(content.windowWidth, content.windowHeight)
+    back.resizeCanvas(p.windowWidth, p.windowHeight)
+    content.resizeCanvas(p.windowWidth, p.windowHeight)
     back.refreshed()
     discourses.vis()
     if (document.getElementById('filterKey').textContent == "**") {
