@@ -52,21 +52,25 @@ export class discourseUnit {
     let rem = 0;
     let lrem = 0;
     let seg = []
-
+    let breaks = 0
     for (let i = 0; i < this.c.length; i++) {
       let cha = this.c.charAt(i);
-
       let ttemp = this.c.substring(lrem, i)
-
       if (cha == ' ') {
         rem = i
       }
-      if (this.p5.textWidth(ttemp) > 350) {
+
+      if (ttemp.length*4 > 350) {
+
+        if(ttemp.indexOf('\n') > 0){
+          console.log("get a slash")
+          breaks +=1
+        }
         seg.push(this.c.substring(lrem, rem))
         lrem = rem
       }
     }
-    return seg.length + 2
+    return seg.length + 2 + breaks
   }
 
   constructBound() {
@@ -84,6 +88,9 @@ export class discourseUnit {
       d = 2
     } else if (this.t == 1) {
       d = 3
+    }
+    if(this.t < 0){
+      d=-1
     }
     if (this.new == true) {
       d = 1
@@ -110,6 +117,10 @@ export class discourseUnit {
         color = this.p5.color(0)
         bcolor = this.p5.color('#FFCC00')
         break
+        case -1:
+          color = this.p5.color(0)
+          bcolor = this.p5.color('#33FFCC')
+          break
       default:
         color = this.p5.color(120, 120, 120)
         bcolor = this.p5.color(0)
@@ -119,16 +130,16 @@ export class discourseUnit {
     this.p5.fill(color)
     this.p5.noStroke()
     this.p5.textSize(16)
-    this.p5.textLeading(18)
+  //  this.p5.textLeading(16)
     this.p5.text(this.body, this.p.x, this.p.y + position, this.wid - 5, this.bound.z)
-    this.p5.textLeading(16)
+  //  this.p5.textLeading(14)
     this.p5.textSize(14)
     this.p5.fill(255)
     this.p5.text(this.ref, this.p.x, this.p.y + position + this.bound.z, this.wid, 300)
-    this.p5.textSize(12)
+    this.p5.textSize(14)
     this.p5.text(this.d, this.p.x - 5, this.p.y - 8 + position)
     this.p5.text(this.db, this.p.x + 395 - this.p5.textWidth(this.db), this.p.y - 8 + position)
-    this.p5.text(this.u, this.p.x + 200 - this.p5.textWidth(this.db), this.p.y - 8 + position)
+  //  this.p5.text("relations : "+ this.relatesTo, this.p.x + 200 - this.p5.textWidth(this.db), this.p.y - 8 + position)
   }
 
   displayBound(color, bcolor, size) {

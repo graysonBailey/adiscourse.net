@@ -29,7 +29,6 @@ let vertSpeed = 30;
 export const socket = io();
 
 export const overlay = new p5((p) => {
-  let tFont;
   let curs;
   let pointers = [p.createVector(0, 0), p.createVector(0, 0)];
   let cnv;
@@ -37,7 +36,7 @@ export const overlay = new p5((p) => {
 
 
   p.preload = function() {
-    tFont = p.loadFont("f7f26928c6b1edc770c616475459ecc8.otf");
+
     curs = p.loadImage("swift.png")
   }
 
@@ -47,7 +46,6 @@ export const overlay = new p5((p) => {
     cnv = p.createCanvas(p.windowWidth, p.windowHeight)
     p.cursor("swift.png")
     console.log("overlay canvas set up")
-    p.textFont(tFont)
     socket.on('mouseRep', p.newDrawing)
     socket.on('unit', p.logUnit)
     p.fill(255)
@@ -57,66 +55,66 @@ export const overlay = new p5((p) => {
 
 
   p.intSetStart = function() {
-    splashUnits.push({
-      "c": "r/ These roles of interpersonal / social negotiation align with Colin Ward's critique of the role of the police, insomuch that the police exist to distance us from our social collaborators, creating space for impersonal violence in exchange for avoiding the awkwardness and tension of negotiations within a shared society. Recently the CHAZ in Seattle is an obvious attempt to deconstruct this relationship, but it's always a gamble when people are armed..." ,
-      "p": {
-        "x": 844,
-        "y": 380
-      },
-      "t": 0,
-      "u": 0,
-      "r": [],
-      "d": [2020, 6, 13, 6, 33, 30],
-      "db": "**"
-    })
-    splashUnits.push({
-      "c": "q/ \"A radical concept of freedom, therefore, can only be one that deals with freedom in cooperation: I am free if I am free in my negotiation with other, i.e., uninhibited by any higher authority and not restricted by anybody through force. But this simply means that I am equal to others in cooperation: that my cooperation is not a forced one but that I can negotiate it with others at eye level and that there is nobody above me to whose rules and controle I am subjugated. In a radical concept of freedom and of equality both coincide in one.\" // Christoph Spehr, \"Free Cooperation\", The Art of Free Cooperation, 2007, 92",
-      "p": {
-        "x": 260,
-        "y": 525
-      },
-      "t": 0,
-      "u": 1,
-      "r": [0],
-      "d": [2020, 6, 13, 6, 33, 30],
-      "db": "**"
-    })
-    splashUnits.push({
-      "c": "q/ \"As we see it, contracting in gross and building's incorporation into capitalism brought about a shift away from what Karl Marx calls \"direct social relations between things\" that were now enacted through the specification. Specifications, and the contractual documents of which they were part, took voer what had previously been lived, personal negotiations between architects and builders on site\" // Katie Lloyd Thomas & Tilo Amhoff, \"Writing Work\", The Architect as Worker, 2015, 125",
-      "p": {
-        "x": 537,
-        "y": 145
-      },
-      "t": 0,
-      "u": 2,
-      "r": [0],
-      "d": [2020, 6, 13, 6, 33, 30],
-      "db": "**"
-    })
-    splashUnits.push({
-      "c": "q/ \"The practice of articulation, therefore, consists in the construction of nodal points which partially fix meaning; and the partial character of this fixation proceeds from the openness of the social, a result, in its turn, of the constant overflowing of every discourse by the infinitude of the field of discursivity.\" // Ernesto Laclau & Chantal Mouffe, Hegemony and Socialist Strategy, 1985, 100",
-      "p": {
-        "x": 1102,
-        "y": 672
-      },
-      "t": 0,
-      "u": 4,
-      "r": [0],
-      "d": [2020, 6, 13, 6, 33, 30],
-      "db": "**"
-    })
-    splashUnits.push({
-      "c": "r/ First and foremost these negotiations need to be done in discursive terms, creating these nodal points around collective reality can be built - I'm not sure this means that material negotiations need to come after, but the immanent practices of articulation seem to be constructive towards having a subject position from which to negotiate. Oh boy, Post-Marxists make my head hurt...",
-      "p": {
-        "x": 700,
-        "y": 890
-      },
-      "t": 0,
-      "u": 5,
-      "r": [4],
-      "d": [2020, 6, 13, 6, 33, 30],
-      "db": "**"
-    })
+    // splashUnits.push({
+    //   "c": "r/ These roles of interpersonal / social negotiation align with Colin Ward's critique of the role of the police, insomuch that the police exist to distance us from our social collaborators, creating space for impersonal violence in exchange for avoiding the awkwardness and tension of negotiations within a shared society. Recently the CHAZ in Seattle is an obvious attempt to deconstruct this relationship, but it's always a gamble when people are armed..." ,
+    //   "p": {
+    //     "x": 844,
+    //     "y": 380
+    //   },
+    //   "t": 0,
+    //   "u": 0,
+    //   "r": [],
+    //   "d": [2020, 6, 13, 6, 33, 30],
+    //   "db": "**"
+    // })
+    // splashUnits.push({
+    //   "c": "q/ \"A radical concept of freedom, therefore, can only be one that deals with freedom in cooperation: I am free if I am free in my negotiation with other, i.e., uninhibited by any higher authority and not restricted by anybody through force. But this simply means that I am equal to others in cooperation: that my cooperation is not a forced one but that I can negotiate it with others at eye level and that there is nobody above me to whose rules and controle I am subjugated. In a radical concept of freedom and of equality both coincide in one.\" // Christoph Spehr, \"Free Cooperation\", The Art of Free Cooperation, 2007, 92",
+    //   "p": {
+    //     "x": 260,
+    //     "y": 525
+    //   },
+    //   "t": 0,
+    //   "u": 1,
+    //   "r": [0],
+    //   "d": [2020, 6, 13, 6, 33, 30],
+    //   "db": "**"
+    // })
+    // splashUnits.push({
+    //   "c": "q/ \"As we see it, contracting in gross and building's incorporation into capitalism brought about a shift away from what Karl Marx calls \"direct social relations between things\" that were now enacted through the specification. Specifications, and the contractual documents of which they were part, took voer what had previously been lived, personal negotiations between architects and builders on site\" // Katie Lloyd Thomas & Tilo Amhoff, \"Writing Work\", The Architect as Worker, 2015, 125",
+    //   "p": {
+    //     "x": 537,
+    //     "y": 145
+    //   },
+    //   "t": 0,
+    //   "u": 2,
+    //   "r": [0],
+    //   "d": [2020, 6, 13, 6, 33, 30],
+    //   "db": "**"
+    // })
+    // splashUnits.push({
+    //   "c": "q/ \"The practice of articulation, therefore, consists in the construction of nodal points which partially fix meaning; and the partial character of this fixation proceeds from the openness of the social, a result, in its turn, of the constant overflowing of every discourse by the infinitude of the field of discursivity.\" // Ernesto Laclau & Chantal Mouffe, Hegemony and Socialist Strategy, 1985, 100",
+    //   "p": {
+    //     "x": 1102,
+    //     "y": 672
+    //   },
+    //   "t": 0,
+    //   "u": 4,
+    //   "r": [0],
+    //   "d": [2020, 6, 13, 6, 33, 30],
+    //   "db": "**"
+    // })
+    // splashUnits.push({
+    //   "c": "r/ First and foremost these negotiations need to be done in discursive terms, creating these nodal points around collective reality can be built - I'm not sure this means that material negotiations need to come after, but the immanent practices of articulation seem to be constructive towards having a subject position from which to negotiate. Oh boy, Post-Marxists make my head hurt...",
+    //   "p": {
+    //     "x": 700,
+    //     "y": 890
+    //   },
+    //   "t": 0,
+    //   "u": 5,
+    //   "r": [4],
+    //   "d": [2020, 6, 13, 6, 33, 30],
+    //   "db": "**"
+    // })
     discourses = loadDiscourseUnitsToArray(splashUnits)
     discourses.vis()
   }
@@ -170,7 +168,7 @@ export const overlay = new p5((p) => {
           y: ttop - position
         },
         t: 0,
-        u: context+discourses.set.length.toString(),
+        u: context+Date.now().toString(),
         r: [],
         d: [p.year(), p.month(), p.day(), p.hour(), p.minute(), p.second()],
         db: context
