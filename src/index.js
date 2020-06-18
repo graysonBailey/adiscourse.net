@@ -45,7 +45,7 @@ export const overlay = new p5((p) => {
 
   p.setup = function() {
     cnv = p.createCanvas(p.windowWidth, p.windowHeight)
-    p.cursor(curs)
+    p.cursor("swift.png")
     console.log("overlay canvas set up")
     p.textFont(tFont)
     socket.on('mouseRep', p.newDrawing)
@@ -81,42 +81,42 @@ export const overlay = new p5((p) => {
       "d": [2020, 6, 13, 6, 33, 30],
       "db": "**"
     })
-    // splashUnits.push({
-    //   "c": "q/ \"As we see it, contracting in gross and building's incorporation into capitalism brought about a shift away from what Karl Marx calls \"direct social relations between things\" that were now enacted through the specification. Specifications, and the contractual documents of which they were part, took voer what had previously been lived, personal negotiations between architects and builders on site\" // Katie Lloyd Thomas & Tilo Amhoff, \"Writing Work\", The Architect as Worker, 2015, 125",
-    //   "p": {
-    //     "x": 537,
-    //     "y": 145
-    //   },
-    //   "t": 0,
-    //   "u": 2,
-    //   "r": [0],
-    //   "d": [2020, 6, 13, 6, 33, 30],
-    //   "db": "**"
-    // })
-    // splashUnits.push({
-    //   "c": "q/ \"The practice of articulation, therefore, consists in the construction of nodal points which partially fix meaning; and the partial character of this fixation proceeds from the openness of the social, a result, in its turn, of the constant overflowing of every discourse by the infinitude of the field of discursivity.\" // Ernesto Laclau & Chantal Mouffe, Hegemony and Socialist Strategy, 1985, 100",
-    //   "p": {
-    //     "x": 1102,
-    //     "y": 672
-    //   },
-    //   "t": 0,
-    //   "u": 4,
-    //   "r": [0],
-    //   "d": [2020, 6, 13, 6, 33, 30],
-    //   "db": "**"
-    // })
-    // splashUnits.push({
-    //   "c": "r/ First and foremost these negotiations need to be done in discursive terms, creating these nodal points around collective reality can be built - I'm not sure this means that material negotiations need to come after, but the immanent practices of articulation seem to be constructive towards having a subject position from which to negotiate. Oh boy, Post-Marxists make my head hurt...",
-    //   "p": {
-    //     "x": 700,
-    //     "y": 890
-    //   },
-    //   "t": 0,
-    //   "u": 5,
-    //   "r": [4],
-    //   "d": [2020, 6, 13, 6, 33, 30],
-    //   "db": "**"
-    // })
+    splashUnits.push({
+      "c": "q/ \"As we see it, contracting in gross and building's incorporation into capitalism brought about a shift away from what Karl Marx calls \"direct social relations between things\" that were now enacted through the specification. Specifications, and the contractual documents of which they were part, took voer what had previously been lived, personal negotiations between architects and builders on site\" // Katie Lloyd Thomas & Tilo Amhoff, \"Writing Work\", The Architect as Worker, 2015, 125",
+      "p": {
+        "x": 537,
+        "y": 145
+      },
+      "t": 0,
+      "u": 2,
+      "r": [0],
+      "d": [2020, 6, 13, 6, 33, 30],
+      "db": "**"
+    })
+    splashUnits.push({
+      "c": "q/ \"The practice of articulation, therefore, consists in the construction of nodal points which partially fix meaning; and the partial character of this fixation proceeds from the openness of the social, a result, in its turn, of the constant overflowing of every discourse by the infinitude of the field of discursivity.\" // Ernesto Laclau & Chantal Mouffe, Hegemony and Socialist Strategy, 1985, 100",
+      "p": {
+        "x": 1102,
+        "y": 672
+      },
+      "t": 0,
+      "u": 4,
+      "r": [0],
+      "d": [2020, 6, 13, 6, 33, 30],
+      "db": "**"
+    })
+    splashUnits.push({
+      "c": "r/ First and foremost these negotiations need to be done in discursive terms, creating these nodal points around collective reality can be built - I'm not sure this means that material negotiations need to come after, but the immanent practices of articulation seem to be constructive towards having a subject position from which to negotiate. Oh boy, Post-Marxists make my head hurt...",
+      "p": {
+        "x": 700,
+        "y": 890
+      },
+      "t": 0,
+      "u": 5,
+      "r": [4],
+      "d": [2020, 6, 13, 6, 33, 30],
+      "db": "**"
+    })
     discourses = loadDiscourseUnitsToArray(splashUnits)
     discourses.vis()
   }
@@ -157,10 +157,12 @@ export const overlay = new p5((p) => {
     let temp = document.getElementById('tempGeist')
     let tempButton = document.getElementById('tempGeistButton')
     let escButton = document.getElementById('escapeGeistButton')
+
     if (temp.value != "") {
       let ttop = temp.offsetTop
       let tleft = temp.offsetLeft
       let tcont = temp.value
+      let context = document.getElementById('filterKey').textContent
       let tDisc = {
         c: tcont,
         p: {
@@ -168,12 +170,12 @@ export const overlay = new p5((p) => {
           y: ttop - position
         },
         t: 0,
-        u: discourses.set.length,
+        u: context+discourses.set.length.toString(),
         r: [],
         d: [p.year(), p.month(), p.day(), p.hour(), p.minute(), p.second()],
-        db: document.getElementById('filterKey').textContent
+        db: context
       }
-      console.log(tDisc.d)
+      console.log(tDisc.u)
       temp.remove()
       tempButton.remove()
       escButton.remove()
@@ -406,8 +408,10 @@ window.onload = function() {
   }
 
 
-
+setTimeout(() =>{
   let datas = "frisk"
   socket.emit('gimmeData', datas);
+},300)
+
 
 }
