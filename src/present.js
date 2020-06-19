@@ -64,7 +64,7 @@ export class discursiveOverlay {
 
         }
         if (check == 0) {
-          document.getElementById("filterKey").textContent = text
+          document.getElementById("filterKey").textContent = text.toLowerCase()
           newDisc.remove()
           nDBut.remove()
           discourses.vis();
