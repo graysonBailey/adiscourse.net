@@ -207,7 +207,6 @@ export class discourseSet {
       this.nameSpaces.push(db)
     }
     this.nameSpaces.sort()
-    this.nameSpaces.sort()
   }
 
   groupRelations() {

@@ -232,22 +232,14 @@ export const overlay = new p5((p) => {
       "db":"intro",
       "_id":"2umHtdquele5QeE9"
     })
-    splashUnits.push(
-
-
-
-
-
-    )
     discourses = loadDiscourseUnitsToArray(splashUnits)
     discourses.vis()
   }
 
   p.logUnit = function(data) {
-    if (data.db == discourses.db) {
-      discourses.addUnit(data.c, data.p, data.t, data.u, data.r, data.d, data.db)
-      discourses.vis()
-    }
+    discourses.addUnit(data.c, data.p, data.t, data.u, data.r, data.d, data.db)
+    console.log(data)
+    discourses.vis()
   }
 
   p.newDrawing = function(data) {
