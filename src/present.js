@@ -64,7 +64,8 @@ export class discursiveOverlay {
 
         }
         if (check == 0) {
-          document.getElementById("filterKey").textContent = text.toLowerCase()
+          let fixText = text.charAt(0).toLowerCase() + text.slice(1);
+          document.getElementById("filterKey").textContent = fixText
           newDisc.remove()
           nDBut.remove()
           discourses.vis();
@@ -73,7 +74,7 @@ export class discursiveOverlay {
           document.getElementById('rp-b').classList.remove('away')
           document.getElementById('gp-b').classList.remove('away')
           overlay.clear()
-          switchModeInstructions(0)
+          switchModeInstructions(-2)
         } else {
           this.text("already in use // provide a new input", 210, 125)
         }

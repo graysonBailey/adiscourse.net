@@ -93,7 +93,7 @@ export const overlay = new p5((p) => {
       "_id":"dR3HROYPoZ39dXUo"
     })
     splashUnits.push({
-      "c":"[non-authorial] : one challenge is to the very idea that direct authorship - a rather entrenched (but not very old) idea that direct lines of credit is somehow the best way to generate discourse.",
+      "c":"[non-authorial] : one challenge is to the very idea that direct authorship - a rather entrenched (but not very old) idea in which persona is central to the authority of thought - is somehow the best way to generate discourse.",
       "p":{"x":1162,"y":665},
       "t":0,
       "u":"intro24",
@@ -113,7 +113,7 @@ export const overlay = new p5((p) => {
       "_id":"rEkgawKOsAQsViGX"
     })
     splashUnits.push({
-      "c":"for starters, what you are using now is \"discursive interface\" - sounds very special, but I'm sure you've been using one type or other of discursive interface for years. \n\nEspecially if you're on Twitter (a discursive interface), use e-mail (a discursive interface), or have written anything at any time (lots of discursive interfaces there). There are many differences among them all. They have very different intentions. Social Media has a certain flair for discourse, as does using a pen or pencil to write out ideas in a notebook which no one is allowed to look at.",
+      "c":"for starters, what you are using now is a \"discursive interface\" - sounds very special, but I'm sure you've been using one type or other of a discursive interface for years. \n\nEspecially if you're on Twitter (a discursive interface), use e-mail (a discursive interface), or have written anything at any time (lots of discursive interfaces there). Many differences exist among them all. They have very different intentions. Social Media has a certain flair for discourse, as does using a pen or pencil to write out ideas in a notebook which no one is allowed to look at, as does a riot in the street.",
       "p":{"x":416,"y":419},
       "t":0,
       "u":"intro22",
@@ -123,7 +123,7 @@ export const overlay = new p5((p) => {
       "_id":"wloGufkYljWntfrg"
     })
     splashUnits.push({
-      "c":"[irresolution] : a third general challenge is to the idea of resolution, something that is quite arcane to think of in many ways, but still heavily involved in crtical discourses.",
+      "c":"[irresolution] : a third challenge is to the idea of resolution - in the form of a resolved argument without deviation, a final composition, or the belief that fixity can be conceptually achieved...",
       "p":{"x":1154,"y":873},
       "t":0,
       "u":"intro26",
@@ -284,6 +284,9 @@ export const overlay = new p5((p) => {
       let ttop = temp.offsetTop
       let tleft = temp.offsetLeft
       let tcont = temp.value
+      while(tcont.charAt(0) == " "){
+        tcont = tcont.slice(1)
+      }
       let context = document.getElementById('filterKey').textContent
       let tDisc = {
         c: tcont,
@@ -333,11 +336,13 @@ export const overlay = new p5((p) => {
           escButton.position(p.mouseX + 380, p.mouseY - 20)
           input.position(p.mouseX, p.mouseY)
           input.id('tempGeist')
-          input.attribute('placeholder', ' using "q/" distinguishes a quote or reference \r\n using "r/" distinguishes a response or reaction  \r\n using no preface distinguishes nothing \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n using "//" between references and a citation separates the citation cleanly')
+          input.attribute('placeholder', 'using "q/" distinguishes a quote or reference \r\n using "r/" distinguishes a response or reaction  \r\n using no preface distinguishes nothing \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n using "//" between references and a citation separates the citation cleanly')
           inputButton.id('tempGeistButton')
           escButton.id('escapeGeistButton')
           inputButton.mousePressed(p.submitUnit)
           escButton.mousePressed(p.escapeUnit)
+        } else {
+          document.getElementById('tempGeist').focus()
         }
       }
     }
