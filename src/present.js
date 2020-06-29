@@ -25,22 +25,26 @@ export class discursiveOverlay {
 
     for (let each in discourses.nameSpaces) {
       let text = discourses.nameSpaces[each]
-      let tempBut = this.p5.createButton(each+"-"+text).class('spatialChoice').id(each).value(each)
-      tempBut.position(210, 160 + (each * 20))
-      tempBut.mousePressed(() => {
-        document.getElementById("filterKey").textContent = discourses.nameSpaces[tempBut.value()]
-        while (document.getElementsByClassName("spatialChoice")[0] != null) {
-          document.getElementsByClassName("spatialChoice")[0].remove()
-        }
-        newBut.remove()
-        discourses.vis();
-        document.getElementById('discourseLoad').classList.add('away')
-        document.getElementById('switchLoad').classList.remove('away')
-        document.getElementById('rp-b').classList.remove('away')
-        document.getElementById('gp-b').classList.remove('away')
-        overlay.clear()
-        switchModeInstructions(0)
-      })
+      let tempCheck = this.p5.createCheckbox(each+"-"+text,false).class('spatialChoice').id(each).value(each)
+      //let tempBut = this.p5.createButton(each+"-"+text)
+      //tempBut.position(210, 160 + (each * 20))
+
+      tempCheck.position(200,160 + (each *20))
+
+      //tempBut.mousePressed(() => {
+        // document.getElementById("filterKey").textContent = discourses.nameSpaces[tempBut.value()]
+        // while (document.getElementsByClassName("spatialChoice")[0] != null) {
+        //   document.getElementsByClassName("spatialChoice")[0].remove()
+        // }
+      //   newBut.remove()
+      //   discourses.vis();
+      //   document.getElementById('discourseLoad').classList.add('away')
+      //   document.getElementById('switchLoad').classList.remove('away')
+      //   document.getElementById('rp-b').classList.remove('away')
+      //   document.getElementById('gp-b').classList.remove('away')
+      //   overlay.clear()
+      //   switchModeInstructions(0)
+      // })
     }
 
     newBut.mousePressed(() => {

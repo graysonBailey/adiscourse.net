@@ -59,7 +59,7 @@ export class discourseUnit {
       if (cha == ' ') {
         rem = i
       }
-      if (ttemp.length*4 > 350) {
+      if (ttemp.length * 4 > 350) {
         seg.push(this.c.substring(lrem, rem))
         lrem = rem
       }
@@ -83,8 +83,8 @@ export class discourseUnit {
     } else if (this.t == 1) {
       d = 3
     }
-    if(this.t < 0){
-      d=-1
+    if (this.t < 0) {
+      d = -1
     }
     if (this.new == true) {
       d = 1
@@ -111,10 +111,10 @@ export class discourseUnit {
         color = this.p5.color(0)
         bcolor = this.p5.color('#FFCC00')
         break
-        case -1:
-          color = this.p5.color(0)
-          bcolor = this.p5.color('#33FFCC')
-          break
+      case -1:
+        color = this.p5.color(0)
+        bcolor = this.p5.color('#33FFCC')
+        break
       default:
         color = this.p5.color(120, 120, 120)
         bcolor = this.p5.color(0)
@@ -131,7 +131,7 @@ export class discourseUnit {
     this.p5.textSize(14)
     this.p5.text(this.d, this.p.x - 5, this.p.y - 8 + position)
     this.p5.text(this.db, this.p.x + 395 - this.p5.textWidth(this.db), this.p.y - 8 + position)
-  //  this.p5.text("relations : "+ this.relatesTo, this.p.x + 200 - this.p5.textWidth(this.db), this.p.y - 8 + position)
+    //  this.p5.text("relations : "+ this.relatesTo, this.p.x + 200 - this.p5.textWidth(this.db), this.p.y - 8 + position)
   }
 
   displayBound(color, bcolor, size) {
@@ -145,23 +145,36 @@ export class discourseUnit {
     if (this.isHighlighted == false) {
       this.isHighlighted = true
       this.display()
-    }else {
-        this.isHighlighted =false
-        this.display()
+    } else {
+      this.isHighlighted = false
+      this.display()
     }
 
   }
 
-  isInside() {
-    let insideScreen = this.p.y + position > -30 && this.p.y + position < this.p5.height
+  screenDirection() {
+    if (this.p.y + position > -30 && this.p.y + position < this.p5.height) {
+      return 0
+    } else if (this.p.y + position < -30) {
+      return 1
+    } else {
+      return -1
+    }
+
+
+
+  }
+
+  isInsideSet() {
     let insideSet
-    let fKey = String(document.getElementById("filterKey").textContent)
-    if (String(this.db) == fKey || fKey == "[complete]-verbunden") {
+    let fKey = String(document.getElementById("filterKey").textContent).split('|')
+
+    if (this.db.some(r => fKey.includes(r)) || fKey == "[complete]-verbunden") {
       insideSet = true
     } else {
       insideSet = false
     }
-    return insideScreen && insideSet
+    return this.screenDirection() == 0 && insideSet
   }
 
   isOfConcern() {
@@ -169,12 +182,12 @@ export class discourseUnit {
     if (!concern) {
       this.isHighlighted = false
     }
-    return this.p5.mouseX > this.bound.x && this.p5.mouseY > this.bound.y + position && this.p5.mouseX < this.bound.x + this.wid && this.p5.mouseY < this.bound.y + position + this.bound.z && this.isInside()
+    return this.p5.mouseX > this.bound.x && this.p5.mouseY > this.bound.y + position && this.p5.mouseX < this.bound.x + this.wid && this.p5.mouseY < this.bound.y + position + this.bound.z && this.isInsideSet() && this.screenDirection() == 0
   }
 }
 
 export class discourseSet {
-  constructor(p5){
+  constructor(p5) {
     this.p5 = p5
     this.set = []
     this.pendingRelation = []
@@ -187,7 +200,7 @@ export class discourseSet {
   }
 
   resetPositions() {
-    for (let i =0; i < this.set.length; i++) {
+    for (let i = 0; i < this.set.length; i++) {
       this.set[i].p.x = this.set[i].rp.x
       this.set[i].p.y = this.set[i].rp.y
       this.set[i].bound.x = this.set[i].constructBound()
@@ -196,15 +209,10 @@ export class discourseSet {
   }
 
   checkNameSpaces(db) {
-    let cCount = 0;
-    for (let each in this.nameSpaces) {
-      if (this.nameSpaces[each] == db) {
-        cCount++
-        break
+    for(let each in db){
+      if(!this.nameSpaces.includes(db[each])){
+        this.nameSpaces.push(db[each])
       }
-    }
-    if (cCount == 0) {
-      this.nameSpaces.push(db)
     }
     this.nameSpaces.sort()
   }
@@ -234,12 +242,30 @@ export class discourseSet {
   }
 
   checkOverlap() {
-    let insiders = this.set.filter(item => item.isInside())
+    // let up = 0
+    // let down = 0
+    let insiders = this.set.filter(item => {
+      // if(item.screenDirection()>0){
+      //   up++
+      // } else if(item.screenDirection()<0){
+      //   down++
+      // }
+      return item.isInsideSet()
+    })
+
+    // if(up > 0){
+    //   this.p5.stroke(255);
+    //   this.p5.strokeWeight(2);
+    //   this.p5.line(this.p5.width-20,40,this.p5.width-20,80)
+    //   this.p5.line(this.p5.width-20,40,this.p5.width-15,50)
+    // }
+    // if(down >0){
+    //
+    // }
     for (let i = 0; i < insiders.length; i++) {
 
       let distVec
       let minDist = Math.sqrt(Math.pow(insiders[i].wid, 2) + Math.pow(insiders[i].bound.z, 2))
-
 
       if (insiders[i].p.x < 200) {
         insiders[i].p.x += 20
@@ -324,10 +350,10 @@ export class discourseSet {
           }, 20)
 
 
-        } else if (this.pendingRelation[0].u == theConcerned[each].u){
+        } else if (this.pendingRelation[0].u == theConcerned[each].u) {
           this.pendingRelation = []
           this.vis()
-        }else{
+        } else {
           alert("There is already a relation between these two elements - (1) you can click on another element to create a different relation, (2) you can click on the original element to void the operation")
         }
       }

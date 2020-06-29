@@ -279,7 +279,9 @@ export const overlay = new p5((p) => {
       while(tcont.charAt(0) == " "){
         tcont = tcont.slice(1)
       }
-      let context = document.getElementById('filterKey').textContent
+      let filtKey = document.getElementById('filterKey').textContent
+      let content = filtKey.split('|')
+      console.log(content)
       let tDisc = {
         c: tcont,
         p: {
@@ -395,7 +397,7 @@ function loadDiscourseUnitsToArray(units) {
   let discs = new discourseSet(content)
   for (let each in units) {
     let unit = units[each]
-    discs.addUnit(unit.c, unit.p, unit.t, unit.u, unit.r, unit.d, unit.db)
+    discs.addUnit(unit.c, unit.p, unit.t, unit.u, unit.r, unit.d, String(unit.db).split('|'))
   }
   return discs;
 }
