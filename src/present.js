@@ -19,53 +19,101 @@ export class discursiveOverlay {
     }
 
     let newBut = this.p5.createButton('+ new discourse space').class('spatialChoice').id('newDSpace')
-    newBut.position(210, 140)
+    let subBut = this.p5.createButton('submit selected').class('spatialChoice').id('subBoxes')
+    let verBut = this.p5.createButton('0-[complete]-verbunden').class('spatialChoice').id('verButton')
+    newBut.position(210, 180)
+    subBut.position(30, 252)
+    verBut.position(210, 200)
 
-
-
-    for (let each in discourses.nameSpaces) {
+    for (let each = 1; each < discourses.nameSpaces.length; each++) {
       let text = discourses.nameSpaces[each]
-      let tempCheck = this.p5.createCheckbox(each+"-"+text,false).class('spatialChoice').id(each).value(each)
-      //let tempBut = this.p5.createButton(each+"-"+text)
-      //tempBut.position(210, 160 + (each * 20))
-
-      tempCheck.position(200,160 + (each *20))
-
-      //tempBut.mousePressed(() => {
-        // document.getElementById("filterKey").textContent = discourses.nameSpaces[tempBut.value()]
-        // while (document.getElementsByClassName("spatialChoice")[0] != null) {
-        //   document.getElementsByClassName("spatialChoice")[0].remove()
-        // }
-      //   newBut.remove()
-      //   discourses.vis();
-      //   document.getElementById('discourseLoad').classList.add('away')
-      //   document.getElementById('switchLoad').classList.remove('away')
-      //   document.getElementById('rp-b').classList.remove('away')
-      //   document.getElementById('gp-b').classList.remove('away')
-      //   overlay.clear()
-      //   switchModeInstructions(0)
-      // })
+      let tempCheck = this.p5.createCheckbox(each + "-" + text, false).class('spatialChoice').id(discourses.nameSpaces[each]).value(discourses.nameSpaces[each])
+      tempCheck.addClass('checks')
+      tempCheck.position(200, 230 + (each * 22))
+      tempCheck.changed(() => {
+        if (tempCheck.checked()) {
+          tempCheck.addClass('checked')
+        } else {
+          tempCheck.removeClass('checked')
+        }
+      })
     }
+
+    verBut.mousePressed(() => {
+      newBut.remove()
+      subBut.remove()
+      verBut.remove()
+      document.getElementById("filterKey").textContent = "[complete]-verbunden"
+      discourses.vis()
+      document.getElementById('discourseLoad').classList.add('away')
+      document.getElementById('switchLoad').classList.remove('away')
+      document.getElementById('rp-b').classList.remove('away')
+      document.getElementById('gp-b').classList.remove('away')
+      overlay.clear()
+      switchModeInstructions(0)
+    })
+
+    subBut.mousePressed(() => {
+
+      let sets = []
+
+      while (document.getElementsByClassName("checks")[0] != null) {
+        if (document.getElementsByClassName("checks")[0].classList.contains("checked")) {
+          console.log("checked")
+          let simpStr = String(document.getElementsByClassName("checks")[0].id)
+          sets.push(simpStr)
+          console.log(simpStr)
+        }
+        document.getElementsByClassName("checks")[0].remove()
+      }
+
+      if (sets.length > 0) {
+
+        document.getElementById("filterKey").textContent = sets.join('|')
+        newBut.remove()
+        subBut.remove()
+        verBut.remove()
+        discourses.vis()
+        document.getElementById('discourseLoad').classList.add('away')
+        document.getElementById('switchLoad').classList.remove('away')
+        document.getElementById('rp-b').classList.remove('away')
+        document.getElementById('gp-b').classList.remove('away')
+        overlay.clear()
+        switchModeInstructions(0)
+      } else {
+        alert("you must select one or more discourse sets to open - Otherwise, create a new discourse set or open the entire database ([complete]-verbunden)")
+
+        for (let each = 1; each < discourses.nameSpaces.length; each++) {
+          let text = discourses.nameSpaces[each]
+          let tempCheck = this.p5.createCheckbox(each + "-" + text, false).class('spatialChoice').id(discourses.nameSpaces[each]).value(discourses.nameSpaces[each])
+          tempCheck.addClass('checks')
+          tempCheck.position(200, 230 + (each * 22))
+          tempCheck.changed(() => {
+            if (tempCheck.checked()) {
+              tempCheck.addClass('checked')
+            } else {
+              tempCheck.removeClass('checked')
+            }
+          })
+        }
+      }
+    })
 
     newBut.mousePressed(() => {
       let newDisc = this.p5.createInput()
-
       newDisc.position(210, 140)
       while (document.getElementsByClassName("spatialChoice")[0] != null) {
         document.getElementsByClassName("spatialChoice")[0].remove()
       }
       let nDBut = this.p5.createButton('submit').class("spatialChoice")
       nDBut.position(400, 140)
-
       nDBut.mousePressed(() => {
-
         let text = newDisc.value()
         let check = 0
         for (let each in discourses.nameSpaces) {
           if (discourses.nameSpaces[each] == text) {
             check++
           }
-
         }
         if (check == 0) {
           let fixText = text.charAt(0).toLowerCase() + text.slice(1);
@@ -83,8 +131,6 @@ export class discursiveOverlay {
           this.text("already in use // provide a new input", 210, 125)
         }
       })
-
-
     })
   }
 }

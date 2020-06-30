@@ -209,12 +209,13 @@ export class discourseSet {
   }
 
   checkNameSpaces(db) {
-    for(let each in db){
+
+   for(let each in db){
       if(!this.nameSpaces.includes(db[each])){
         this.nameSpaces.push(db[each])
       }
-    }
-    this.nameSpaces.sort()
+   }
+   this.nameSpaces.sort()
   }
 
   groupRelations() {
@@ -226,8 +227,10 @@ export class discourseSet {
       })
       for (let those in connections) {
 
-        let fKey = String(document.getElementById("filterKey").textContent)
-        if ((connections[those].db == fKey && theRelated[each].db == fKey) || fKey == "[complete]-verbunden") {
+        let fKey = String(document.getElementById("filterKey").textContent).split('|')
+
+
+        if ((connections[those].db.some(r => fKey.includes(r))&&theRelated[each].db.some(r => fKey.includes(r))) || fKey == "[complete]-verbunden") {
           this.p5.noFill()
           this.p5.stroke('#ffA908')
           if (document.getElementById('rp-b').classList.contains('current')) {

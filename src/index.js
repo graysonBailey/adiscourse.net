@@ -58,7 +58,7 @@ export const overlay = new p5((p) => {
       "u":"intro25",
       "r":[],
       "d":[2020,6,18,13,25,49],
-      "db":"**",
+      "db":["**"],
       "_id":"QgMOCwAxFIRVaOGc"
     })
     splashUnits.push({
@@ -68,7 +68,7 @@ export const overlay = new p5((p) => {
       "u":"intro21",
       "r":["intro22"],
       "d":[2020,6,18,13,9,15],
-      "db":"**",
+      "db":["**"],
       "_id":"WUnR1zbmuEslErcl"
     })
 
@@ -79,7 +79,7 @@ export const overlay = new p5((p) => {
       "u":"updates",
       "r":["intro21"],
       "d":[2020,6,18,13,9,15],
-      "db":"**",
+      "db":["**"],
       "_id":"WUnR1zbmuEslErcl"
     })
     splashUnits.push({
@@ -89,7 +89,7 @@ export const overlay = new p5((p) => {
       "u":"intro29",
       "r":["intro25","intro26"],
       "d":[2020,6,18,14,51,3],
-      "db":"**",
+      "db":["**"],
       "_id":"dR3HROYPoZ39dXUo"
     })
     splashUnits.push({
@@ -99,7 +99,7 @@ export const overlay = new p5((p) => {
       "u":"intro24",
       "r":["intro29"],
       "d":[2020,6,18,13,21,24],
-      "db":"**",
+      "db":["**"],
       "_id":"keI7nqa16smq1SWY"
     })
     splashUnits.push({
@@ -109,7 +109,7 @@ export const overlay = new p5((p) => {
       "u":"intro27",
       "r":["intro29"],
       "d":[2020,6,18,13,36,23],
-      "db":"**",
+      "db":["**"],
       "_id":"rEkgawKOsAQsViGX"
     })
     splashUnits.push({
@@ -119,7 +119,7 @@ export const overlay = new p5((p) => {
       "u":"intro22",
       "r":["intro23","intro29"],
       "d":[2020,6,18,13,14,45],
-      "db":"**",
+      "db":["**"],
       "_id":"wloGufkYljWntfrg"
     })
     splashUnits.push({
@@ -129,7 +129,7 @@ export const overlay = new p5((p) => {
       "u":"intro26",
       "r":[],
       "d":[2020,6,18,13,31,15],
-      "db":"**",
+      "db":["**"],
       "_id":"zYiDkGG2WO466P8V"
     })
     splashUnits.push({
@@ -139,7 +139,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592486711884",
       "r":["intro1592488799565"],
       "d":[2020,6,18,15,25,11],
-      "db":"**",
+      "db":["**"],
       "_id":"62Y9kunnpNIqNovT"
     })
     splashUnits.push({
@@ -149,7 +149,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592486128168",
       "r":["intro1592486711884","intro27"],
       "d":[2020,6,18,15,15,28],
-      "db":"**",
+      "db":["**"],
       "_id":"m7ZlUeu2SClOSNqE"
     })
     splashUnits.push({
@@ -159,7 +159,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592487165230",
       "r":["intro1592486711884"],
       "d":[2020,6,18,15,32,45],
-      "db":"**",
+      "db":["**"],
       "_id":"sCEBHI5TYb1KKJeg"
     })
     splashUnits.push({
@@ -169,7 +169,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592487556253",
       "r":[],
       "d":[2020,6,18,15,39,16],
-      "db":"**",
+      "db":["**"],
       "_id":"MZt3NRXgxp0wkqPy"
     })
     splashUnits.push({
@@ -179,7 +179,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592487328632",
       "r":["intro1592487556253","intro1592486711884"],
       "d":[2020,6,18,15,35,28],
-      "db":"**",
+      "db":["**"],
       "_id":"tS3x9vkMmcs99F1i"
     })
     splashUnits.push({
@@ -189,7 +189,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592487751332",
       "r":["intro1592486711884","intro1592488124638","intro1592487906533"],
       "d":[2020,6,18,15,42,31],
-      "db":"**",
+      "db":["**"],
       "_id":"9v4iJODfGQFqwjNF"
     })
     splashUnits.push({
@@ -199,7 +199,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592487906533",
       "r":[],
       "d":[2020,6,18,15,45,6],
-      "db":"**",
+      "db":["**"],
       "_id":"UVVVfr2037oqEcKO"
     })
     splashUnits.push({
@@ -209,7 +209,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592488124638",
       "r":[],
       "d":[2020,6,18,15,48,44],
-      "db":"**",
+      "db":["**"],
       "_id":"eijkZgYQayh1hXGN"
     })
     splashUnits.push({
@@ -219,7 +219,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592488799565",
       "r":[],
       "d":[2020,6,18,15,59,59],
-      "db":"**",
+      "db":["**"],
       "_id":"VGViBFsfFndlYGq7"
     })
     splashUnits.push({
@@ -229,7 +229,7 @@ export const overlay = new p5((p) => {
       "u":"intro1592485929455"
       ,"r":[],
       "d":[2020,6,18,15,12,9],
-      "db":"intro",
+      "db":["**"],
       "_id":"2umHtdquele5QeE9"
     })
     discourses = loadDiscourseUnitsToArray(splashUnits)
@@ -280,7 +280,7 @@ export const overlay = new p5((p) => {
         tcont = tcont.slice(1)
       }
       let filtKey = document.getElementById('filterKey').textContent
-      let content = filtKey.split('|')
+      let context = filtKey.split('|')
       console.log(content)
       let tDisc = {
         c: tcont,
@@ -397,7 +397,7 @@ function loadDiscourseUnitsToArray(units) {
   let discs = new discourseSet(content)
   for (let each in units) {
     let unit = units[each]
-    discs.addUnit(unit.c, unit.p, unit.t, unit.u, unit.r, unit.d, String(unit.db).split('|'))
+    discs.addUnit(unit.c, unit.p, unit.t, unit.u, unit.r, unit.d, unit.db)
   }
   return discs;
 }
