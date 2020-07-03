@@ -1,7 +1,8 @@
-const express = require('express');
+const express = require('express')
 const Datastore = require('nedb')
-const socket = require('socket.io');
+const socket = require('socket.io')
 const fetch = require('node-fetch')
+const path = require('path')
 
 
 var app = express();
@@ -16,6 +17,26 @@ var entire = new Datastore({
 });
 
 io.on('connection', newConnection);
+
+app.get('/:id',(req, res) => {
+  res.sendFile(path.join(__dirname + '/dist/sepPrint.html'));
+});
+
+app.get('/sets/:id', (req,res) => {
+  entire.find({db: req.params.id}, (err, docs) => {
+    if (err) {
+      console.log("error in retrieval find process...")
+      response.end();
+      return;
+    }
+    console.log("it got grabbed")
+    res.send(docs)
+  })
+})
+
+
+
+
 
 function newConnection(socket) {
 

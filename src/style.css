@@ -149,8 +149,16 @@ user-select: none;
 top:95vh;
 padding: 1px 1px;
 text-align:top;
-
 }
+
+.lc-bottomAlMost{
+top:90vh;
+padding: 1px 1px;
+text-align:top;
+}
+
+
+
 .lc-bottom {
   top: 60vh !important;
   width:10%;

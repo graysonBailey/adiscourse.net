@@ -488,9 +488,17 @@ window.onload = function() {
   }
 
   document.getElementById('downData').onclick = () => {
-    //downloadThatData()
-    console.log(allData)
     downloadThatData()
+  }
+
+  document.getElementById('printData').onclick = () => {
+
+let sets = document.getElementById('filterKey').textContent.split('|')
+let concat = sets.join('&')
+let site = 'http://localhost:8080/'+concat
+window.open(site)
+
+
   }
 
 
