@@ -63,7 +63,7 @@ const overlay = new p5((p) => {
     console.log("overlay canvas set up")
     // socket.on('mouseRep', p.newDrawing)
     // socket.on('unit', p.logUnit)
-    //p.background(255,0,0)
+    // p.background(255,0,0)
 
     for(let i = 0; i < cnv.height; i +=25){
       p.stroke(0)
@@ -76,10 +76,20 @@ const overlay = new p5((p) => {
 
 
     setTimeout(() =>{
+
+
+
+elements.sort((a,b) => a.p.y-b.p.y)
+console.log(elements)
+
+
+
+
+
       let maxHeight = 0;
       let lowMark = elements[0].p.y;
       let leftMark = elements[0].p.x;
-      console.log(leftMark)
+      //console.log(leftMark)
 
       for(let each in elements){
         if(elements[each].p.y < lowMark){
@@ -89,7 +99,7 @@ const overlay = new p5((p) => {
           leftMark = elements[each].p.x
         }
       }
-      console.log(leftMark)
+      //console.log(leftMark)
 
       let xDist = leftMargin - leftMark
       let yDist = topMargin - lowMark
@@ -98,19 +108,21 @@ const overlay = new p5((p) => {
         elements[each].p.y += yDist;
         elements[each].p.x += xDist;
       }
-      console.log(elements[0].p.x)
+    //  console.log(elements[0].p.x)
 
       for(let i = 0; i < elements.length; i++){
+
+        // NEEDS TO BE IMPLEMENTED ONCE THE ELEMENTS ARE SORTED BY Y VALUE, WHICH SHOULD EVENTUALLY HAPPEN AT THE BEGINNING
+        if(i>0 && elements[i].p.y-elements[i-1].p.y > inbetweenMargin){
+          let betweenDiff = elements[i].p.y-elements[i-1].p.y-800
+          for(let j = i; j < elements.length; j++){
+            elements[j].p.y -= betweenDiff
+          }
+        }
+
         if(elements[i].p.y > maxHeight){
           maxHeight = elements[i].p.y
         }
-        // NEEDS TO BE IMPLEMENTED ONCE THE ELEMENTS ARE SORTED BY Y VALUE, WHICH SHOULD EVENTUALLY HAPPEN AT THE BEGINNING
-        // if(i>0 && elements[i].p.y-elements[i-1].p.y > inbetweenMargin){
-        //   let betweenDiff = elements[i].p.y-elements[i-1].p.y-800
-        //   for(let j = i; j < element.length; j++){
-        //     elements[j].p.y -= betweenDiff
-        //   }
-        // }
       }
       maxHeight+=400;
       p.resizeCanvas(p.windowWidth-100, maxHeight)
@@ -125,15 +137,23 @@ const overlay = new p5((p) => {
 
       for(let each in elements){
 
-        let tempDoc = p.createElement('textarea').class('discourseElement')
+        let tempDoc = p.createSpan(elements[each].c).class('discourseElement')
         tempDoc.id = elements[each].u
-
         tempDoc.position(elements[each].p.x,elements[each].p.y);
-        tempDoc.value(elements[each].c)
+
+        let quickHeight = tempDoc.size().height
+
+        console.log(quickHeight)
+
+
+        console.log(tempDoc.offsetTop)
+        p.stroke(0,255,255)
+        p.line(elements[each].p.x,elements[each].p.y+quickHeight,elements[each].p.x+400,elements[each].p.y+quickHeight)
+        //tempDoc.innerText(elements[each].c)
         // tempDoc.style('height', 5 +"px")
         // tempDoc.style('height',tempDoc.scroll+ "px")
       }
-      console.log("what....")
+      //console.log("what....")
 
       // for(let each in elements){
       //   if(elements[each].p.y > maxHeight){
@@ -144,9 +164,9 @@ const overlay = new p5((p) => {
       // maxHeight+=400;
       //
       // p.resizeCanvas(p.windowWidth-100, maxHeight)
-      console.log("resized")
+      //console.log("resized")
 
-      console.log(elements)
+      //console.log(elements)
 
     },300)
     // p.intSetStart();
@@ -161,4 +181,4 @@ const overlay = new p5((p) => {
 
 
 
-console.log(elements)
+//console.log(elements)
