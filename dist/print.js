@@ -28,7 +28,7 @@ async function alrighty() {
   try {
     let urlString = window.location.href
     let parts = urlString.split('/')
-    let sets = parts[parts.length - 1].split('&')
+    let sets = parts[parts.length - 1].split('$-$')
     for (let each in sets) {
       getBase('/sets/' + sets[each])
     }
@@ -189,7 +189,7 @@ window.onload = function() {
 
   let urlString = window.location.href
   let parts = urlString.split('/')
-  let sets = parts[parts.length - 1].split('&')
+  let sets = parts[parts.length - 1].split('$-$')
 
   document.getElementById('XarSets').textContent= sets.join(' , ')
   document.getElementById('time').textContent= Date.now()
