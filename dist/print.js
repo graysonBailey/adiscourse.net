@@ -142,10 +142,16 @@ const overlay = new p5((p) => {
         tempDoc.position(elements[i].p.x, elements[i].p.y)
         tempCite.position(elements[i].p.x+5,elements[i].p.y+tempDoc.size().height+5)
 
-        let tempQualities = p.createSpan("element: " + elements[i].u + "<br>" ).class('discourseCitation')
-        tempQualities.id = "qual" + elements[i].u
-        tempQualities.position(elements[i].p.x+410,elements[i].p.y)
+        let tempUnitName = p.createSpan("element: " + elements[i].u + "<br>" ).class('discourseCitation')
+        tempUnitName.id = "qual" + elements[i].u
+        tempUnitName.position(elements[i].p.x,elements[i].p.y-15)
         quickHeight+=tempCite.size().height
+
+        if(elements[i].r.length>0){
+          let tempRelations = p.createSpan("relates to: " +elements[i].r).class('discourseRelations')
+          tempRelations.id = "rel" + elements[i].u
+          tempRelations.position(elements[i].p.x+410,elements[i].p.y)
+        }
 
         p.stroke(0, 255, 255)
 

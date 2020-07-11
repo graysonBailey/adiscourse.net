@@ -117,6 +117,8 @@ export class discursiveOverlay {
         }
         if (check == 0) {
           let fixText = text.charAt(0).toLowerCase() + text.slice(1);
+          fixText = fixText.replace(/ /g,"")
+          console.log(fixText)
           document.getElementById("filterKey").textContent = fixText
           newDisc.remove()
           nDBut.remove()
