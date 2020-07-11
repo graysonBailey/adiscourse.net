@@ -280,6 +280,8 @@ export class discourseSet {
         insiders[i].centroid = insiders[i].p5.createVector(insiders[i].bound.x + (insiders[i].wid / 2), insiders[i].bound.y + (insiders[i].bound.z / 2))
       }
 
+
+
       for (let j = 0; j < insiders.length; j++) {
         if (i != j) {
           let distSimp = insiders[i].centroid.dist(insiders[j].centroid)
@@ -289,6 +291,21 @@ export class discourseSet {
             let distDiff = minDist - distSimp
 
             distVec = this.p5.createVector(insiders[i].p.x - insiders[j].p.x, insiders[i].p.y - insiders[j].p.y)
+
+            console.log(insiders[i].r)
+
+            if(insiders[i].relatesTo.length > 0){
+              let bleh = this.set.filter(item =>  insiders[i].relatesTo.includes(item.u) && item.isInsideSet())
+              for(let beep in bleh){
+
+                let blehDist = this.p5.dist(insiders[i].p.x,bleh[beep].p.x,insiders[i].p.y,bleh[beep].p.y)
+                if(blehDist > minDist){
+
+                distVec.add(this.p5.createVector(insiders[i].p.x-bleh[beep].p.x,insiders[i].p.y-bleh[beep].p.y))
+              }
+              }
+            }
+
             distVec.normalize()
             distVec.x = distVec.x * -1
             distVec.y = distVec.y * -1

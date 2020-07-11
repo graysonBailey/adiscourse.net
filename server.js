@@ -29,7 +29,7 @@ app.get('/sets/:id', (req,res) => {
       response.end();
       return;
     }
-    console.log("it got grabbed")
+    console.log("grabbed it for a print job")
     res.send(docs)
   })
 })

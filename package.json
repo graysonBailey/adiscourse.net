@@ -17,20 +17,21 @@
   "dependencies": {
     "express": "^4.17.1",
     "hotkeys-js": "^3.8.1",
-    "html-webpack-plugin": "^4.2.0",
+    "html-webpack-plugin": "^4.3.0",
     "http": "0.0.1-security",
-    "jquery": "^3.5.0",
+    "jquery": "^3.5.1",
     "nedb": "^1.8.0",
     "nedb-async-await": "^0.1.2",
     "node-fetch": "^2.6.0",
     "p5": "^1.0.0",
+    "print-js": "^1.0.63",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "css-loader": "^3.5.2",
+    "css-loader": "^3.6.0",
     "file-loader": "^6.0.0",
-    "style-loader": "^1.1.4",
+    "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.12"
   }
 }
