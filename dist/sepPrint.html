@@ -1,3 +1,4 @@
+
 <html>
 
 <head>
@@ -6,140 +7,28 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-  <script src="print.js"></script>
-
-  <style>
-    body {
-      padding: 0;
-      margin: 10;
-      overflow-y:scroll;
-      height:100%;
-    }
-
-    @font-face {
-      font-family: OCRA;
-
-      src: url(OCRAEXT.TTF);
-    }
-
-    @font-face{
-      font-family: miso;
-
-      src : url(miso.otf);
-    }
-
-    .discourseElement {
-      width: 400 ;
-      overflow: hidden;
-      /* resize:none; */
-      background-color: rgba(255,255,255,.8);
-      color:black;
-          font-size: 16;
-          font-family: miso;
-    }
-
-    .discourseQualities {
-      width: 100;
-      overflow: hidden;
-      background-color: rgba(150,150,150);
-      color:black;
-      font-size: 13;
-      font-family: miso;
-    }
-
-    .discourseCitation {
-      width: 400 ;
-      overflow: hidden;
-      color:black;
-      font-size: 13;
-      font-family: miso;
-    }
-
-    .discourseRelations {
-      width: 100 ;
-      overflow: hidden;
-      color:black;
-      font-size: 13;
-      font-family: miso;
-    }
-
-
-    .letsHeadIt{
-      font-family: OCRA;
-background-color: rgba(45,45,45);
-      color:white;
-      font-size: 13;
-      letter-spacing: 8px;
-    }
-
-    .ohLookItsData{
-      font-family: miso;
-      color:black;
-      font-size: 16;
-      letter-spacing: 2px;
-    }
-
-
-    .quote {
-
-      color:blue;
-      border-style: solid;
-      border-color: blue;
-      border-width: thin;
-    }
-
-    .response {
-
-      background-color: rgba(255,0,51);
-      padding: 3;
-      color:white;
-    }
-
-    .comp {
-      color:pink;
-    }
-
-    .printButton {
-      color:black;
-      font-family: OCRA;
-      position: absolute;
-      left: 1250;
-      top: 100;
-      z-index:1;
-      border-style: solid;
-      border-width: thick;
-      border-color:black;
-      outline: none;
-      background-color:white;
-      font-size: 16;
-    }
-
-    .printButton:hover {
-      background-color:#33FFCC;
-        border-color:#FFCC00;
-      color:#FFCC00;
-    }
-  </style>
+  <script  src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src ="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+  <script src ="side.bundle.js"></script>
 </head>
 
 
-<body style="margin: 0">
+<body>
 
-  <button onclick="window.print()"  class="PrintButton">PrintNormal</button>
+    <button id="PDFprint" onclick="window.print()" class="printButton lc-top" >>STATE<.pdf</button>
+    <button id="PlotterPrint" class="printButton lc-mid" >>STATE<.svg</button>
+    <button id="JSONoutput" class="printButton lc-low" >>STATE<.json</button>
+
   <div id="print" style="position: absolute; top: 0; left: 0;height:100%;z-index:0"></div>
+  <div id="shoeGazer" style="position: absolute; top: 0; left: 0;height:100%;z-index:0"></div>
 
-  <div class="left-cascade noselect" id="leftCascade" style="position: absolute; top:100; left: 30">
+  <div class="left-cascade noselect" id="leftCascade" style="position: absolute; top:100; left: 30;z-index:1">
       <span class="letsHeadIt">discourse state:</span><br><span>&emsp;</span><span class="letsHeadIt"><nbsp>{"set":" </span><span>&nbsp;</span><span id="XarSets" class="ohLookItsData">*</span><span>&nbsp;</span><span class="letsHeadIt">",</span><br>
         <span>&emsp;</span><span class="letsHeadIt">"time":"</span><span id = "time" class = "ohLookItsData"> </span><span class="letsHeadIt">"}</span>
   </div>
 
 
-  <div class="top-cascade noselect">
-      <!-- <div class="tc-con" style="color: rgb(47,230,240)">
-        <span><b>adiscourse.net* :</b><i> networked discursion </i></span>
-    </div> -->
     </div>
 </body>
-
 </html>

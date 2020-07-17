@@ -34,6 +34,18 @@ app.get('/sets/:id', (req,res) => {
   })
 })
 
+app.get('/aTE/all', (req,res) => {
+  entire.find({}, (err, docs) => {
+    if (err) {
+      console.log("error in retrieval find process...")
+      response.end();
+      return;
+    }
+    console.log("grabbed it for a print job")
+    res.send(docs)
+  })
+})
+
 
 
 

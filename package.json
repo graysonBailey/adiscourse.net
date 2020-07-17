@@ -20,10 +20,12 @@
     "html-webpack-plugin": "^4.3.0",
     "http": "0.0.1-security",
     "jquery": "^3.5.1",
+    "lodash": "^4.17.19",
     "nedb": "^1.8.0",
     "nedb-async-await": "^0.1.2",
     "node-fetch": "^2.6.0",
     "p5": "^1.0.0",
+    "p5.js-svg": "^0.5.2",
     "print-js": "^1.0.63",
     "socket.io": "^2.3.0"
   },

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+
 import './style.css';
 import p5 from 'p5/lib/p5.min.js';
 import io from 'socket.io-client';
@@ -73,7 +74,7 @@ export const overlay = new p5((p) => {
     })
 
     splashUnits.push({
-      "c":"r/ Updates: \n\n+ introductions page\n+ packing behavior\n+ unit id system ",
+      "c":"r/ Updates: \n\n+ getSTATE page and output\n+ checkBox cross selection\n+ plotter ouput",
       "p":{"x":1170,"y":135},
       "t":0,
       "u":"updates",

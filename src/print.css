@@ -1,0 +1,146 @@
+body {
+  padding: 0;
+  margin: 10;
+  overflow-y:scroll;
+  height:100%;
+}
+
+@font-face {
+  font-family: OCRA;
+
+  src: url(assets/OCRAStd0.otf);
+}
+
+@font-face{
+  font-family: miso;
+  src : url(assets/miso.otf);
+}
+
+.discourseElement {
+  width: 400;
+  overflow: hidden;
+  background-color: rgba(255,255,255,.8);
+  color:black;
+  font-size: 16;
+  font-family: miso;
+}
+
+.discourseQualities {
+  width: 100;
+  overflow: hidden;
+  background-color: rgba(150,150,150);
+  color:black;
+  font-size: 13;
+  font-family: miso;
+}
+
+.discourseCitation {
+  width: 400 ;
+  overflow: hidden;
+  color:black;
+  font-size: 13;
+  font-family: miso;
+}
+
+.discourseRelations {
+  width: 100 ;
+  overflow: hidden;
+  color:black;
+  font-size: 13;
+  font-family: miso;
+}
+
+
+.letsHeadIt{
+  font-family: OCRA;
+background-color: rgba(45,45,45);
+  color:white;
+  font-size: 13;
+  letter-spacing: 8px;
+}
+
+.ohLookItsData{
+  font-family: miso;
+  color:black;
+  font-size: 16;
+  letter-spacing: 2px;
+}
+
+
+.quote {
+
+  color:blue;
+  border-style: solid;
+  border-color: blue;
+  border-width: thin;
+}
+
+.response {
+
+  background-color: rgba(255,0,51);
+  padding: 3;
+  color:white;
+}
+
+.comp {
+  background-color: #33FFCC;
+  color:black;
+}
+
+.printButton {
+  position: fixed;
+  color:black;
+  font-family: OCRA;
+  position: fixed;
+  z-index:1;
+  border-style: solid;
+  border-width: thick;
+  border-color:black;
+  outline: none;
+  background-color:white;
+  font-size: 16;
+  right :50;
+  top: 50;
+  z-index:2
+}
+
+.printButton:hover {
+  background-color:#33FFCC;
+    border-color:#FFCC00;
+  color:#FFCC00;
+}
+
+.away{
+display: none;
+}
+
+.right-cascade {
+  user-select: none;
+  position: fixed;
+  top: 0;
+  height:100vh;
+  right: 100;
+  font-family: OCRA;
+  font-size: 8pt;
+  padding: 5px 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  z-index:1;
+}
+
+.lc-load {
+  top: 15vh;
+}
+.lc-low {
+  top: 45vh;
+}
+
+.lc-top {
+  top: 35vh;
+}
+
+.lc-mid {
+  top: 40vh;
+}
