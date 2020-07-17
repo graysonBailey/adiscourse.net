@@ -365,10 +365,6 @@ $(document).on('keydown', '.geist', function() {
   checkInput()
 })
 
-$(document).on('keydown', '.geist', function() {
-  checkInput()
-})
-
 let checkInput = function() {
   let el = document.getElementById("tempGeist")
   if (el != null) {
@@ -496,7 +492,7 @@ window.onload = function() {
 
 let sets = document.getElementById('filterKey').textContent.split('|')
 let concat = sets.join('$-$')
-let site = 'http://localhost:8080/'+concat
+let site = window.location.href+concat
 window.open(site)
 
 

@@ -10,6 +10,7 @@ let inbetweenYMargin = 50
 let inbetweenXMargin = 50
 let pageWidth = 1180
 let pageHeight = 1682.35
+let wholeString
 
 async function getBase(url) {
   try {
@@ -189,12 +190,18 @@ const overlay = new p5((p) => {
 
 window.onload = function() {
 
+
+
   let urlString = window.location.href
   let parts = urlString.split('/')
   let sets = parts[parts.length - 1].split('$-$')
 
   document.getElementById('XarSets').textContent = sets.join(' , ')
   document.getElementById('time').textContent = Date.now()
+
+  wholeString = " adiscourse.net => discourse State: { set : "+sets.join(' , ')+" },{ timeStamp : "+Date.now()+" }"
+
+
   document.getElementById('PlotterPrint').onclick = () => {
     document.getElementById('JSONoutput').classList.add('away')
     document.getElementById('PDFprint').classList.add('away')
@@ -224,8 +231,8 @@ const overOrganize = function() {
   new p5((p) => {
 
       let plotHeights = []
-      let plotMargin = 80
-      let inbetweenYMargin = 50
+      let plotMargin = 150
+      let inbetweenYMargin = 80
       let inbetweenXMargin = 50
       let plotWidth = 1123
       let plotHeight = 30000
@@ -235,9 +242,7 @@ const overOrganize = function() {
 
 
       p.preload = function() {
-
-        tFont = p.loadFont("cnc_v.ttf")
-
+        tFont = p.loadFont("machtgth.ttf")
       }
 
 
@@ -321,19 +326,16 @@ const overOrganize = function() {
             origin[i].p.y += betweenYDiff
           }
 
-          tempDoc.position(origin[i].p.x, origin[i].p.y)
-          tempCite.position(origin[i].p.x + 5, origin[i].p.y + tempDoc.size().height + 5)
+          tempDoc.remove()
+          tempCite.remove()
 
-          let tempUnitName = p.createSpan("element: " + origin[i].u + "  : {" + origin[i].d + "}").class('discourseCitation')
-          tempUnitName.id = "qual" + origin[i].u
-          tempUnitName.position(origin[i].p.x, origin[i].p.y - 15)
           quickHeight += tempCite.size().height
 
-          if (origin[i].r.length > 0) {
-            let tempRelations = p.createSpan("relates to: " + origin[i].r).class('discourseRelations')
-            tempRelations.id = "rel" + origin[i].u
-            tempRelations.position(origin[i].p.x + 410, origin[i].p.y)
-          }
+          // if (origin[i].r.length > 0) {
+          //   let tempRelations = p.createSpan("relates to: " + origin[i].r).class('discourseRelations')
+          //   tempRelations.id = "rel" + origin[i].u
+          //   tempRelations.position(origin[i].p.x + 410, origin[i].p.y)
+          // }
 
           p.stroke(0, 255, 255)
 
@@ -363,13 +365,10 @@ const overOrganize = function() {
 
             for (let those in theRelated) {
               p.line(origin[each].p.x, origin[each].p.y, theRelated[those].p.x, theRelated[those].p.y)
-              //  p.text("peachy",origin[each].p.x,orgin[each].p.y)
-
             }
           }
         }
-      //  p.dodgeAbout()
-      // p.drawBorders()
+
       p.textSize(12)
       p.noFill()
       p.stroke(0)
@@ -378,41 +377,26 @@ const overOrganize = function() {
         let spl = origin[i].c.split('//')
 
         let ohSets = spl[0].match(/.{1,60}/g);
+        let down =12
 
-        for(let j = 0; j<ohSets.length; j++){
-          p.text(ohSets[j],origin[i].p.x,origin[i].p.y+(j*12))
+
+        p.text(spl[0],origin[i].p.x,origin[i].p.y,400,800)
+
+
+        if(spl.length>0){
+            p.text(spl[1],origin[i].p.x+16,origin[i].p.y+plotHeights[i]+10)
         }
-
-      //  p.text(spl[0],origin[i].p.x,origin[i].p.y)
-        // if(spl.length>0){
-        //     p.text(spl[1],origin[i].p.x,origin[i].p.y+12)
-        // }
-
+        p.text("element: " + origin[i].u + "  : {" + origin[i].d + "}",origin[i].p.x+16,origin[i].p.y-18)
       }
 
-p.save("test.svg")
+      p.text(wholeString,100,100,400,200)
 
+      p.save("test.svg")
       }
 
 
 
     p.drawBorders = function() {
-      let marg = 50
-
-
-      for(let i = 0; i < cnv.height; i+=plotHeight){
-        p.noFill()
-        p.stroke(0);
-        p.strokeWeight(2)
-        p.rect(0,i,plotWidth,plotHeight)
-        p.rect(marg,i+marg,plotWidth-(2*marg),plotHeight-(2*marg))
-
-      }
-
-
-
-
-
 
 
     }
