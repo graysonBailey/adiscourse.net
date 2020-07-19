@@ -74,7 +74,7 @@ export const overlay = new p5((p) => {
     })
 
     splashUnits.push({
-      "c":"r/ Updates: \n\n+ getSTATE page and output\n+ checkBox cross selection\n+ plotter ouput",
+      "c":"r/ Updates: \n\n+ getSTATE page and output and fix\n+ checkBox cross selection\n+ plotter ouput SVG format for g-code",
       "p":{"x":1170,"y":135},
       "t":0,
       "u":"updates",
@@ -239,7 +239,6 @@ export const overlay = new p5((p) => {
 
   p.logUnit = function(data) {
     discourses.addUnit(data.c, data.p, data.t, data.u, data.r, data.d, data.db)
-    console.log(data)
     discourses.vis()
   }
 
@@ -282,7 +281,6 @@ export const overlay = new p5((p) => {
       }
       let filtKey = document.getElementById('filterKey').textContent
       let context = filtKey.split('|')
-      console.log(content)
       let tDisc = {
         c: tcont,
         p: {
@@ -295,7 +293,6 @@ export const overlay = new p5((p) => {
         d: [p.year(), p.month(), p.day(), p.hour(), p.minute(), p.second()],
         db: context
       }
-      console.log(tDisc.u)
       temp.remove()
       tempButton.remove()
       escButton.remove()
@@ -475,6 +472,7 @@ window.onload = function() {
     document.getElementById('rp-b').classList.add('away')
     document.getElementById('filterKey').textContent = "--"
     content.clear()
+    document.getElementById('printData').classList.toggle('away')
     switchModeInstructions(0)
     let presenter = new discursiveOverlay(overlay)
     overlay.clear()

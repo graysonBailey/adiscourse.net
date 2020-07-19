@@ -292,8 +292,6 @@ export class discourseSet {
 
             distVec = this.p5.createVector(insiders[i].p.x - insiders[j].p.x, insiders[i].p.y - insiders[j].p.y)
 
-            console.log(insiders[i].r)
-
             if(insiders[i].relatesTo.length > 0){
               let bleh = this.set.filter(item =>  insiders[i].relatesTo.includes(item.u) && item.isInsideSet())
               for(let beep in bleh){

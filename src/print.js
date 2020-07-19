@@ -11,6 +11,7 @@ let inbetweenXMargin = 50
 let pageWidth = 1180
 let pageHeight = 1682.35
 let wholeString
+let sets
 
 async function getBase(url) {
   try {
@@ -141,11 +142,21 @@ const overlay = new p5((p) => {
         tempUnitName.position(elements[i].p.x, elements[i].p.y - 15)
         quickHeight += tempCite.size().height
 
-        if (elements[i].r.length > 0) {
-          let tempRelations = p.createSpan("relates to: " + elements[i].r).class('discourseRelations')
-          tempRelations.id = "rel" + elements[i].u
-          tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
-        }
+        // if (elements[i].r.length > 0) {
+        //
+        //   for(let relations in elements[i].r){
+        //
+        //
+        //
+        //
+        //
+        //   }
+        //
+        //   let tempRelations = p.createSpan("relates external: " + elements[i].r).class('discourseRelations')
+        //   tempRelations.id = "rel" + elements[i].u
+        //   tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
+        //
+        // }
 
         p.stroke(0, 255, 255)
 
@@ -155,7 +166,6 @@ const overlay = new p5((p) => {
       }
       maxHeight += 400;
       maxHeight += pageHeight-(maxHeight%pageHeight)
-      console.log(maxHeight)
 
       p.resizeCanvas(p.displayWidth - 100, maxHeight)
 
@@ -194,7 +204,7 @@ window.onload = function() {
 
   let urlString = window.location.href
   let parts = urlString.split('/')
-  let sets = parts[parts.length - 1].split('$-$')
+  sets = parts[parts.length - 1].split('$-$')
 
   document.getElementById('XarSets').textContent = sets.join(' , ')
   document.getElementById('time').textContent = Date.now()
@@ -205,9 +215,18 @@ window.onload = function() {
   document.getElementById('PlotterPrint').onclick = () => {
     document.getElementById('JSONoutput').classList.add('away')
     document.getElementById('PDFprint').classList.add('away')
+    document.getElementById('PlotterPrint').classList.add('away')
     overlay.clear()
     document.getElementById('print').remove()
+    document.getElementById('leftCascade').remove()
     overOrganize()
+  }
+
+  document.getElementById('PDFprint').onclick = () => {
+    document.getElementById('JSONoutput').classList.add('away')
+    document.getElementById('PDFprint').classList.add('away')
+    document.getElementById('PlotterPrint').classList.add('away')
+    window.print()
   }
 
   document.getElementById('JSONoutput').onclick = () => {
@@ -232,7 +251,7 @@ const overOrganize = function() {
 
       let plotHeights = []
       let plotMargin = 150
-      let inbetweenYMargin = 80
+      let inbetweenYMargin = 120
       let inbetweenXMargin = 50
       let plotWidth = 1123
       let plotHeight = 30000
@@ -316,8 +335,8 @@ const overOrganize = function() {
             for (let j = i; j < origin.length; j++) {
               origin[j].p.y -= betweenYDiff
             }
-          } else if (i > 0 && origin[i].p.y - origin[i - 1].p.y < plotHeights[i - 1] + 50) {
-            let betweenYDiff = (plotHeights[i - 1] + 50) - (origin[i].p.y - origin[i - 1].p.y)
+          } else if (i > 0 && origin[i].p.y - origin[i - 1].p.y < plotHeights[i - 1] + (inbetweenYMargin)) {
+            let betweenYDiff = (plotHeights[i - 1] +(inbetweenYMargin)) - (origin[i].p.y - origin[i - 1].p.y)
             origin[i].p.y += betweenYDiff
           }
 
@@ -349,7 +368,6 @@ const overOrganize = function() {
         }
 
         maxHeight += 400;
-        console.log(maxHeight)
 
         p.resizeCanvas(1123, maxHeight)
 
@@ -379,17 +397,20 @@ const overOrganize = function() {
         let ohSets = spl[0].match(/.{1,60}/g);
         let down =12
 
-
+        p.stroke(0);
         p.text(spl[0],origin[i].p.x,origin[i].p.y,400,800)
 
 
         if(spl.length>0){
-            p.text(spl[1],origin[i].p.x+16,origin[i].p.y+plotHeights[i]+10)
+          p.stroke(30,180,255)
+          p.text(spl[1],origin[i].p.x+16,origin[i].p.y+plotHeights[i],400,30)
         }
+        p.stroke(180,30,30)
         p.text("element: " + origin[i].u + "  : {" + origin[i].d + "}",origin[i].p.x+16,origin[i].p.y-18)
       }
-
-      p.text(wholeString,100,100,400,200)
+      p.textSize(20)
+      p.stroke(0);
+      p.text(wholeString,50,50,800,200)
 
       p.save("test.svg")
       }

@@ -62,7 +62,6 @@ export class discursiveOverlay {
           console.log("checked")
           let simpStr = String(document.getElementsByClassName("checks")[0].id)
           sets.push(simpStr)
-          console.log(simpStr)
         }
         document.getElementsByClassName("checks")[0].remove()
       }
@@ -78,6 +77,7 @@ export class discursiveOverlay {
         document.getElementById('switchLoad').classList.remove('away')
         document.getElementById('rp-b').classList.remove('away')
         document.getElementById('gp-b').classList.remove('away')
+          document.getElementById('printData').classList.toggle('away')
         overlay.clear()
         switchModeInstructions(0)
       } else {
@@ -118,7 +118,7 @@ export class discursiveOverlay {
         if (check == 0) {
           let fixText = text.charAt(0).toLowerCase() + text.slice(1);
           fixText = fixText.replace(/ /g,"")
-          console.log(fixText)
+          fixText = fixText.replace(/\//g,'-')
           document.getElementById("filterKey").textContent = fixText
           newDisc.remove()
           nDBut.remove()
@@ -127,6 +127,9 @@ export class discursiveOverlay {
           document.getElementById('switchLoad').classList.remove('away')
           document.getElementById('rp-b').classList.remove('away')
           document.getElementById('gp-b').classList.remove('away')
+          document.getElementById('printData').classList.toggle('away')
+
+
           overlay.clear()
           switchModeInstructions(-2)
         } else {
