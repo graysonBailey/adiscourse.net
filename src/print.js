@@ -1,6 +1,5 @@
 import './print.css'
 
-
 let elements = []
 let origin
 let elementHeights = []
@@ -261,7 +260,7 @@ const overOrganize = function() {
 
 
       p.preload = function() {
-        tFont = p.loadFont("machtgth.ttf")
+        tFont = p.loadFont("1CamBam_Stick_3.ttf")
       }
 
 
@@ -299,7 +298,7 @@ const overOrganize = function() {
 
           let spl = origin[i].c.split('//')
 
-          let tempDoc = p.createSpan(spl[0]).class('discourseElement')
+          let tempDoc = p.createSpan(spl[0]).class('discourseElementSVG')
 
           tempDoc.id = origin[i].u
 
@@ -307,7 +306,7 @@ const overOrganize = function() {
           tempDoc.attribute('contenteditable', true)
           let quickHeight = tempDoc.size().height
 
-          let tempCite = p.createSpan(spl[1]).class('discourseCitation')
+          let tempCite = p.createSpan(spl[1]).class('discourseCitationSVG')
           tempCite.id = "cite" + origin[i].u
           tempCite.position(origin[i].p.x, origin[i].p.y + quickHeight)
           quickHeight += tempCite.size().height
@@ -387,10 +386,10 @@ const overOrganize = function() {
           }
         }
 
-      p.textSize(12)
-      p.noFill()
+      p.textSize(11)
       p.stroke(0)
       p.strokeWeight(.5)
+      p.noFill()
       for(let i = 0; i < origin.length; i++){
         let spl = origin[i].c.split('//')
 

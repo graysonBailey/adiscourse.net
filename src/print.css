@@ -34,6 +34,23 @@ body {
   font-family: miso;
 }
 
+.discourseCitationSVG {
+  width: 400 ;
+  overflow: hidden;
+  color:black;
+  font-size: 16;
+  font-family: miso;
+}
+
+.discourseElementSVG {
+  width: 400;
+  overflow: hidden;
+  background-color: rgba(255,255,255,.8);
+  color:black;
+  font-size: 20;
+  font-family: miso;
+}
+
 .discourseCitation {
   width: 400 ;
   overflow: hidden;

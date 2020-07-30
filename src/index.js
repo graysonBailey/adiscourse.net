@@ -1,5 +1,4 @@
 import _ from 'lodash';
-
 import './style.css';
 import p5 from 'p5/lib/p5.min.js';
 import io from 'socket.io-client';
@@ -10,6 +9,7 @@ import {
 import {
   discursiveOverlay
 } from './present.js'
+
 import {
   back,
   content
@@ -348,7 +348,7 @@ export const overlay = new p5((p) => {
     p.whoaSize();
   }
 
-  p.whoaSize = function(){
+    p.whoaSize = function(){
     p.resizeCanvas(p.windowWidth, p.windowHeight);
     back.resizeCanvas(p.windowWidth, p.windowHeight+60)
     content.resizeCanvas(p.windowWidth, p.windowHeight+60)
@@ -421,9 +421,11 @@ window.onload = function() {
   document.getElementById('vert30').onclick = () => {
     vertSpeed = 30;
   }
+
   document.getElementById('vert60').onclick = () => {
     vertSpeed = 60;
   }
+
   document.getElementById('vert90').onclick = () => {
     vertSpeed = 90;
   }
@@ -435,6 +437,7 @@ window.onload = function() {
   document.getElementById('about-window-overlay-close').onclick = () => {
     document.getElementById('about-window-overlay').classList.add('disabled');
   }
+
   document.getElementById('fs').onclick = () => {
     let fs = overlay.fullscreen();
     overlay.fullscreen(!fs);
@@ -444,6 +447,7 @@ window.onload = function() {
     document.getElementById('gp-b').classList.remove('current');
     document.getElementById('discourseLoad').classList.remove('current');
     document.getElementById('rp-b').classList.add('current');
+    document.getElementById('rightCascade').classList.remove('away');
     switchModeInstructions(2)
     discourses.vis()
   }
@@ -451,6 +455,7 @@ window.onload = function() {
     document.getElementById('rp-b').classList.remove('current');
     document.getElementById('discourseLoad').classList.remove('current');
     document.getElementById('gp-b').classList.add('current');
+    document.getElementById('rightCascade').classList.add('away');
     switchModeInstructions(1)
     discourses.vis()
   }
@@ -463,6 +468,7 @@ window.onload = function() {
     presenter.giveChoices()
     document.getElementById('gp-b').classList.add('away')
     document.getElementById('rp-b').classList.add('away')
+    document.getElementById('rightCascade').classList.add('away');
   }
 
   document.getElementById('switchLoad').onclick = () => {
@@ -471,6 +477,7 @@ window.onload = function() {
     document.getElementById('gp-b').classList.add('away')
     document.getElementById('rp-b').classList.add('away')
     document.getElementById('filterKey').textContent = "--"
+    document.getElementById('rightCascade').classList.add('away');
     content.clear()
     document.getElementById('printData').classList.toggle('away')
     switchModeInstructions(0)
@@ -479,11 +486,17 @@ window.onload = function() {
     presenter.giveChoices()
     position = 0
     document.getElementById('vertPos').innerText = position
-    //discourses.resetPositions()
   }
 
   document.getElementById('downData').onclick = () => {
     downloadThatData()
+  }
+
+  document.getElementById('rp-search').onclick = () => {
+    let currentKey = document.getElementById('searchKey').value
+    console.log(currentKey)
+    let results = discourses.set.filter(item => item.c.includes(currentKey))
+    console.log(results)
   }
 
   document.getElementById('printData').onclick = () => {
