@@ -342,6 +342,15 @@ export class discourseSet {
     }
   }
 
+  unhighlight(){
+    let theConcerned = this.set.filter(item => item.isOfConcern())
+    for (let each in theConcerned) {
+      theConcerned[each].isHighlighted = false
+    }
+    this.vis()
+
+  }
+
   concern() {
     let theConcerned = this.set.filter(item => item.isOfConcern())
     for (let each in theConcerned) {

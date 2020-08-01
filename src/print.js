@@ -141,21 +141,23 @@ const overlay = new p5((p) => {
         tempUnitName.position(elements[i].p.x, elements[i].p.y - 15)
         quickHeight += tempCite.size().height
 
-        // if (elements[i].r.length > 0) {
-        //
-        //   for(let relations in elements[i].r){
-        //
-        //
-        //
-        //
-        //
-        //   }
-        //
-        //   let tempRelations = p.createSpan("relates external: " + elements[i].r).class('discourseRelations')
-        //   tempRelations.id = "rel" + elements[i].u
-        //   tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
-        //
-        // }
+        if (elements[i].r.length > 0) {
+
+          let tempString = ""
+
+              for (let relations in elements[i].r) {
+                tempString += elements[i].r[relations] + "\n\n"
+              }
+
+          
+
+          if (tempString != "") {
+            let tempRelations = p.createSpan("relates external: \n\n" + tempString).class('discourseRelations')
+            tempRelations.id = "rel" + elements[i].u
+            tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
+          }
+
+        }
 
         p.stroke(0, 255, 255)
 
@@ -164,7 +166,7 @@ const overlay = new p5((p) => {
         }
       }
       maxHeight += 400;
-      maxHeight += pageHeight-(maxHeight%pageHeight)
+      maxHeight += pageHeight - (maxHeight % pageHeight)
 
       p.resizeCanvas(p.displayWidth - 100, maxHeight)
 
@@ -208,7 +210,7 @@ window.onload = function() {
   document.getElementById('XarSets').textContent = sets.join(' , ')
   document.getElementById('time').textContent = Date.now()
 
-  wholeString = " adiscourse.net => discourse State: { set : "+sets.join(' , ')+" },{ timeStamp : "+Date.now()+" }"
+  wholeString = " adiscourse.net => discourse State: { set : " + sets.join(' , ') + " },{ timeStamp : " + Date.now() + " }"
 
 
   document.getElementById('PlotterPrint').onclick = () => {
@@ -248,171 +250,171 @@ const overOrganize = function() {
 
   new p5((p) => {
 
-      let plotHeights = []
-      let plotMargin = 150
-      let inbetweenYMargin = 120
-      let inbetweenXMargin = 50
-      let plotWidth = 1123
-      let plotHeight = 30000
-      let cnv;
-      let tFont;
+    let plotHeights = []
+    let plotMargin = 150
+    let inbetweenYMargin = 120
+    let inbetweenXMargin = 50
+    let plotWidth = 1123
+    let plotHeight = 30000
+    let cnv;
+    let tFont;
 
 
 
-      p.preload = function() {
-        tFont = p.loadFont("1CamBam_Stick_3.ttf")
+    p.preload = function() {
+      tFont = p.loadFont("1CamBam_Stick_3.ttf")
+    }
+
+
+    p.setup = function() {
+      cnv = p.createCanvas(1123, 10000, p.SVG)
+      p.textFont(tFont)
+
+
+
+      let maxHeight = 0;
+      let lowMark = origin[0].p.y;
+      let leftMark = origin[0].p.x;
+
+
+      for (let each in origin) {
+        if (origin[each].p.y < lowMark) {
+          lowMark = origin[each].p.y
+        }
+        if (origin[each].p.x < leftMark) {
+          leftMark = origin[each].p.x
+        }
       }
 
 
-      p.setup = function() {
-        cnv = p.createCanvas(1123, 10000, p.SVG)
-        p.textFont(tFont)
+      let xDist = plotMargin - leftMark
+      let yDist = plotMargin - lowMark
+
+      for (let each in origin) {
+        origin[each].p.y += yDist;
+        origin[each].p.x += xDist;
+      }
 
 
+      for (let i = 0; i < origin.length; i++) {
 
-        let maxHeight = 0;
-        let lowMark = origin[0].p.y;
-        let leftMark = origin[0].p.x;
+        let spl = origin[i].c.split('//')
 
+        let tempDoc = p.createSpan(spl[0]).class('discourseElementSVG')
 
-        for (let each in origin) {
-          if (origin[each].p.y < lowMark) {
-            lowMark = origin[each].p.y
+        tempDoc.id = origin[i].u
+
+        tempDoc.position(origin[i].p.x, origin[i].p.y)
+        tempDoc.attribute('contenteditable', true)
+        let quickHeight = tempDoc.size().height
+
+        let tempCite = p.createSpan(spl[1]).class('discourseCitationSVG')
+        tempCite.id = "cite" + origin[i].u
+        tempCite.position(origin[i].p.x, origin[i].p.y + quickHeight)
+        quickHeight += tempCite.size().height
+
+        plotHeights.push(quickHeight)
+
+        let first = spl[0].charAt(0) + spl[0].charAt(1)
+        if (first == 'r/') {
+          tempDoc.addClass('response')
+        } else if (first == 'q/') {
+          tempDoc.addClass('quote')
+        } else if (first == 'c/') {
+          tempDoc.addClass('comp')
+        }
+        let ran = Math.random() * 25
+
+        if (origin[i].p.x > plotWidth - 550) {
+          let xPageDiff = origin[i].p.x - (plotWidth - 550 - ran)
+          origin[i].p.x -= xPageDiff
+        }
+
+        // NEEDS TO BE IMPLEMENTED ONCE THE origin ARE SORTED BY Y VALUE, WHICH SHOULD EVENTUALLY HAPPEN AT THE BEGINNING
+        if (i > 0 && origin[i].p.y - origin[i - 1].p.y > inbetweenYMargin) {
+          let betweenYDiff = origin[i].p.y - (origin[i - 1].p.y + plotHeights[i - 1]) - inbetweenYMargin
+          for (let j = i; j < origin.length; j++) {
+            origin[j].p.y -= betweenYDiff
           }
-          if (origin[each].p.x < leftMark) {
-            leftMark = origin[each].p.x
-          }
+        } else if (i > 0 && origin[i].p.y - origin[i - 1].p.y < plotHeights[i - 1] + (inbetweenYMargin)) {
+          let betweenYDiff = (plotHeights[i - 1] + (inbetweenYMargin)) - (origin[i].p.y - origin[i - 1].p.y)
+          origin[i].p.y += betweenYDiff
+        }
+
+        if (origin[i].p.y % plotHeight > plotHeight - quickHeight - 50) {
+          let betweenYDiff = (plotHeight + 50) - (origin[i].p.y % plotHeight)
+          origin[i].p.y += betweenYDiff
+        }
+
+        tempDoc.remove()
+        tempCite.remove()
+
+        quickHeight += tempCite.size().height
+
+        // if (origin[i].r.length > 0) {
+        //   let tempRelations = p.createSpan("relates to: \n\n" + origin[i].r).class('discourseRelations')
+        //   tempRelations.id = "rel" + origin[i].u
+        //   tempRelations.position(origin[i].p.x + 410, origin[i].p.y)
+        // }
+
+        p.stroke(0, 255, 255)
+
+        if (origin[i].p.y > maxHeight) {
+          maxHeight = origin[i].p.y
         }
 
 
-        let xDist = plotMargin - leftMark
-        let yDist = plotMargin - lowMark
-
-        for (let each in origin) {
-          origin[each].p.y += yDist;
-          origin[each].p.x += xDist;
-        }
 
 
-        for (let i = 0; i < origin.length; i++) {
+      }
 
-          let spl = origin[i].c.split('//')
+      maxHeight += 400;
 
-          let tempDoc = p.createSpan(spl[0]).class('discourseElementSVG')
+      p.resizeCanvas(1123, maxHeight)
 
-          tempDoc.id = origin[i].u
+      p.stroke(180)
+      for (let i = 400; i < cnv.height; i += 20) {
+        p.line(0, i, pageWidth, i + 80)
+      }
 
-          tempDoc.position(origin[i].p.x, origin[i].p.y)
-          tempDoc.attribute('contenteditable', true)
-          let quickHeight = tempDoc.size().height
+      p.stroke(255, 0, 180)
+      for (let each in origin) {
+        if (origin[each].r.length > 0) {
+          let theRelated = origin.filter(elem => origin[each].r.includes(elem.u))
 
-          let tempCite = p.createSpan(spl[1]).class('discourseCitationSVG')
-          tempCite.id = "cite" + origin[i].u
-          tempCite.position(origin[i].p.x, origin[i].p.y + quickHeight)
-          quickHeight += tempCite.size().height
-
-          plotHeights.push(quickHeight)
-
-          let first = spl[0].charAt(0) + spl[0].charAt(1)
-          if (first == 'r/') {
-            tempDoc.addClass('response')
-          } else if (first == 'q/') {
-            tempDoc.addClass('quote')
-          } else if (first == 'c/') {
-            tempDoc.addClass('comp')
-          }
-          let ran = Math.random() * 25
-
-          if (origin[i].p.x > plotWidth - 550) {
-            let xPageDiff = origin[i].p.x - (plotWidth - 550 - ran)
-            origin[i].p.x -= xPageDiff
-          }
-
-          // NEEDS TO BE IMPLEMENTED ONCE THE origin ARE SORTED BY Y VALUE, WHICH SHOULD EVENTUALLY HAPPEN AT THE BEGINNING
-          if (i > 0 && origin[i].p.y - origin[i - 1].p.y > inbetweenYMargin) {
-            let betweenYDiff = origin[i].p.y - (origin[i - 1].p.y + plotHeights[i - 1]) - inbetweenYMargin
-            for (let j = i; j < origin.length; j++) {
-              origin[j].p.y -= betweenYDiff
-            }
-          } else if (i > 0 && origin[i].p.y - origin[i - 1].p.y < plotHeights[i - 1] + (inbetweenYMargin)) {
-            let betweenYDiff = (plotHeights[i - 1] +(inbetweenYMargin)) - (origin[i].p.y - origin[i - 1].p.y)
-            origin[i].p.y += betweenYDiff
-          }
-
-          if (origin[i].p.y % plotHeight > plotHeight - quickHeight - 50) {
-            let betweenYDiff = (plotHeight + 50) - (origin[i].p.y % plotHeight)
-            origin[i].p.y += betweenYDiff
-          }
-
-          tempDoc.remove()
-          tempCite.remove()
-
-          quickHeight += tempCite.size().height
-
-          // if (origin[i].r.length > 0) {
-          //   let tempRelations = p.createSpan("relates to: " + origin[i].r).class('discourseRelations')
-          //   tempRelations.id = "rel" + origin[i].u
-          //   tempRelations.position(origin[i].p.x + 410, origin[i].p.y)
-          // }
-
-          p.stroke(0, 255, 255)
-
-          if (origin[i].p.y > maxHeight) {
-            maxHeight = origin[i].p.y
-          }
-
-
-
-
-        }
-
-        maxHeight += 400;
-
-        p.resizeCanvas(1123, maxHeight)
-
-        p.stroke(180)
-        for (let i = 400; i < cnv.height; i += 20) {
-          p.line(0, i, pageWidth, i + 80)
-        }
-
-        p.stroke(255, 0, 180)
-        for (let each in origin) {
-          if (origin[each].r.length > 0) {
-            let theRelated = origin.filter(elem => origin[each].r.includes(elem.u))
-
-            for (let those in theRelated) {
-              p.line(origin[each].p.x, origin[each].p.y, theRelated[those].p.x, theRelated[those].p.y)
-            }
+          for (let those in theRelated) {
+            p.line(origin[each].p.x, origin[each].p.y, theRelated[those].p.x, theRelated[those].p.y)
           }
         }
+      }
 
       p.textSize(11)
       p.stroke(0)
       p.strokeWeight(.5)
       p.noFill()
-      for(let i = 0; i < origin.length; i++){
+      for (let i = 0; i < origin.length; i++) {
         let spl = origin[i].c.split('//')
 
         let ohSets = spl[0].match(/.{1,60}/g);
-        let down =12
+        let down = 12
 
         p.stroke(0);
-        p.text(spl[0],origin[i].p.x,origin[i].p.y,400,800)
+        p.text(spl[0], origin[i].p.x, origin[i].p.y, 400, 800)
 
 
-        if(spl.length>0){
-          p.stroke(30,180,255)
-          p.text(spl[1],origin[i].p.x+16,origin[i].p.y+plotHeights[i],400,30)
+        if (spl.length > 0) {
+          p.stroke(30, 180, 255)
+          p.text(spl[1], origin[i].p.x + 16, origin[i].p.y + plotHeights[i], 400, 30)
         }
-        p.stroke(180,30,30)
-        p.text("element: " + origin[i].u + "  : {" + origin[i].d + "}",origin[i].p.x+16,origin[i].p.y-18)
+        p.stroke(180, 30, 30)
+        p.text("element: " + origin[i].u + "  : {" + origin[i].d + "}", origin[i].p.x + 16, origin[i].p.y - 18)
       }
       p.textSize(20)
       p.stroke(0);
-      p.text(wholeString,50,50,800,200)
+      p.text(wholeString, 50, 50, 800, 200)
 
       p.save("test.svg")
-      }
+    }
 
 
 

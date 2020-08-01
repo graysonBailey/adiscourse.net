@@ -165,7 +165,7 @@ user-select: none;
   left: 10;
   width: 200;
   position: relative;
-  top: 25vh;
+  top: 15vh;
 }
 
 .rc-Input {
@@ -178,11 +178,35 @@ user-select: none;
   left: 10;
   width:200;
   position: relative;
-  top: 27vh;
+  top: 15vh;
 }
 
-.rc-Body {
-  top: 50%;
+.rc-Body{
+  user-select: none;
+  overflow-y: auto;
+  overflow-x:hidden;
+  color: white;
+  background-color: rgba(90,90,90,.5);
+  font-size: 8pt;
+  z-index:3;
+  padding: 5px 5px;
+  height: 70vh;
+  left: 10;
+  width:230;
+  position: relative;
+  top: 16.5vh;
+}
+
+.resultItem{
+}
+
+.pointerOff{
+  pointer-events: none;
+}
+
+.resultItem:hover{
+  background-color:white;
+  color:black;
 }
 
 .lc-mid {
@@ -366,17 +390,6 @@ user-select: none;
 
 }
 
-
-
-.animated {
-  opacity: 80;
-  transition:opacity 0.15s linear;
-}
-
-.animated.animated-visible {
-  opacity: 1;
-}
-
 .grid-container {
   margin-right: 30px;
   display: flex;
@@ -392,27 +405,6 @@ user-select: none;
 a{
   text-decoration: none;
   color:white;
-}
-
-a.version-link {
-  text-decoration: none;
-  color: black;
-}
-
-a.version-link.current {
-  color: red;
-}
-
-a.version-link:hover {
-  color: blue;
-}
-
-.version-link-container {
-  margin-bottom: 10px;
-}
-
-#versions-window-overlay {
-  overflow-y: scroll;
 }
 
 #about-window-overlay {

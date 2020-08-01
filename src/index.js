@@ -492,21 +492,62 @@ window.onload = function() {
     downloadThatData()
   }
 
+  document.getElementById("searchItems").onclick = () => event.stopPropagation()
+
   document.getElementById('rp-search').onclick = () => {
+    event.stopPropagation()
+    while (document.getElementsByClassName("resultItem")[0] != null) {
+      document.getElementsByClassName("resultItem")[0].remove()
+    }
     let currentKey = document.getElementById('searchKey').value
-    console.log(currentKey)
-    let results = discourses.set.filter(item => item.c.includes(currentKey))
-    console.log(results)
+    let results
+    if(currentKey != "" && currentKey != " "){
+      results = discourses.set.filter(item => item.c.includes(currentKey))
+    } else {
+      results = []
+    }
+
+    for(let each in results){
+      let tempSpan = document.createElement('span')
+      tempSpan.classList.add('resultItem')
+      tempSpan.id = results[each].u
+      tempSpan.textContent = "["+results[each].u+"]\n\n"+results[each].c+"\n\n-----------------\n\n"
+      document.getElementById('searchItems').appendChild(tempSpan)
+      tempSpan.onclick = () => {
+        //event.stopPropagation()
+        console.log(tempSpan.id)
+        if(discourses.pendingRelation.length == 0){
+          let quickSelect = discourses.set.filter(item => item.u == tempSpan.id)
+          discourses.pendingRelation.push(quickSelect[0])
+          console.log(discourses.pendingRelation)
+        } else if(discourses.pendingRelation.length == 1 && discourses.pendingRelation[0] != tempSpan.id){
+          discourses.pendingRelation[1] = tempSpan.id
+          let data = {
+            u: discourses.pendingRelation[0].u,
+            r: tempSpan.id
+          }
+          console.log(data)
+          if (document.getElementById('filterKey').textContent !== "**") {
+            socket.emit('relation', data);
+          }
+          console.log(discourses.pendingRelation)
+          setTimeout(() => {
+            discourses.pendingRelation[0].relatesTo.push(tempSpan.id)
+            discourses.pendingRelation = []
+            discourses.vis()
+          }, 20)
+
+          discourses.unhighlight();
+        }
+      }
+    }
   }
 
   document.getElementById('printData').onclick = () => {
-
-let sets = document.getElementById('filterKey').textContent.split('|')
-let concat = sets.join('$-$')
-let site = window.location.href+concat
-window.open(site)
-
-
+    let sets = document.getElementById('filterKey').textContent.split('|')
+    let concat = sets.join('$-$')
+    let site = window.location.href+concat
+    window.open(site)
   }
 
 
