@@ -18,6 +18,10 @@ export class discursiveOverlay {
       document.getElementsByClassName("spatialChoice")[0].remove()
     }
 
+    while (document.getElementsByClassName("nameInput")[0] != null) {
+      document.getElementsByClassName("nameInput")[0].remove()
+    }
+
     let newBut = this.p5.createButton('+ new discourse space').class('spatialChoice').id('newDSpace')
     let subBut = this.p5.createButton('submit selected').class('spatialChoice').id('subBoxes')
     let verBut = this.p5.createButton('0-[complete]-verbunden').class('spatialChoice').id('verButton')
@@ -102,6 +106,7 @@ export class discursiveOverlay {
     newBut.mousePressed(() => {
       let newDisc = this.p5.createInput()
       newDisc.position(210, 140)
+      newDisc.class('nameInput')
       while (document.getElementsByClassName("spatialChoice")[0] != null) {
         document.getElementsByClassName("spatialChoice")[0].remove()
       }

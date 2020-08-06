@@ -328,7 +328,7 @@ export const overlay = new p5((p) => {
           escButton.position(p.mouseX + 380, p.mouseY - 20)
           input.position(p.mouseX, p.mouseY)
           input.id('tempGeist')
-          input.attribute('placeholder', 'using "q/" distinguishes a quote or reference \r\n using "r/" distinguishes a response or reaction  \r\n using no preface distinguishes nothing \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n using "//" between references and a citation separates the citation cleanly')
+          input.attribute('placeholder', 'using "q/" distinguishes a quote or reference \r\n using "r/" distinguishes a response or reaction  \r\n using "c/" distinguishes a bit of composition\r\n using no preface distinguishes nothing \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n using "^^" between references and a citation separates the citation cleanly')
           inputButton.id('tempGeistButton')
           escButton.id('escapeGeistButton')
           inputButton.mousePressed(p.submitUnit)
@@ -412,22 +412,22 @@ window.onload = function() {
 
   document.getElementById('overlay').addEventListener("wheel", event => reposition(event), {
     passive: true
-  });
+  })
   socket.on('dataRep', data => {
     allData = data;
     general = loadDiscourseUnitsToArray(data)
   })
 
   document.getElementById('vert30').onclick = () => {
-    vertSpeed = 30;
+    vertSpeed = 30
   }
 
   document.getElementById('vert60').onclick = () => {
-    vertSpeed = 60;
+    vertSpeed = 60
   }
 
   document.getElementById('vert90').onclick = () => {
-    vertSpeed = 90;
+    vertSpeed = 90
   }
 
   document.getElementById('about-this-website').onclick = () => {
@@ -468,7 +468,9 @@ window.onload = function() {
     presenter.giveChoices()
     document.getElementById('gp-b').classList.add('away')
     document.getElementById('rp-b').classList.add('away')
-    document.getElementById('rightCascade').classList.add('away');
+    document.getElementById('discourseLoad').classList.add('away')
+    document.getElementById('switchLoad').classList.remove('away')
+    document.getElementById('rightCascade').classList.add('away')
   }
 
   document.getElementById('switchLoad').onclick = () => {
@@ -477,7 +479,7 @@ window.onload = function() {
     document.getElementById('gp-b').classList.add('away')
     document.getElementById('rp-b').classList.add('away')
     document.getElementById('filterKey').textContent = "--"
-    document.getElementById('rightCascade').classList.add('away');
+    document.getElementById('rightCascade').classList.add('away')
     content.clear()
     document.getElementById('printData').classList.toggle('away')
     switchModeInstructions(0)

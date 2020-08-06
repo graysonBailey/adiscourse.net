@@ -35,13 +35,15 @@ export class discourseUnit {
       return 1
     } else if (this.c.charAt(0) == 'q' && this.c.charAt(1) == '/') {
       return 0
+    } else if(this.c.charAt(0) == 'c' && this.c.charAt(1) == '/'){
+      return 2
     } else {
       return -1
     }
   }
 
   splitBody() {
-    let parts = this.c.split("//")
+    let parts = this.c.split("^^")
     if (parts[1] != null) {
       this.ref = parts[1]
     }
@@ -82,6 +84,8 @@ export class discourseUnit {
       d = 2
     } else if (this.t == 1) {
       d = 3
+    } else if (this.t ==2){
+      d = 5;
     }
     if (this.t < 0) {
       d = -1
@@ -111,9 +115,13 @@ export class discourseUnit {
         color = this.p5.color(0)
         bcolor = this.p5.color('#FFCC00')
         break
-      case -1:
+      case 5:
         color = this.p5.color(0)
         bcolor = this.p5.color('#33FFCC')
+        break
+      case -1:
+        color = this.p5.color(0)
+        bcolor = this.p5.color(255)
         break
       default:
         color = this.p5.color(120, 120, 120)

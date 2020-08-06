@@ -149,7 +149,7 @@ const overlay = new p5((p) => {
                 tempString += elements[i].r[relations] + "\n\n"
               }
 
-          
+
 
           if (tempString != "") {
             let tempRelations = p.createSpan("relates external: \n\n" + tempString).class('discourseRelations')
@@ -201,8 +201,6 @@ const overlay = new p5((p) => {
 
 window.onload = function() {
 
-
-
   let urlString = window.location.href
   let parts = urlString.split('/')
   sets = parts[parts.length - 1].split('$-$')
@@ -210,7 +208,7 @@ window.onload = function() {
   document.getElementById('XarSets').textContent = sets.join(' , ')
   document.getElementById('time').textContent = Date.now()
 
-  wholeString = " adiscourse.net => discourse State: { set : " + sets.join(' , ') + " },{ timeStamp : " + Date.now() + " }"
+  wholeString = " adiscourse.net --- discourse State: ( set : " + sets.join(' , ') + " ),( timeStamp : " + Date.now() + " )"
 
 
   document.getElementById('PlotterPrint').onclick = () => {
@@ -372,10 +370,10 @@ const overOrganize = function() {
 
       p.resizeCanvas(1123, maxHeight)
 
-      p.stroke(180)
-      for (let i = 400; i < cnv.height; i += 20) {
-        p.line(0, i, pageWidth, i + 80)
-      }
+      // p.stroke(180)
+      // for (let i = 400; i < cnv.height; i += 20) {
+      //   p.line(0, i, pageWidth, i + 80)
+      // }
 
       p.stroke(255, 0, 180)
       for (let each in origin) {
@@ -407,13 +405,13 @@ const overOrganize = function() {
           p.text(spl[1], origin[i].p.x + 16, origin[i].p.y + plotHeights[i], 400, 30)
         }
         p.stroke(180, 30, 30)
-        p.text("element: " + origin[i].u + "  : {" + origin[i].d + "}", origin[i].p.x + 16, origin[i].p.y - 18)
+        p.text("element: " + origin[i].u + "  : (" + origin[i].d + ")", origin[i].p.x + 16, origin[i].p.y - 18)
       }
       p.textSize(20)
       p.stroke(0);
       p.text(wholeString, 50, 50, 800, 200)
 
-      p.save("test.svg")
+      p.save("aDiscourseNet"+Date.now()+".svg")
     }
 
 
