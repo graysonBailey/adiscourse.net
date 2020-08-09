@@ -20,7 +20,7 @@ let path = require('path');
 export let discourses = []
 export let general = []
 let splashUnits = []
-let allData= []
+let allData = []
 
 export let position = 0;
 let vertSpeed = 30;
@@ -50,7 +50,7 @@ export const overlay = new p5((p) => {
 
   p.intSetStart = function() {
     splashUnits.push({
-      "c":"[non-linear] : another challenge is to the idea that critical written discourse needs to be forced into a linear structure to be understood. ",
+      "c":"c/ [non-linear] : another challenge is to the idea that critical written discourse needs to be forced into a linear structure to be understood. ",
       "p":{
         "x":1187,
         "y":777
@@ -74,7 +74,7 @@ export const overlay = new p5((p) => {
     })
 
     splashUnits.push({
-      "c":"r/ Updates: \n\n+ getSTATE page and output and fix\n+ checkBox cross selection\n+ plotter ouput SVG format for g-code",
+      "c":"r/ Updates: \n\n+ getSTATE developments\n+ minor bug fixes\n+ citation process disincludes hyperlink characters\n+ addition c/ distinctions in addition to r/ and q/",
       "p":{"x":1170,"y":135},
       "t":0,
       "u":"updates",
@@ -84,7 +84,7 @@ export const overlay = new p5((p) => {
       "_id":"WUnR1zbmuEslErcl"
     })
     splashUnits.push({
-      "c":"The intention of -this- discursive interface <adiscourse.net> is to challenge a slew of inherited assumptions about \"discursive practice\" which remain largely unexamined. ",
+      "c":"c/ The intention of -this- discursive interface <adiscourse.net> is to challenge a slew of inherited assumptions about \"discursive practice\" which remain largely unexamined. ",
       "p":{"x":324,"y":836},
       "t":0,
       "u":"intro29",
@@ -94,7 +94,7 @@ export const overlay = new p5((p) => {
       "_id":"dR3HROYPoZ39dXUo"
     })
     splashUnits.push({
-      "c":"[non-authorial] : one challenge is to the very idea that direct authorship - a rather entrenched (but not very old) idea in which persona is central to the authority of thought - is somehow the best way to generate discourse.",
+      "c":"c/ [non-authorial] : one challenge is to the very idea that direct authorship - a rather entrenched (but not very old) idea in which persona is central to the authority of thought - is somehow the best way to generate discourse.",
       "p":{"x":1162,"y":665},
       "t":0,
       "u":"intro24",
@@ -104,17 +104,17 @@ export const overlay = new p5((p) => {
       "_id":"keI7nqa16smq1SWY"
     })
     splashUnits.push({
-      "c":"\"discursive practices\" are about as varied as discursive interfaces - coffee shop meetings, the conversations and tactics of Social Media, the presentation of a paper at a symposium.\n\nUsually in academic spheres these practices might involve submission of an abstract, response of acceptance of denial, the coalescing of sources into a resolved, linear, authorial argument which contributes to the general sphere of -that- area of discourse.",
+      "c":"c/ \"discursive practices\" are about as varied as discursive interfaces - coffee shop meetings, the conversations and tactics of Social Media, the presentation of a paper at a symposium.\n\nUsually in academic spheres these practices might involve submission of an abstract, response of acceptance of denial, the coalescing of sources into a resolved, linear, authorial argument which contributes to the general sphere of -that- area of discourse.",
       "p":{"x":366,"y":922},
       "t":0,
       "u":"intro27",
-      "r":["intro29"],
+      "r":["intro29","intro1592485929455"],
       "d":[2020,6,18,13,36,23],
       "db":["**"],
       "_id":"rEkgawKOsAQsViGX"
     })
     splashUnits.push({
-      "c":"for starters, what you are using now is a \"discursive interface\" - sounds very special, but I'm sure you've been using one type or other of a discursive interface for years. \n\nEspecially if you're on Twitter (a discursive interface), use e-mail (a discursive interface), or have written anything at any time (lots of discursive interfaces there). Many differences exist among them all. They have very different intentions. Social Media has a certain flair for discourse, as does using a pen or pencil to write out ideas in a notebook which no one is allowed to look at, as does a riot in the street.",
+      "c":"c/ for starters, what you are using now is a \"discursive interface\" - sounds very special, but I'm sure you've been using one type or other of a discursive interface for years. \n\nEspecially if you're on Twitter (a discursive interface), use e-mail (a discursive interface), or have written anything at any time (lots of discursive interfaces there). Many differences exist among them all. They have very different intentions. Social Media has a certain flair for discourse, as does using a pen or pencil to write out ideas in a notebook which no one is allowed to look at, as does a riot in the street.",
       "p":{"x":416,"y":419},
       "t":0,
       "u":"intro22",
@@ -124,7 +124,7 @@ export const overlay = new p5((p) => {
       "_id":"wloGufkYljWntfrg"
     })
     splashUnits.push({
-      "c":"[irresolution] : a third challenge is to the idea of resolution - in the form of a resolved argument without deviation, a final composition, or the belief that fixity can be conceptually achieved...",
+      "c":"c/ [irresolution] : a third challenge is to the idea of resolution - in the form of a resolved argument without deviation, a final composition, or the belief that fixity can be conceptually achieved...",
       "p":{"x":1154,"y":873},
       "t":0,
       "u":"intro26",
@@ -134,7 +134,7 @@ export const overlay = new p5((p) => {
       "_id":"zYiDkGG2WO466P8V"
     })
     splashUnits.push({
-      "c":"But, before this gets too long (which isn't really a problem),  you should test out each of the steps and actions out so that when you're in the full database everything makes more sense.\n\n",
+      "c":"c/ But, before this gets too long (which isn't really a problem),  you should test out each of the steps and actions out so that when you're in the full database everything makes more sense.\n\n",
       "p":{"x":627,"y":1512},
       "t":0,
       "u":"intro1592486711884",
@@ -144,7 +144,7 @@ export const overlay = new p5((p) => {
       "_id":"62Y9kunnpNIqNovT"
     })
     splashUnits.push({
-      "c":"<adiscourse.net> is both an alternative to these usual modes of producing critical discourse, as well as an opening to deconstruct what \"modes of discourse production\" really are.  Very often the work of composing concepts and thoughts is thrown to the idea of a genius moment, but we all know that's bullshit. Instead, there are a whole process of material events (labor acts) which contribute to the output of discourse in whatever format...",
+      "c":"c/ <adiscourse.net> is both an alternative to these usual modes of producing critical discourse, as well as an opening to deconstruct what \"modes of discourse production\" really are.  Very often the work of composing concepts and thoughts is thrown to the idea of a genius moment, but we all know that's bullshit. Instead, there are a whole process of material events (labor acts) which contribute to the output of discourse in whatever format...",
       "p":{"x":325,"y":1221},
       "t":0,
       "u":"intro1592486128168",
@@ -154,7 +154,7 @@ export const overlay = new p5((p) => {
       "_id":"m7ZlUeu2SClOSNqE"
     })
     splashUnits.push({
-      "c":"#1 : drag your cursor while having the LEFT-MOUSE-BUTTON engaged. Do you see those blue circles? They are some drawn remnants you're leaving behind, but also sending out. If you see different markers appear which you haven't drawn... that's because its other people using the interface. ",
+      "c":"c/ #1 : drag your cursor while having the LEFT-MOUSE-BUTTON engaged. Do you see those blue circles? They are some drawn remnants you're leaving behind, but also sending out. If you see different markers appear which you haven't drawn... that's because its other people using the interface. ",
       "p":{"x":1178,"y":1469},
       "t":0,
       "u":"intro1592487165230",
@@ -174,7 +174,7 @@ export const overlay = new p5((p) => {
       "_id":"MZt3NRXgxp0wkqPy"
     })
     splashUnits.push({
-      "c":"#2 : Go on over to the left side of the screen and press the Geist Plane button.\nThe background changes and suddenly there's some instructions over there in the bottom left...\n\n...These explain how to provide input like your currently reading.",
+      "c":"c/ #2 : Go on over to the left side of the screen and press the Geist Plane button.\nThe background changes and suddenly there's some instructions over there in the bottom left...\n\n...These explain how to provide input like your currently reading.",
       "p":{"x":1099,"y":1693},
       "t":0,
       "u":"intro1592487328632",
@@ -184,7 +184,7 @@ export const overlay = new p5((p) => {
       "_id":"tS3x9vkMmcs99F1i"
     })
     splashUnits.push({
-      "c":"#3 : lets make some relations! Once you've input a few different elements, try relating them if they are conceptually comparable or if one is derivative of the other or if one is trying to dispute the other. First, click the Relation Plane button, then click two elements to relate them.",
+      "c":"c/ #3 : lets make some relations! Once you've input a few different elements, try relating them if they are conceptually comparable or if one is derivative of the other or if one is trying to dispute the other. First, click the Relation Plane button, then click two elements to relate them.",
       "p":{"x":571,"y":1748},
       "t":0,
       "u":"intro1592487751332",
@@ -214,7 +214,7 @@ export const overlay = new p5((p) => {
       "_id":"eijkZgYQayh1hXGN"
     })
     splashUnits.push({
-      "c":"Now that you've tested some things out, you can move on into the actual database by clicking on the Load Discourses Button, which will take you to an area where you can check out, interact with, and contribute to the database and thematic filters. \n\nNothing on this page will be saved, so the real rubber meets the road moment is in the database. Many other aspects and potentials of the interface are going to be left unexplained - the use of the tool is emergent, meaning that it develops forms of use through being used, rather having a simple \"click this, does that\" style of interaction.\n\nWhile this means that the interface is less intuitive (in a few ways) and less understandable (in a few ways) than the usual website, that's the point. \n\nIf you have no interest in using a vague interface in collaboratively producing some critical discourse, tschüs!  If you do, let's build it together.",
+      "c":"c/ Now that you've tested some things out, you can move on into the actual database by clicking on the Load Discourses Button, which will take you to an area where you can check out, interact with, and contribute to the database and thematic filters. \n\nNothing on this page will be saved, so the real rubber meets the road moment is in the database. Many other aspects and potentials of the interface are going to be left unexplained - the use of the tool is emergent, meaning that it develops forms of use through being used, rather having a simple \"click this, does that\" style of interaction.\n\nWhile this means that the interface is less intuitive (in a few ways) and less understandable (in a few ways) than the usual website, that's the point. \n\nIf you have no interest in using a vague interface in collaboratively producing some critical discourse, tschüs!  If you do, let's build it together.",
       "p":{"x":368,"y":2369},
       "t":0,
       "u":"intro1592488799565",
