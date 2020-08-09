@@ -84,7 +84,7 @@ const overlay = new p5((p) => {
 
       for (let i = 0; i < elements.length; i++) {
 
-        let spl = elements[i].c.split('//')
+        let spl = elements[i].c.split('^^')
 
         let tempDoc = p.createSpan(spl[0]).class('discourseElement')
 
@@ -296,7 +296,7 @@ const overOrganize = function() {
 
       for (let i = 0; i < origin.length; i++) {
 
-        let spl = origin[i].c.split('//')
+        let spl = origin[i].c.split('^^')
 
         let tempDoc = p.createSpan(spl[0]).class('discourseElementSVG')
 
@@ -391,7 +391,7 @@ const overOrganize = function() {
       p.strokeWeight(.5)
       p.noFill()
       for (let i = 0; i < origin.length; i++) {
-        let spl = origin[i].c.split('//')
+        let spl = origin[i].c.split('^^')
 
         let ohSets = spl[0].match(/.{1,60}/g);
         let down = 12
