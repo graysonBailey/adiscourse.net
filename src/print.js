@@ -30,10 +30,14 @@ async function alrighty() {
     let urlString = window.location.href
     let parts = urlString.split('/')
     let sets = parts[parts.length - 1].split('$-$')
-    for (let each in sets) {
-      getBase('/sets/' + sets[each])
+    if(sets[0] == "[entire]-vollstaendig"){
+      console.log("its the complete one")
+      getBase('/aTE/all')
+    }else{
+      for (let each in sets) {
+        getBase('/sets/' + sets[each])
+      }
     }
-
   } catch (error) {
     console.log(error)
   }
@@ -43,161 +47,181 @@ alrighty()
 
 const overlay = new p5((p) => {
 
-  let cnv;
+    let cnv;
 
-  p.preload = function() {
-
-
-  }
+    p.preload = function() {
 
 
-  p.setup = function() {
-    cnv = p.createCanvas(p.displayWidth, p.windowHeight)
-
-    setTimeout(() => {
-
-      elements.sort((a, b) => a.p.y - b.p.y)
-      origin = _.cloneDeep(elements)
-
-      let maxHeight = 0;
-      let lowMark = elements[0].p.y;
-      let leftMark = elements[0].p.x;
-
-      for (let each in elements) {
-        if (elements[each].p.y < lowMark) {
-          lowMark = elements[each].p.y
-        }
-        if (elements[each].p.x < leftMark) {
-          leftMark = elements[each].p.x
-        }
-      }
+    }
 
 
-      let xDist = leftMargin - leftMark
-      let yDist = topMargin - lowMark
+    p.setup = function() {
+      cnv = p.createCanvas(p.displayWidth, p.windowHeight)
 
-      for (let each in elements) {
-        elements[each].p.y += yDist;
-        elements[each].p.x += xDist;
-      }
+      setTimeout(() => {
 
+        elements.sort((a, b) => a.p.y - b.p.y)
+        origin = _.cloneDeep(elements)
 
-      for (let i = 0; i < elements.length; i++) {
+        let maxHeight = 0;
+        let lowMark = elements[0].p.y;
+        let leftMark = elements[0].p.x;
 
-        let spl = elements[i].c.split('^^')
-
-        let tempDoc = p.createSpan(spl[0]).class('discourseElement')
-
-        tempDoc.id = elements[i].u
-
-        tempDoc.position(elements[i].p.x, elements[i].p.y)
-        tempDoc.attribute('contenteditable', true)
-        let quickHeight = tempDoc.size().height
-
-        let tempCite = p.createSpan(spl[1]).class('discourseCitation')
-        tempCite.id = "cite" + elements[i].u
-        tempCite.position(elements[i].p.x, elements[i].p.y + quickHeight)
-        quickHeight += tempCite.size().height
-
-        elementHeights.push(quickHeight)
-
-        let first = spl[0].charAt(0) + spl[0].charAt(1)
-        if (first == 'r/') {
-          tempDoc.addClass('response')
-        } else if (first == 'q/') {
-          tempDoc.addClass('quote')
-        } else if (first == 'c/') {
-          tempDoc.addClass('comp')
-        }
-        let ran = Math.random() * 25
-
-        if (elements[i].p.x > pageWidth - 550) {
-          let xPageDiff = elements[i].p.x - (pageWidth - 550 - ran)
-          elements[i].p.x -= xPageDiff
-        }
-
-
-        // NEEDS TO BE IMPLEMENTED ONCE THE ELEMENTS ARE SORTED BY Y VALUE, WHICH SHOULD EVENTUALLY HAPPEN AT THE BEGINNING
-        if (i > 0 && elements[i].p.y - elements[i - 1].p.y > inbetweenYMargin) {
-          let betweenYDiff = elements[i].p.y - (elements[i - 1].p.y + elementHeights[i - 1]) - inbetweenYMargin
-          for (let j = i; j < elements.length; j++) {
-            elements[j].p.y -= betweenYDiff
+        for (let each in elements) {
+          if (elements[each].p.y < lowMark) {
+            lowMark = elements[each].p.y
           }
-        } else if (i > 0 && elements[i].p.y - elements[i - 1].p.y < elementHeights[i - 1] + 50) {
-          let betweenYDiff = (elementHeights[i - 1] + 50) - (elements[i].p.y - elements[i - 1].p.y)
-          elements[i].p.y += betweenYDiff
+          if (elements[each].p.x < leftMark) {
+            leftMark = elements[each].p.x
+          }
         }
 
-        if (elements[i].p.y % pageHeight > pageHeight - quickHeight - 50) {
-          let betweenYDiff = (pageHeight + 50) - (elements[i].p.y % pageHeight)
-          elements[i].p.y += betweenYDiff
+
+        let xDist = leftMargin - leftMark
+        let yDist = topMargin - lowMark
+
+        for (let each in elements) {
+          elements[each].p.y += yDist;
+          elements[each].p.x += xDist;
         }
 
-        tempDoc.position(elements[i].p.x, elements[i].p.y)
-        tempCite.position(elements[i].p.x + 5, elements[i].p.y + tempDoc.size().height + 5)
 
-        let tempUnitName = p.createSpan("element: " + elements[i].u + "  : {" + elements[i].d + "}").class('discourseCitation')
-        tempUnitName.id = "qual" + elements[i].u
-        tempUnitName.position(elements[i].p.x, elements[i].p.y - 15)
-        quickHeight += tempCite.size().height
+        for (let i = 0; i < elements.length; i++) {
 
-        if (elements[i].r.length > 0) {
+          let spl = elements[i].c.split('^^')
 
-          let tempString = ""
+          let tempDoc = p.createSpan(spl[0]).class('discourseElement')
 
-              for (let relations in elements[i].r) {
-                tempString += elements[i].r[relations] + "\n\n"
+          tempDoc.id = elements[i].u
+
+          tempDoc.position(elements[i].p.x, elements[i].p.y)
+          tempDoc.attribute('contenteditable', true)
+          let quickHeight = tempDoc.size().height
+
+          let tempCite = p.createSpan(spl[1]).class('discourseCitation')
+          tempCite.id = "cite" + elements[i].u
+          tempCite.position(elements[i].p.x, elements[i].p.y + quickHeight)
+          quickHeight += tempCite.size().height
+
+          elementHeights.push(quickHeight)
+
+          let first = spl[0].charAt(0) + spl[0].charAt(1)
+          if (first == 'r/') {
+            tempDoc.addClass('response')
+          } else if (first == 'q/') {
+            tempDoc.addClass('quote')
+          } else if (first == 'c/') {
+            tempDoc.addClass('comp')
+          } else {
+            tempDoc.addClass('gen')
+          }
+          let ran = Math.random() * 25
+
+          if (elements[i].p.x > pageWidth - 550) {
+            let xPageDiff = elements[i].p.x - (pageWidth - 550 - ran)
+            elements[i].p.x -= xPageDiff
+          }
+
+
+          // NEEDS TO BE IMPLEMENTED ONCE THE ELEMENTS ARE SORTED BY Y VALUE, WHICH SHOULD EVENTUALLY HAPPEN AT THE BEGINNING
+          if (i > 0 && elements[i].p.y - elements[i - 1].p.y > inbetweenYMargin) {
+            let betweenYDiff = elements[i].p.y - (elements[i - 1].p.y + elementHeights[i - 1]) - inbetweenYMargin
+            for (let j = i; j < elements.length; j++) {
+              elements[j].p.y -= betweenYDiff
+            }
+          } else if (i > 0 && elements[i].p.y - elements[i - 1].p.y < elementHeights[i - 1] + 50) {
+            let betweenYDiff = (elementHeights[i - 1] + 50) - (elements[i].p.y - elements[i - 1].p.y)
+            elements[i].p.y += betweenYDiff
+          }
+
+          if (elements[i].p.y % pageHeight > pageHeight - quickHeight - 50) {
+            let betweenYDiff = (pageHeight + 50) - (elements[i].p.y % pageHeight)
+            elements[i].p.y += betweenYDiff
+          }
+
+          tempDoc.position(elements[i].p.x, elements[i].p.y)
+          tempCite.position(elements[i].p.x + 5, elements[i].p.y + tempDoc.size().height + 5)
+
+          let tempUnitName = p.createSpan("element: " + elements[i].u + "  : {" + elements[i].d + "}").class('discourseCitation')
+          tempUnitName.id = "qual" + elements[i].u
+          tempUnitName.position(elements[i].p.x, elements[i].p.y - 15)
+          quickHeight += tempCite.size().height
+
+          if (elements[i].r.length > 0) {
+          //  console.log(elements[i].r)
+          //  for( let those in elements[i].r){
+              for(let these in sets){
+                if(!elements[i].r.includes(sets[these])){
+                  let tempString = ""
+                  for (let relations in elements[i].r) {
+                   tempString += elements[i].r[relations] + "\r\n"
+                  }
+                  if (tempString != "") {
+                   let tempRelations = p.createSpan("relates external: \r\n" + tempString).class('discourseRelations')
+                   tempRelations.id = "rel" + elements[i].u
+                   tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
+                  }
+                }
               }
+            //}
 
-
-
-          if (tempString != "") {
-            let tempRelations = p.createSpan("relates external: \n\n" + tempString).class('discourseRelations')
-            tempRelations.id = "rel" + elements[i].u
-            tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
-          }
-
-        }
-
-        p.stroke(0, 255, 255)
-
-        if (elements[i].p.y > maxHeight) {
-          maxHeight = elements[i].p.y
-        }
-      }
-      maxHeight += 400;
-      maxHeight += pageHeight - (maxHeight % pageHeight)
-
-      p.resizeCanvas(p.displayWidth - 100, maxHeight)
-
-      p.stroke(180)
-      for (let i = 400; i < cnv.height; i += 20) {
-        p.line(0, i, pageWidth, i + 80)
-      }
-
-      p.stroke(255, 0, 180)
-      for (let each in elements) {
-        if (elements[each].r.length > 0) {
-          let theRelated = elements.filter(elem => elements[each].r.includes(elem.u))
-
-          for (let those in theRelated) {
-            p.line(elements[each].p.x, elements[each].p.y, theRelated[those].p.x, theRelated[those].p.y)
+            // let relatedSet = elements.filter(elem => elements[i].r.includes(elem.u))
+            // console.log(relatedSet)
+            // console.log(sets)
+            // for (let these in relatedSet) {
+            //   for (let ped = 0; ped < sets.length; ped++) {
+            //     if (sets[ped] !== relatedSet[these].db) {
+            //       console.log("oy")
+            //     } else {
+            //       console.log("this one's an outside")
+            //
+            //     }
+            //   }
+            // }
 
           }
+
+
+          p.stroke(0, 255, 255)
+
+          if (elements[i].p.y > maxHeight) {
+            maxHeight = elements[i].p.y
+          }
         }
-      }
+        maxHeight += 400;
+        maxHeight += pageHeight - (maxHeight % pageHeight)
 
-      for (let i = pageHeight; i < cnv.height; i += pageHeight) {
-        p.line(10, i, 1175, i)
-      }
+        p.resizeCanvas(p.displayWidth - 100, maxHeight)
 
-      for (let i = 0; i < cnv.height; i += 40) {
-        p.stroke(0)
-        p.line(1220, i, 1220, i + 20)
-      }
-    }, 300)
-  }
-}, 'print')
+        p.stroke(180)
+        for (let i = 400; i < cnv.height; i += 20) {
+          p.line(0, i, pageWidth, i + 80)
+        }
+
+        p.stroke(255, 0, 180)
+        for (let each in elements) {
+          if (elements[each].r.length > 0) {
+            let theRelated = elements.filter(elem => elements[each].r.includes(elem.u))
+
+            for (let those in theRelated) {
+              p.line(elements[each].p.x, elements[each].p.y, theRelated[those].p.x, theRelated[those].p.y)
+
+            }
+          }
+        }
+
+        for (let i = pageHeight; i < cnv.height; i += pageHeight) {
+          p.line(10, i, 1175, i)
+        }
+
+        for (let i = 0; i < cnv.height; i += 40) {
+          p.stroke(0)
+          p.line(1220, i, 1220, i + 20)
+        }
+      }, 300)
+    }
+  },
+  'print')
 
 window.onload = function() {
 
@@ -314,13 +338,15 @@ const overOrganize = function() {
         plotHeights.push(quickHeight)
 
         let first = spl[0].charAt(0) + spl[0].charAt(1)
-        if (first == 'r/') {
-          tempDoc.addClass('response')
-        } else if (first == 'q/') {
-          tempDoc.addClass('quote')
-        } else if (first == 'c/') {
-          tempDoc.addClass('comp')
-        }
+        // if (first == 'r/') {
+        //   tempDoc.addClass('response')
+        // } else if (first == 'q/') {
+        //   tempDoc.addClass('quote')
+        // } else if (first == 'c/') {
+        //   tempDoc.addClass('comp')
+        // } else{
+        //   tempDoc.addClass('gen')
+        // }
         let ran = Math.random() * 25
 
         if (origin[i].p.x > plotWidth - 550) {
@@ -411,7 +437,7 @@ const overOrganize = function() {
       p.stroke(0);
       p.text(wholeString, 50, 50, 800, 200)
 
-      p.save("aDiscourseNet"+Date.now()+".svg")
+      p.save("aDiscourseNet" + Date.now() + ".svg")
     }
 
 

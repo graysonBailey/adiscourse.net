@@ -24,7 +24,7 @@ export class discursiveOverlay {
 
     let newBut = this.p5.createButton('+ new discourse space').class('spatialChoice').id('newDSpace')
     let subBut = this.p5.createButton('submit selected').class('spatialChoice').id('subBoxes')
-    let verBut = this.p5.createButton('0-[complete]-verbunden').class('spatialChoice').id('verButton')
+    let verBut = this.p5.createButton('0-[entire]-vollstaendig').class('spatialChoice').id('verButton')
     newBut.position(210, 180)
     subBut.position(80, 252)
     verBut.position(210, 200)
@@ -44,13 +44,17 @@ export class discursiveOverlay {
     }
 
     verBut.mousePressed(() => {
-      newBut.remove()
-      subBut.remove()
-      verBut.remove()
-      document.getElementById("filterKey").textContent = "[complete]-verbunden"
+      while (document.getElementsByClassName("spatialChoice")[0] != null) {
+        document.getElementsByClassName("spatialChoice")[0].remove()
+      }
+    //  newBut.remove()
+    //  subBut.remove()
+    //  verBut.remove()
+      document.getElementById("filterKey").textContent = "[entire]-vollstaendig"
       discourses.vis()
       document.getElementById('discourseLoad').classList.add('away')
       document.getElementById('switchLoad').classList.remove('away')
+      document.getElementById('printData').classList.remove('away')
       document.getElementById('rp-b').classList.remove('away')
       document.getElementById('gp-b').classList.remove('away')
       overlay.clear()
@@ -81,11 +85,11 @@ export class discursiveOverlay {
         document.getElementById('switchLoad').classList.remove('away')
         document.getElementById('rp-b').classList.remove('away')
         document.getElementById('gp-b').classList.remove('away')
-          document.getElementById('printData').classList.toggle('away')
+        document.getElementById('printData').classList.toggle('away')
         overlay.clear()
         switchModeInstructions(0)
       } else {
-        alert("you must select one or more discourse sets to open - Otherwise, create a new discourse set or open the entire database ([complete]-verbunden)")
+        alert("you must select one or more discourse sets to open - Otherwise, create a new discourse set or open the entire database ([entire]-vollstaendig)")
 
         for (let each = 1; each < discourses.nameSpaces.length; each++) {
           let text = discourses.nameSpaces[each]

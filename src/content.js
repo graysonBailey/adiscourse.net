@@ -15,7 +15,7 @@ export class discourseUnit {
     this.p5 = p5
     this.c = c
     this.p = p
-    this.rp = p
+    this.rp = _.clone(p)
     this.t = this.checkType()
     this.u = u
     this.bound = this.constructBound()
@@ -35,7 +35,7 @@ export class discourseUnit {
       return 1
     } else if (this.c.charAt(0) == 'q' && this.c.charAt(1) == '/') {
       return 0
-    } else if(this.c.charAt(0) == 'c' && this.c.charAt(1) == '/'){
+    } else if (this.c.charAt(0) == 'c' && this.c.charAt(1) == '/') {
       return 2
     } else {
       return -1
@@ -84,7 +84,7 @@ export class discourseUnit {
       d = 2
     } else if (this.t == 1) {
       d = 3
-    } else if (this.t ==2){
+    } else if (this.t == 2) {
       d = 5;
     }
     if (this.t < 0) {
@@ -157,7 +157,6 @@ export class discourseUnit {
       this.isHighlighted = false
       this.display()
     }
-
   }
 
   screenDirection() {
@@ -168,16 +167,13 @@ export class discourseUnit {
     } else {
       return -1
     }
-
-
-
   }
 
   isInsideSet() {
     let insideSet
     let fKey = String(document.getElementById("filterKey").textContent).split('|')
 
-    if (this.db.some(r => fKey.includes(r)) || fKey == "[complete]-verbunden") {
+    if (this.db.some(r => fKey.includes(r)) || fKey == "[entire]-vollstaendig") {
       insideSet = true
     } else {
       insideSet = false
@@ -199,7 +195,7 @@ export class discourseSet {
     this.p5 = p5
     this.set = []
     this.pendingRelation = []
-    this.nameSpaces = ["[complete]-verbunden"]
+    this.nameSpaces = ["[entire]-vollstaendig"]
   }
 
   addUnit(c, p, t, u, r, d, db) {
@@ -207,23 +203,13 @@ export class discourseSet {
     this.checkNameSpaces(db)
   }
 
-  resetPositions() {
-    for (let i = 0; i < this.set.length; i++) {
-      this.set[i].p.x = this.set[i].rp.x
-      this.set[i].p.y = this.set[i].rp.y
-      this.set[i].bound.x = this.set[i].constructBound()
-      this.set[i].centroid = this.set[i].p5.createVector(this.set[i].bound.x + (this.set[i].wid / 2), this.set[i].bound.y + (this.set[i].bound.z / 2))
-    }
-  }
-
   checkNameSpaces(db) {
-
-   for(let each in db){
-      if(!this.nameSpaces.includes(db[each])){
+    for (let each in db) {
+      if (!this.nameSpaces.includes(db[each])) {
         this.nameSpaces.push(db[each])
       }
-   }
-   this.nameSpaces.sort()
+    }
+    this.nameSpaces.sort()
   }
 
   groupRelations() {
@@ -238,7 +224,7 @@ export class discourseSet {
         let fKey = String(document.getElementById("filterKey").textContent).split('|')
 
 
-        if ((connections[those].db.some(r => fKey.includes(r))&&theRelated[each].db.some(r => fKey.includes(r))) || fKey == "[complete]-verbunden") {
+        if ((connections[those].db.some(r => fKey.includes(r)) && theRelated[each].db.some(r => fKey.includes(r))) || fKey == "[entire]-vollstaendig") {
           this.p5.noFill()
           this.p5.stroke('#ffA908')
           if (document.getElementById('rp-b').classList.contains('current')) {
@@ -276,6 +262,7 @@ export class discourseSet {
     for (let i = 0; i < insiders.length; i++) {
 
       let distVec
+      let relVec
       let minDist = Math.sqrt(Math.pow(insiders[i].wid, 2) + Math.pow(insiders[i].bound.z, 2))
 
       if (insiders[i].p.x < 200) {
@@ -297,25 +284,32 @@ export class discourseSet {
           if (Math.abs(insiders[i].p.x - insiders[j].p.x) < insiders[i].wid + 20 && Math.abs(insiders[i].p.y - insiders[j].p.y) < insiders[i].bound.z + 16) {
 
             let distDiff = minDist - distSimp
+            let relDiff = 0
 
             distVec = this.p5.createVector(insiders[i].p.x - insiders[j].p.x, insiders[i].p.y - insiders[j].p.y)
+          //  relVec = this.p5.createVector(0,0)
 
-            if(insiders[i].relatesTo.length > 0){
-              let bleh = this.set.filter(item =>  insiders[i].relatesTo.includes(item.u) && item.isInsideSet())
-              for(let beep in bleh){
-
-                let blehDist = this.p5.dist(insiders[i].p.x,bleh[beep].p.x,insiders[i].p.y,bleh[beep].p.y)
-                if(blehDist > minDist){
-
-                distVec.add(this.p5.createVector(insiders[i].p.x-bleh[beep].p.x,insiders[i].p.y-bleh[beep].p.y))
-              }
-              }
-            }
+            // if (insiders[i].relatesTo.length > 0) {
+            //   let bleh = this.set.filter(item => insiders[i].relatesTo.includes(item.u))
+            //   for (let beep in bleh) {
+            //
+            //     let blehDist = this.p5.dist(insiders[i].p.x, bleh[beep].p.x, insiders[i].p.y, bleh[beep].p.y)
+            //     if (blehDist > minDist+200) {
+            //       relDiff = (blehDist - (minDist+200))*.15
+            //       console.log("bleh is bigger than Min")
+            //       relVec = this.p5.createVector(insiders[i].p.x - bleh[beep].p.x, insiders[i].p.y - bleh[beep].p.y)
+            //     }
+            //   }
+            // }
 
             distVec.normalize()
+          //  relVec.normalize()
             distVec.x = distVec.x * -1
+            //relVec.x = relVec.x * -1
             distVec.y = distVec.y * -1
+            //relVec.y = relVec.y * -1
             distVec.mult(distDiff)
+          //  relVec.mult(relDiff)
 
             this.p5.stroke(255, 0, 0)
             //this.p5.line(insiders[i].centroid.x, insiders[i].centroid.y+position, insiders[j].centroid.x, insiders[j].centroid.y+position)
@@ -350,7 +344,7 @@ export class discourseSet {
     }
   }
 
-  unhighlight(){
+  unhighlight() {
     let theConcerned = this.set.filter(item => item.isOfConcern())
     for (let each in theConcerned) {
       theConcerned[each].isHighlighted = false
