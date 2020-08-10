@@ -77,7 +77,6 @@ const overlay = new p5((p) => {
           }
         }
 
-
         let xDist = leftMargin - leftMark
         let yDist = topMargin - lowMark
 
@@ -86,26 +85,18 @@ const overlay = new p5((p) => {
           elements[each].p.x += xDist;
         }
 
-
         for (let i = 0; i < elements.length; i++) {
-
           let spl = elements[i].c.split('^^')
-
           let tempDoc = p.createSpan(spl[0]).class('discourseElement')
-
           tempDoc.id = elements[i].u
-
           tempDoc.position(elements[i].p.x, elements[i].p.y)
           tempDoc.attribute('contenteditable', true)
           let quickHeight = tempDoc.size().height
-
           let tempCite = p.createSpan(spl[1]).class('discourseCitation')
           tempCite.id = "cite" + elements[i].u
           tempCite.position(elements[i].p.x, elements[i].p.y + quickHeight)
           quickHeight += tempCite.size().height
-
           elementHeights.push(quickHeight)
-
           let first = spl[0].charAt(0) + spl[0].charAt(1)
           if (first == 'r/') {
             tempDoc.addClass('response')
@@ -123,8 +114,6 @@ const overlay = new p5((p) => {
             elements[i].p.x -= xPageDiff
           }
 
-
-          // NEEDS TO BE IMPLEMENTED ONCE THE ELEMENTS ARE SORTED BY Y VALUE, WHICH SHOULD EVENTUALLY HAPPEN AT THE BEGINNING
           if (i > 0 && elements[i].p.y - elements[i - 1].p.y > inbetweenYMargin) {
             let betweenYDiff = elements[i].p.y - (elements[i - 1].p.y + elementHeights[i - 1]) - inbetweenYMargin
             for (let j = i; j < elements.length; j++) {
@@ -162,26 +151,8 @@ const overlay = new p5((p) => {
              tempRelations.id = "rel" + elements[i].u
              tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
             }
-
-            // let relatedSet = elements.filter(elem => elements[i].r.includes(elem.u))
-            // console.log(relatedSet)
-            // console.log(sets)
-            // for (let these in relatedSet) {
-            //   for (let ped = 0; ped < sets.length; ped++) {
-            //     if (sets[ped] !== relatedSet[these].db) {
-            //       console.log("oy")
-            //     } else {
-            //       console.log("this one's an outside")
-            //
-            //     }
-            //   }
-            // }
-
           }
-
-
           p.stroke(0, 255, 255)
-
           if (elements[i].p.y > maxHeight) {
             maxHeight = elements[i].p.y
           }
@@ -200,10 +171,8 @@ const overlay = new p5((p) => {
         for (let each in elements) {
           if (elements[each].r.length > 0) {
             let theRelated = elements.filter(elem => elements[each].r.includes(elem.u))
-
             for (let those in theRelated) {
               p.line(elements[each].p.x, elements[each].p.y, theRelated[those].p.x, theRelated[those].p.y)
-
             }
           }
         }

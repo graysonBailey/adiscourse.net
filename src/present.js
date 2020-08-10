@@ -47,9 +47,6 @@ export class discursiveOverlay {
       while (document.getElementsByClassName("spatialChoice")[0] != null) {
         document.getElementsByClassName("spatialChoice")[0].remove()
       }
-    //  newBut.remove()
-    //  subBut.remove()
-    //  verBut.remove()
       document.getElementById("filterKey").textContent = "[entire]-vollstaendig"
       discourses.vis()
       document.getElementById('discourseLoad').classList.add('away')
