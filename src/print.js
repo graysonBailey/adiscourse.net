@@ -1,6 +1,7 @@
 import './print.css'
 
 let elements = []
+let idList = []
 let origin
 let elementHeights = []
 let topMargin = 300
@@ -18,6 +19,7 @@ async function getBase(url) {
     const body = await response.json()
     for (let each in body) {
       elements.push(body[each])
+      idList.push(body[each].u)
     }
   } catch (error) {
     console.log(error)
@@ -59,7 +61,6 @@ const overlay = new p5((p) => {
       cnv = p.createCanvas(p.displayWidth, p.windowHeight)
 
       setTimeout(() => {
-
         elements.sort((a, b) => a.p.y - b.p.y)
         origin = _.cloneDeep(elements)
 
@@ -148,22 +149,19 @@ const overlay = new p5((p) => {
           quickHeight += tempCite.size().height
 
           if (elements[i].r.length > 0) {
-          //  console.log(elements[i].r)
-          //  for( let those in elements[i].r){
-              for(let these in sets){
-                if(!elements[i].r.includes(sets[these])){
-                  let tempString = ""
-                  for (let relations in elements[i].r) {
-                   tempString += elements[i].r[relations] + "\r\n"
-                  }
-                  if (tempString != "") {
-                   let tempRelations = p.createSpan("relates external: \r\n" + tempString).class('discourseRelations')
-                   tempRelations.id = "rel" + elements[i].u
-                   tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
-                  }
-                }
+            let tempString = ""
+           for( let those in elements[i].r){
+             if(idList.includes(elements[i].r[those])){
+               console.log("it's already here")
+             } else {
+                tempString += elements[i].r[those] + "\r\n"
               }
-            //}
+            }
+            if (tempString != "") {
+             let tempRelations = p.createSpan("relates external: \r\n" + tempString).class('discourseRelations')
+             tempRelations.id = "rel" + elements[i].u
+             tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
+            }
 
             // let relatedSet = elements.filter(elem => elements[i].r.includes(elem.u))
             // console.log(relatedSet)
