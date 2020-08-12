@@ -163,7 +163,7 @@ user-select: none;
   padding: 5px 5px;
   height: 20px;
   left: 10;
-  width: 200;
+  width: 230;
   position: relative;
   top: 15vh;
 }
@@ -176,9 +176,9 @@ user-select: none;
   padding: 5px 5px;
   height: 20px;
   left: 10;
-  width:200;
+  width:240;
   position: relative;
-  top: 15vh;
+  top: 19vh;
 }
 
 .rc-Body{
@@ -190,12 +190,24 @@ user-select: none;
   font-size: 8pt;
   z-index:3;
   padding: 5px 5px;
-  height: 70vh;
-  left: 10;
+  height: 75vh;
+  left: 10px;
   width:230;
-  position: relative;
-  top: 16.5vh;
+  position: absolute;
+  top: 22vh;
 }
+
+.rc-con{
+  color: #660000;
+  background-color:white;
+  font-size: 8pt;
+  z-index:3;
+  padding: 5px 5px;
+  height: 12x;
+  left: 10;
+  position: absolute;
+}
+
 
 .resultItem{
 }

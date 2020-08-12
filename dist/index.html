@@ -24,12 +24,15 @@
   <div id="overlay" style="position: absolute; top: 0; left: 0;"></div>
 
   <div class="right-cascade away" id="rightCascade">
-    <div id="rp-search" class="rc-con rc-But">
-      <span>--- search_units ---</span>
+    <div >
+      <span id="searchToggle" class=" rc-con button darkhorse">search^Toggle</span>
+
     </div>
-    <input type="text" id="searchKey" name="seakKey" class="rc-con rc-Input">
-    <div id="searchItems" class="rc-Body" onclick=event.stopPropagation()>
-      <span style="color:rgba(47,230,240,1);">...once you type and search a term, you can create relations with resultant ELEMENTS</span>
+    <span id="bump" style="color:rgba(47,230,240,1);font-size: 8pt;top:8vh" class="away">...search a key to return all ELEMENTS with the key internal</span>
+
+    <input type="text" id="searchKey" name="seakKey" class="rc-con rc-Input away">
+    <span id="rp-search" class="rc-con rc-But away" >--- search_units ---</span>
+    <div id="searchItems" class="rc-Body away" onclick=event.stopPropagation()>
 
     </div>
   </div>
@@ -42,10 +45,10 @@
       <span>() => switch()</span>
     </div>
     <div id="gp-b" class="lc-top lc-con button">
-      <span>{. _ geist surface _ .}</span>
+      <span>{. _ geistfläche _ .}</span>
     </div>
     <div id="rp-b" class="lc-mid lc-con button">
-      <span>        < _ verbindug surface _ .>      </span>
+      <span>< _ verbindungsfläche _ .>      </span>
     </div>
     <div id="appendix" class="lc-bottom">
       <span id="instructions"></span>

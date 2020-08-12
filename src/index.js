@@ -459,6 +459,29 @@ window.onload = function() {
     switchModeInstructions(1)
     discourses.vis()
   }
+
+  document.getElementById('searchToggle').onclick = () => {
+    document.getElementById('bump').classList.toggle('away')
+    document.getElementById('searchKey').classList.toggle('away')
+    document.getElementById('rp-search').classList.toggle('away')
+    document.getElementById('searchItems').classList.toggle('away')
+  }
+
+  document.getElementById('discourseLoad').onclick = () => {
+    document.getElementById('filterKey').textContent = "--"
+    overlay.clear()
+    content.clear()
+    discourses = general
+    let presenter = new discursiveOverlay(overlay)
+    presenter.giveChoices()
+    document.getElementById('gp-b').classList.add('away')
+    document.getElementById('rp-b').classList.add('away')
+    document.getElementById('discourseLoad').classList.add('away')
+    document.getElementById('switchLoad').classList.remove('away')
+    document.getElementById('rightCascade').classList.add('away')
+  }
+
+
   document.getElementById('discourseLoad').onclick = () => {
     document.getElementById('filterKey').textContent = "--"
     overlay.clear()
