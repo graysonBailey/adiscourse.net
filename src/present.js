@@ -29,11 +29,16 @@ export class discursiveOverlay {
     subBut.position(80, 252)
     verBut.position(210, 200)
 
+    let par = document.createElement("div")
+    document.body.appendChild(par)
+    par.classList.add('checkParent')
+
     for (let each = 1; each < discourses.nameSpaces.length; each++) {
       let text = discourses.nameSpaces[each]
+
       let tempCheck = this.p5.createCheckbox(each + "-" + text, false).class('spatialChoice').id(discourses.nameSpaces[each]).value(discourses.nameSpaces[each])
+      tempCheck.parent(par)
       tempCheck.addClass('checks')
-      tempCheck.position(250, 230 + (each * 22))
       tempCheck.changed(() => {
         if (tempCheck.checked()) {
           tempCheck.addClass('checked')

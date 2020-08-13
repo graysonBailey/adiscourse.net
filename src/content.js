@@ -28,6 +28,18 @@ export class discourseUnit {
     this.relatesTo = r
     this.d = d
     this.db = db
+    this.recent = this.checkRecent()
+  }
+
+  checkRecent() {
+    let recent = false;
+    let today = new Date()
+    let thisMonth = today.getMonth()+1
+    let thisDay = today.getDate()
+    if(this.d[1] == thisMonth && (this.d[2] == thisDay || this.d[2] == thisDay-1)){
+      recent = true
+    }
+    return recent
   }
 
   checkType() {
@@ -78,6 +90,7 @@ export class discourseUnit {
   display() {
     let color
     let bcolor = this.p5.color(0)
+    let tcolor
     let d = 0;
 
     if (this.t == 0) {
@@ -86,50 +99,63 @@ export class discourseUnit {
       d = 3
     } else if (this.t == 2) {
       d = 5;
-    }
-    if (this.t < 0) {
+    } else if(this.t < 0) {
       d = -1
     }
+
     if (this.new == true) {
       d = 1
     }
+
     if (this.isHighlighted == true) {
       d = 4
     }
 
+
     switch (d) {
       case 1:
         color = this.p5.color('#FFCC00')
+        tcolor = this.p5.color('#FFCC00')
         bcolor = this.p5.color(0)
         this.new = false;
         break;
       case 2:
         color = this.p5.color(255)
+        tcolor = this.p5.color(255)
         bcolor = this.p5.color(0)
         break;
       case 3:
         color = this.p5.color(0)
+        tcolor = this.p5.color(0)
         bcolor = this.p5.color('#FF0033')
         break
       case 4:
         color = this.p5.color(0)
+        tcolor = this.p5.color(0)
         bcolor = this.p5.color('#FFCC00')
         break
       case 5:
         color = this.p5.color(0)
+        tcolor = this.p5.color(0)
         bcolor = this.p5.color('#33FFCC')
         break
       case -1:
         color = this.p5.color(0)
+        tcolor = this.p5.color(0)
         bcolor = this.p5.color(255)
         break
       default:
         color = this.p5.color(120, 120, 120)
+        tcolor = this.p5.color(120, 120, 120)
         bcolor = this.p5.color(0)
     }
 
+    if(this.recent == true){
+      color = this.p5.color(47,230,240)
+    }
+
     this.displayBound(color, bcolor, 2)
-    this.p5.fill(color)
+    this.p5.fill(tcolor)
     this.p5.noStroke()
     this.p5.textSize(16)
     this.p5.text(this.body, this.p.x, this.p.y + position, this.wid - 5, this.bound.z)
