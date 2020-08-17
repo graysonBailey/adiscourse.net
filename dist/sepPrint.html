@@ -1,34 +1,31 @@
-
 <html>
 
 <head>
   <meta charset="UTF-8">
-  <title>adiscourse.net</title>
+  <title>adiscourse.state</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script  src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
   <script src="p5.svg.js"></script>
-  <script src ="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
-  <script src ="side.bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+  <script src="side.bundle.js"></script>
 </head>
 
 
 <body>
 
-    <button id="PDFprint" class="printButton lc-top" >>STATE<.pdf</button>
-    <button id="PlotterPrint" class="printButton lc-mid" >>STATE<.svg</button>
-    <button id="JSONoutput" class="printButton lc-low" >>STATE<.json</button>
+  <button id="PDFprint" class="printButton lc-top">>STATE<.pdf< </button>
+  <button id="PlotterPrint" class="printButton lc-mid">>STATE<.svg< </button>
+  <button id="JSONoutput" class="printButton lc-low">>STATE<.json< </button>
 
-  <div id="print" style="position: absolute; top: 0; left: 0;height:100%;z-index:0"></div>
-  <div id="shoeGazer" style="position: absolute; top: 0; left: 0;height:100%;z-index:0"></div>
-
+  <div id="back" style="position: absolute; top: 0; left: 0;height:100%;z-index:-1"></div>
+  <div id="statecraft" style="position: absolute; top: 0; left: 0;height:100%;z-index:0"></div>
   <div class="left-cascade noselect" id="leftCascade" style="position: absolute; top:100; left: 30;z-index:1">
-      <span class="letsHeadIt">discourse state:</span><br><span>&emsp;</span><span class="letsHeadIt"><nbsp>{"set":" </span><span>&nbsp;</span><span id="XarSets" class="ohLookItsData">*</span><span>&nbsp;</span><span class="letsHeadIt">",</span><br>
-        <span>&emsp;</span><span class="letsHeadIt">"time":"</span><span id = "time" class = "ohLookItsData"> </span><span class="letsHeadIt">"}</span>
+    <!-- <span class="letsHeadIt">adiscourse.state:</span><br><span>&emsp;</span><span class="letsHeadIt">
+    <nbsp>{"set":"
+    </span><span>&nbsp;</span><span id="XarSets" class="ohLookItsData">*</span><span>&nbsp;</span><span class="letsHeadIt">",</span><br>
+    <span>&emsp;</span><span class="letsHeadIt">"time":"</span><span id="time" class="ohLookItsData"> </span><span class="letsHeadIt">"}</span> -->
   </div>
-
-
-    </div>
 </body>
 </html>

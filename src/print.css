@@ -12,6 +12,11 @@ body {
 }
 
 @font-face{
+  font-family: cam;
+  src : url(assets/1CamBam_Stick_3.ttf);
+}
+
+@font-face{
   font-family: miso;
   src : url(assets/miso.otf);
 }
@@ -21,7 +26,7 @@ body {
   overflow: hidden;
   background-color: rgba(255,255,255,.8);
   color:black;
-  font-size: 16;
+  font-size: 17;
   font-family: miso;
 }
 
@@ -48,8 +53,8 @@ body {
   overflow: hidden;
   background-color: rgba(255,255,255,.8);
   color:black;
-  font-size: 16;
-  font-family: miso;
+  font-size: 14.5;
+  font-family: cam;
 }
 
 .discourseCitation {

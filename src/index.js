@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import './style.css';
-import p5 from 'p5/lib/p5.min.js';
 import io from 'socket.io-client';
 import $ from 'jQuery'
 import {
