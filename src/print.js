@@ -54,12 +54,12 @@ window.onload = function() {
   let parts = urlString.split('/')
   sets = parts[parts.length - 1].split('$-$')
 
-  //document.getElementById('XarSets').textContent = sets.join(' , ')
-  //document.getElementById('time').textContent = Date.now()
+  document.getElementById('XarSets').textContent = sets.join(' , ')
+  document.getElementById('time').textContent = Date.now()
 
-  wholeString.push("a  d  i  s  c  o  u  r  s  e  .  s  t  a  t  e  :")
-  wholeString.push("s p a c e : ")
-  wholeString.push("t i m e : ")
+  wholeString.push("a  d  i  s  c  o  u  r  s  e  .  s  t  a  t  e  ")
+  wholeString.push("{ s p a c e : ")
+  wholeString.push(",t i m e :                         }")
   spaceTime.push(sets.join(' , '))
   spaceTime.push(Date.now())
 
@@ -70,7 +70,8 @@ window.onload = function() {
 
 
   document.getElementById('PlotterPrint').onclick = () => {
-    state.p.save("aDiscourseSTATE" + sets + Date.now() + ".svg")
+    state.writeNotes()
+    state.save("aDiscourseSTATE" + sets + Date.now() + ".svg")
   }
 
   document.getElementById('PDFprint').onclick = () => {
@@ -163,7 +164,6 @@ const state = new p5((p) => {
         let tempCite = p.createSpan(spl[1]).class('discourseCitationSVG')
         tempCite.id = "cite" + origin[i].u
         tempCite.position(origin[i].p.x, origin[i].p.y + quickHeight)
-        //quickHeight += tempCite.size().height
 
         plotHeights.push(quickHeight)
 
@@ -171,7 +171,6 @@ const state = new p5((p) => {
 
         origin[i].p.x = p.map(origin[i].p.x, leftMark, rightMark, 50, 1123 - 450)
 
-        // NEEDS TO BE IMPLEMENTED ONCE THE origin ARE SORTED BY Y VALUE, WHICH SHOULD EVENTUALLY HAPPEN AT THE BEGINNING
         if (i > 0 && origin[i].p.y - origin[i - 1].p.y > inbetweenYMargin) {
           let betweenYDiff = origin[i].p.y - (origin[i - 1].p.y + plotHeights[i - 1]) - inbetweenYMargin
           for (let j = i; j < origin.length; j++) {
@@ -203,8 +202,8 @@ const state = new p5((p) => {
 
       p.resizeCanvas(1123, maxHeight)
 
-      p.stroke(255, 0, 180)
-      p.strokeWeight(.5)
+      p.stroke(255,0,51)
+      p.strokeWeight(1)
 
       p.noFill()
       for (let each in origin) {
@@ -212,30 +211,24 @@ const state = new p5((p) => {
           let theRelated = origin.filter(elem => origin[each].r.includes(elem.u))
 
           for (let those in theRelated) {
-
-
-
             p.beginShape()
             p.vertex(origin[each].p.x - 15 - 5, origin[each].p.y + 10 + 5)
             p.vertex(origin[each].p.x - 15 + 5, origin[each].p.y + 10 + 5)
             p.vertex(origin[each].p.x - 15, origin[each].p.y + 10 - 5)
-            // p.vertex(origin[each].p.x-15,origin[each].p.y+30)
-            // p.vertex(theRelated[those].p.x-15,theRelated[those].p.y+30)
             p.vertex(theRelated[those].p.x - 15 - 5, theRelated[those].p.y + 10 + 5)
             p.vertex(theRelated[those].p.x - 15 + 5, theRelated[those].p.y + 10 + 5)
             p.vertex(theRelated[those].p.x - 15, theRelated[those].p.y + 10 - 5)
             p.endShape(p.OPEN)
-
-            //p.line(origin[each].p.x-15,origin[each].p.y+30,theRelated[those].p.x-15,theRelated[those].p.y+30)
-
           }
         }
       }
 
-      p.textSize(11)
-    //  p.stroke(0)
-      //p.strokeWeight(.2)
+      p.textSize(14)
+      p.stroke(0)
+      p.strokeWeight(.4)
+      p.text("s t a t e . n o t e s :",400,187)
 
+      p.textSize(11)
 
       for (let i = 0; i < origin.length; i++) {
         let spl = origin[i].c.split('^^')
@@ -245,13 +238,9 @@ const state = new p5((p) => {
 
         p.stroke(0);
         p.strokeWeight(1)
-        //p.fill(255);
         p.rect(origin[i].p.x - 5, origin[i].p.y - 5, 410, plotHeights[i] + 5)
-        //p.noFill()
-        p.strokeWeight(.2)
+        p.strokeWeight(.4)
         p.text(spl[0], origin[i].p.x, origin[i].p.y, 400, 800)
-
-
 
         if (spl.length > 0) {
           p.stroke(30, 180, 255)
@@ -262,29 +251,43 @@ const state = new p5((p) => {
         p.text(origin[i].u + "  : (" + origin[i].d + ")", origin[i].p.x + 16, origin[i].p.y - 18)
       }
 
-p.writeThatTitle()
-
+      p.writeThatTitle()
+      let input = p.createElement("textarea").class('notes')
+      input.id('notes')
+      document.getElementById('loading').remove()
 
     }, 300)
 
+  }
+
+  p.writeNotes = function(){
+    p.textFont(tFont)
+    p.textSize(12)
+    p.stroke(0)
+    p.strokeWeight(.3)
+    p.noFill()
+    let notesText = document.getElementById('notes').value
+    p.text(notesText,400,205,600,400)
+    p.line(390,200,390,400)
+    p.line(380,200,380,400)
+    document.getElementById('notes').remove()
   }
 
 
 
   p.writeThatTitle = function() {
     p.textFont(specialFont)
-    p.textSize(28)
+    p.textSize(36)
     p.stroke(0);
-    p.strokeWeight(1)
+    p.strokeWeight(.5)
     p.noFill();
     for(let lines in wholeString){
-        p.text(wholeString[lines], 50, 100+(lines*34),)
+        p.text(wholeString[lines], 50, 100+(lines*40),)
     }
     p.textFont(boldFont)
     p.textSize(22)
-    p.strokeWeight(.5)
-    p.text(spaceTime[0], 150, 126)
-    p.text(spaceTime[1], 130, 160)
+    p.text(spaceTime[0], 180, 132)
+    p.text(spaceTime[1], 160, 172)
 
   }
 
@@ -337,17 +340,17 @@ const back = new p5((p) => {
 
   p.writeThatTitleBack = function() {
     p.textFont(specialFont)
-    p.textSize(28)
+    p.textSize(36)
     p.noStroke()
     p.fill('#FFCC00')
     for(let lines in wholeString){
-        p.text(wholeString[lines], 52, 102+(lines*34),)
+        p.text(wholeString[lines], 52, 102+(lines*40),)
     }
     p.textFont(boldFont)
     p.textSize(22)
-    p.fill(100)
-    p.text(spaceTime[0], 153, 125)
-    p.text(spaceTime[1], 133, 165)
+    p.fill(0)
+    p.text(spaceTime[0], 183, 137)
+    p.text(spaceTime[1], 163, 177)
   }
 }, 'back')
 

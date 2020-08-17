@@ -21,6 +21,21 @@ body {
   src : url(assets/miso.otf);
 }
 
+
+.notes {
+  border:none;
+  outline:none;
+  position: absolute;
+  background-color:rgba(180,180,180,.5);
+  font-family:cam;
+  font-size: 12px;
+  top: 200px;
+  left:400px;
+  height:300;
+  width:600;
+  z-index:3;
+}
+
 .discourseElement {
   width: 400;
   overflow: hidden;
@@ -77,10 +92,19 @@ body {
 
 .letsHeadIt{
   font-family: OCRA;
-background-color: rgba(45,45,45);
+  background-color: rgba(45,45,45);
   color:white;
   font-size: 13;
   letter-spacing: 8px;
+}
+
+.letsHeadItRed{
+  font-family: OCRA;
+  background-color: rgba(255,0,51);
+  color:white;
+  font-size: 13;
+  letter-spacing: 8px;
+  position: fixed;
 }
 
 .ohLookItsData{
@@ -88,34 +112,6 @@ background-color: rgba(45,45,45);
   color:black;
   font-size: 16;
   letter-spacing: 2px;
-}
-
-.gen{
-  padding:3;
-  border-style: solid;
-  border-color: black;
-  border-width: thin;
-}
-
-
-.quote {
-  color:blue;
-  border-style: solid;
-  border-color: blue;
-  border-width: thin;
-}
-
-.response {
-
-  background-color: rgba(255,0,51);
-  padding: 3;
-  color:white;
-}
-
-.comp {
-  background-color: #33FFCC;
-  color:black;
-  padding:3;
 }
 
 .printButton {
