@@ -21,13 +21,27 @@ body {
   src : url(assets/miso.otf);
 }
 
+.instructions{
+  border:none;
+  outline:none;
+  color:black;
+  position: fixed;
+  font-family:OCRA;
+  font-size: 14px;
+  top:6vh;
+  left:1200px;
+  height:100;
+  width:300px;
+  z-index:3;
+}
+
 
 .notes {
   border:none;
   outline:none;
   position: absolute;
   background-color:rgba(180,180,180,.5);
-  font-family:cam;
+  font-family:OCRA;
   font-size: 12px;
   top: 200px;
   left:400px;

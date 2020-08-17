@@ -7,8 +7,8 @@ let topMargin = 600
 let leftMargin = 30
 let inbetweenYMargin = 50
 let inbetweenXMargin = 50
-let pageWidth = 1180
-let pageHeight = 1682.35
+let plotWidth = 1123
+let plotHeight = 1589
 let wholeString = []
 let spaceTime = []
 let sets
@@ -18,8 +18,10 @@ async function getBase(url) {
     const response = await fetch(url)
     const body = await response.json()
     for (let each in body) {
-      origin.push(body[each])
-      idList.push(body[each].u)
+      if(!idList.includes(body[each].u)){
+        origin.push(body[each])
+        idList.push(body[each].u)
+      }
     }
   } catch (error) {
     console.log(error)
@@ -102,8 +104,7 @@ const state = new p5((p) => {
   let plotMargin = 150
   let inbetweenYMargin = 120
   let inbetweenXMargin = 50
-  let plotWidth = 1123
-  let plotHeight = 30000
+
   let cnv;
   let tFont;
   let specialFont;
@@ -117,7 +118,7 @@ const state = new p5((p) => {
   }
 
   p.setup = function() {
-    cnv = p.createCanvas(1123, 10000, p.SVG)
+    cnv = p.createCanvas(plotWidth, 10000, p.SVG)
     p.textFont(tFont)
 
 
@@ -181,8 +182,12 @@ const state = new p5((p) => {
           origin[i].p.y += betweenYDiff
         }
 
-        if (origin[i].p.y % plotHeight > plotHeight - quickHeight - 50) {
-          let betweenYDiff = (plotHeight + 50) - (origin[i].p.y % plotHeight)
+        let margy = 50
+        if (origin[i].p.y % plotHeight > plotHeight - quickHeight - margy) {
+          let betweenYDiff = (plotHeight + margy) - (origin[i].p.y % plotHeight)
+          origin[i].p.y += betweenYDiff
+        } else if (origin[i].p.y % plotHeight < margy){
+          let betweenYDiff = margy - (origin[i].p.y % plotHeight)
           origin[i].p.y += betweenYDiff
         }
 
@@ -199,6 +204,7 @@ const state = new p5((p) => {
       }
 
       maxHeight += 400;
+      maxHeight += plotHeight - (maxHeight % plotHeight)
 
       p.resizeCanvas(1123, maxHeight)
 
@@ -249,6 +255,15 @@ const state = new p5((p) => {
 
         p.stroke(120)
         p.text(origin[i].u + "  : (" + origin[i].d + ")", origin[i].p.x + 16, origin[i].p.y - 18)
+      }
+
+
+      for (let i = 0; (i*200)+400 < cnv.height; i ++) {
+        p.strokeWeight(2)
+        p.line(0, (i*200)+400, 25, (i*200)+400)
+        p.strokeWeight(.5)
+        p.text(i,20,(i*200)+395)
+
       }
 
       p.writeThatTitle()
@@ -312,23 +327,29 @@ const back = new p5((p) => {
 
   p.setup = function() {
     setTimeout(() => {
-      cnv = p.createCanvas(1123, state.height)
+      cnv = p.createCanvas(plotWidth, state.height)
       p.stroke(0)
       p.strokeWeight(.5)
       p.noFill()
       p.line(p.width, 0,p.width,p.height)
-      for (let i = pageHeight; i < cnv.height; i += pageHeight) {
-        p.line(10, i, 1123, i)
-      }
+      // for (let i = plotHeight; i < cnv.height; i += plotHeight) {
+      //   p.line(10, i, 1123, i)
+      // }
       for (let i = 0; i < cnv.height; i += 40) {
         p.stroke(0)
         p.line(1125, i, 1125, i + 20)
       }
       p.stroke(180)
       for (let i = 400; i < cnv.height; i += 20) {
-        p.line(0, i, pageWidth, i + 80)
+        p.strokeWeight(.1)
+        p.line(0, i, plotWidth, i)
+        if(i % 10 == 0){
+
+          p.line
+        }
       }
       for (let i = 0; i < origin.length; i++) {
+        p.noStroke();
         p.fill(255);
         p.rect(origin[i].p.x - 5, origin[i].p.y - 5, 410, plotHeights[i] + 5)
       }
@@ -353,154 +374,3 @@ const back = new p5((p) => {
     p.text(spaceTime[1], 163, 177)
   }
 }, 'back')
-
-
-
-
-
-
-
-
-
-// const overlay = new p5((p) => {
-//
-//     let cnv;
-//
-//     p.preload = function() {
-//
-//     }
-//
-//     p.setup = function() {
-//       cnv = p.createCanvas(p.displayWidth, p.windowHeight)
-//
-// setTimeout(() => {
-//         elements.sort((a, b) => a.p.y - b.p.y)
-//         origin = _.cloneDeep(elements)
-//
-//         let maxHeight = 0;
-//         let lowMark = elements[0].p.y;
-//         let leftMark = elements[0].p.x;
-//         let rightMark = elements[0].p.x;
-//
-//         for (let each in elements) {
-//           if (elements[each].p.y < lowMark) {
-//             lowMark = elements[each].p.y
-//           }
-//           if (elements[each].p.x < leftMark) {
-//             leftMark = elements[each].p.x
-//           } else if ( elements[each].p.x > rightMark){
-//             rightMark = elements[each].p.x
-//           }
-//         }
-//
-//         ///let xDist = leftMargin - leftMark
-//         let yDist = topMargin - lowMark
-//
-//         for (let each in elements) {
-//           elements[each].p.y += yDist;
-//
-//         }
-//
-//         for (let i = 0; i < elements.length; i++) {
-//           let spl = elements[i].c.split('^^')
-//           let tempDoc = p.createSpan(spl[0]).class('discourseElement')
-//           tempDoc.id = elements[i].u
-//           tempDoc.position(elements[i].p.x, elements[i].p.y)
-//           tempDoc.attribute('contenteditable', true)
-//           let quickHeight = tempDoc.size().height
-//           let tempCite = p.createSpan(spl[1]).class('discourseCitation')
-//           tempCite.id = "cite" + elements[i].u
-//           tempCite.position(elements[i].p.x, elements[i].p.y + quickHeight)
-//           quickHeight += tempCite.size().height
-//           elementHeights.push(quickHeight)
-//           let first = spl[0].charAt(0) + spl[0].charAt(1)
-//           if (first == 'r/') {
-//             tempDoc.addClass('response')
-//           } else if (first == 'q/') {
-//             tempDoc.addClass('quote')
-//           } else if (first == 'c/') {
-//             tempDoc.addClass('comp')
-//           } else {
-//             tempDoc.addClass('gen')
-//           }
-//
-//           elements[i].p.x = p.map(elements[i].p.x,leftMark,rightMark,50,1123-450)
-//
-//           if (i > 0 && elements[i].p.y - elements[i - 1].p.y > inbetweenYMargin) {
-//             let betweenYDiff = elements[i].p.y - (elements[i - 1].p.y + elementHeights[i - 1]) - inbetweenYMargin
-//             for (let j = i; j < elements.length; j++) {
-//               elements[j].p.y -= betweenYDiff
-//             }
-//           } else if (i > 0 && elements[i].p.y - elements[i - 1].p.y < elementHeights[i - 1] + 50) {
-//             let betweenYDiff = (elementHeights[i - 1] + 50) - (elements[i].p.y - elements[i - 1].p.y)
-//             elements[i].p.y += betweenYDiff
-//           }
-//
-//           if (elements[i].p.y % pageHeight > pageHeight - quickHeight - 50) {
-//             let betweenYDiff = (pageHeight + 50) - (elements[i].p.y % pageHeight)
-//             elements[i].p.y += betweenYDiff
-//           }
-//
-//           tempDoc.position(elements[i].p.x, elements[i].p.y)
-//           tempCite.position(elements[i].p.x + 5, elements[i].p.y + tempDoc.size().height + 5)
-//
-//           let tempUnitName = p.createSpan("element: " + elements[i].u + "  : {" + elements[i].d + "}").class('discourseCitation')
-//           tempUnitName.id = "qual" + elements[i].u
-//           tempUnitName.position(elements[i].p.x, elements[i].p.y - 15)
-//           quickHeight += tempCite.size().height
-//
-//           if (elements[i].r.length > 0) {
-//             let tempString = ""
-//            for( let those in elements[i].r){
-//              if(idList.includes(elements[i].r[those])){
-//                console.log("it's already here")
-//              } else {
-//                 tempString += elements[i].r[those] + "\r\n"
-//               }
-//             }
-//             if (tempString != "") {
-//              let tempRelations = p.createSpan("relates external: \r\n" + tempString).class('discourseRelations')
-//              tempRelations.id = "rel" + elements[i].u
-//              tempRelations.position(elements[i].p.x + 410, elements[i].p.y)
-//             }
-//           }
-//           p.stroke(0, 255, 255)
-//           if (elements[i].p.y > maxHeight) {
-//             maxHeight = elements[i].p.y
-//           }
-//         }
-//         maxHeight += 400;
-//         maxHeight += pageHeight - (maxHeight % pageHeight)
-//
-//         p.resizeCanvas(p.displayWidth - 100, maxHeight)
-//
-//         p.stroke(180)
-//         for (let i = 400; i < cnv.height; i += 20) {
-//           p.line(0, i, pageWidth, i + 80)
-//         }
-//
-//         p.stroke(255, 0, 180)
-//         for (let each in elements) {
-//           if (elements[each].r.length > 0) {
-//             let theRelated = elements.filter(elem => elements[each].r.includes(elem.u))
-//             for (let those in theRelated) {
-//               p.line(elements[each].p.x, elements[each].p.y, theRelated[those].p.x, theRelated[those].p.y)
-//             }
-//           }
-//         }
-//
-//         for (let i = pageHeight; i < cnv.height; i += pageHeight) {
-//           p.line(10, i, 1123, i)
-//         }
-//
-//         for (let i = 0; i < cnv.height; i += 40) {
-//           p.stroke(0)
-//           p.line(1125, i, 1125, i + 20)
-//         }
-//       }, 300)
-//     }
-//
-//
-//
-//   }
-//   ,'print')
