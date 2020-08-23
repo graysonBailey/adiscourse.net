@@ -44,7 +44,7 @@ export const overlay = new p5((p) => {
     socket.on('mouseRep', p.newDrawing)
     socket.on('unit', p.logUnit)
     p.fill(255)
-    p.intSetStart();
+  //  p.intSetStart();
   }
 
   p.intSetStart = function() {
