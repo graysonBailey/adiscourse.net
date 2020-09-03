@@ -12,7 +12,7 @@ var io = socket(server);
 console.log("My socket server is running Mboy");
 
 var entire = new Datastore({
-  filename: 'entire.db',
+  filename: 'symp.db',
   autoload: true
 });
 

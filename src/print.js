@@ -65,12 +65,6 @@ window.onload = function() {
   spaceTime.push(sets.join(' , '))
   spaceTime.push(Date.now())
 
-
-
-
-
-
-
   document.getElementById('PlotterPrint').onclick = () => {
     state.writeNotes()
     state.save("aDiscourseSTATE" + sets + Date.now() + ".svg")
@@ -114,13 +108,11 @@ const state = new p5((p) => {
     tFont = p.loadFont("1CamBam_Stick_3.ttf")
     specialFont = p.loadFont("f7f26928c6b1edc770c616475459ecc8.otf")
     boldFont = p.loadFont("miso-bold.otf")
-
   }
 
   p.setup = function() {
     cnv = p.createCanvas(plotWidth, 10000, p.SVG)
     p.textFont(tFont)
-
 
     setTimeout(() => {
       origin.sort((a, b) => a.p.y - b.p.y)
@@ -216,6 +208,7 @@ const state = new p5((p) => {
         if (origin[each].r.length > 0) {
           let theRelated = origin.filter(elem => origin[each].r.includes(elem.u))
 
+
           for (let those in theRelated) {
             p.beginShape()
             p.vertex(origin[each].p.x - 15 - 5, origin[each].p.y + 10 + 5)
@@ -225,6 +218,39 @@ const state = new p5((p) => {
             p.vertex(theRelated[those].p.x - 15 + 5, theRelated[those].p.y + 10 + 5)
             p.vertex(theRelated[those].p.x - 15, theRelated[those].p.y + 10 - 5)
             p.endShape(p.OPEN)
+          }
+
+  let externals = []
+          for(let every in origin[each].r){
+
+            if(!idList.includes(origin[each].r[every])){
+              externals.push(origin[each].r[every])
+            }
+          }
+
+
+          if(externals.length>0){
+            p.textSize(10)
+            p.stroke(0)
+            p.noFill()
+            p.strokeWeight(.2)
+
+            if(origin[each].p.x >600){
+
+              p.text("e x t e r n a l :", origin[each].p.x-300, origin[each].p.y+100)
+              for(let buddies in externals){
+                p.text(externals[buddies], origin[each].p.x-300, origin[each].p.y+100+(12 ))
+              }
+
+            } else{
+
+              p.text("e x t e r n a l :", origin[each].p.x+450, origin[each].p.y+100)
+              for(let buddies in externals){
+                p.text(externals[buddies], origin[each].p.x+450, origin[each].p.y+100+(12 ))
+              }
+
+
+            }
           }
         }
       }
@@ -249,6 +275,7 @@ const state = new p5((p) => {
         p.text(spl[0], origin[i].p.x, origin[i].p.y, 400, 800)
 
         if (spl.length > 0) {
+          p.textSize(10)
           p.stroke(30, 180, 255)
           p.text(spl[1], origin[i].p.x, origin[i].p.y + plotHeights[i] + 5, 400, 30)
         }
