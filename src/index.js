@@ -44,194 +44,338 @@ export const overlay = new p5((p) => {
     socket.on('mouseRep', p.newDrawing)
     socket.on('unit', p.logUnit)
     p.fill(255)
-  //  p.intSetStart();
+    p.intSetStart();
   }
 
   p.intSetStart = function() {
     splashUnits.push({
-      "c":"c/ [non-linear] : another challenge is to the idea that critical written discourse needs to be forced into a linear structure to be understood. ",
-      "p":{
-        "x":1187,
-        "y":777
-      },
+      "c":"Pressing the \"loadDiscourse\" button will take you further into {adiscourse.net}, able to choose from the spaces already created for thematic discourse, overlay multiple discourse spaces, or create a discourse space of your own. ",
+      "p":{"x":1138,"y":4248},
       "t":0,
-      "u":"intro25",
+      "u":"splash1599143377176",
       "r":[],
-      "d":[2020,6,18,13,25,49],
+      "d":[2020,9,3,16,29,37],
       "db":["**"],
-      "_id":"QgMOCwAxFIRVaOGc"
-    })
-    splashUnits.push({
-      "c":"~ introduction:\n\nin case you haven't been here before, you can follow these loose instructions for a better idea of the operations and spaces of this site.",
-      "p":{"x":290,"y":235},
-      "t":0,
-      "u":"intro21",
-      "r":["intro22"],
-      "d":[2020,6,18,13,9,15],
-      "db":["**"],
-      "_id":"WUnR1zbmuEslErcl"
+      "_id":"1NxkQGNksjFBSTUN"
     })
 
     splashUnits.push({
-      "c":"r/ Updates: \n\n+ getSTATE developments\n+ minor bug fixes\n+ citation process disincludes hyperlink characters\n+ addition c/ distinctions in addition to r/ and q/",
-      "p":{"x":1170,"y":135},
+      "c":"c/ But more specifically, I do not fully understand {adiscourse.net}, even while creating it, because it is a work of instability and productive negation. It is, in this way, intended as an anarchist subversion.",
+      "p":{"x":525,"y":1229},
       "t":0,
-      "u":"updates",
-      "r":["intro21"],
-      "d":[2020,6,18,13,9,15],
+      "u":"splash1599140090457",
+      "r":["splash1599140311443"],
+      "d":[2020,9,3,15,34,50],
       "db":["**"],
-      "_id":"WUnR1zbmuEslErcl"
+      "_id":"44ESxjCrAGPlDiut"
     })
+
     splashUnits.push({
-      "c":"c/ The intention of -this- discursive interface <adiscourse.net> is to challenge a slew of inherited assumptions about \"discursive practice\" which remain largely unexamined. ",
-      "p":{"x":324,"y":836},
+      "c":"Suggestions for use:",
+      "p":{"x":1280,"y":160},
       "t":0,
-      "u":"intro29",
-      "r":["intro25","intro26"],
-      "d":[2020,6,18,14,51,3],
+      "u":"splash1599142807653",
+      "r":["splash1599142898040"],
+      "d":[2020,9,3,16,20,7],
       "db":["**"],
-      "_id":"dR3HROYPoZ39dXUo"
+      "_id":"8WJ6XSeJaJIZGUwo"
     })
+
     splashUnits.push({
-      "c":"c/ [non-authorial] : one challenge is to the very idea that direct authorship - a rather entrenched (but not very old) idea in which persona is central to the authority of thought - is somehow the best way to generate discourse.",
-      "p":{"x":1162,"y":665},
+      "c":"c/ Interacting here and now - the space of interaction. Elements jump, positions are reorganized, the environment is expansive and unstable.",
+      "p":{"x":251,"y":2891},
       "t":0,
-      "u":"intro24",
-      "r":["intro29"],
-      "d":[2020,6,18,13,21,24],
+      "u":"splash1599142141019",
+      "r":["splash1599141381678"],
+      "d":[2020,9,3,16,9,1],
       "db":["**"],
-      "_id":"keI7nqa16smq1SWY"
+      "_id":"BujGRcVb3l2L4AzG"
     })
+
     splashUnits.push({
-      "c":"c/ \"discursive practices\" are about as varied as discursive interfaces - coffee shop meetings, the conversations and tactics of Social Media, the presentation of a paper at a symposium.\n\nUsually in academic spheres these practices might involve submission of an abstract, response of acceptance of denial, the coalescing of sources into a resolved, linear, authorial argument which contributes to the general sphere of -that- area of discourse.",
-      "p":{"x":366,"y":922},
+      "c":"c/ The result is an asynchronous, non-authorial, incomplete environment and product. The result is {adiscourse.net}.",
+      "p":{"x":682,"y":3916},
       "t":0,
-      "u":"intro27",
-      "r":["intro29","intro1592485929455"],
-      "d":[2020,6,18,13,36,23],
-      "db":["**"],
-      "_id":"rEkgawKOsAQsViGX"
+      "u":"splash1599142653752",
+      "r":["splash1599142592736","splash1599143256513"],
+      "d":[2020,9,3,16,17,33],
+      "db":["**h"],
+      "_id":"IBCnoUv97pQXzd3N"
     })
+
     splashUnits.push({
-      "c":"c/ for starters, what you are using now is a \"discursive interface\" - sounds very special, but I'm sure you've been using one type or other of a discursive interface for years. \n\nEspecially if you're on Twitter (a discursive interface), use e-mail (a discursive interface), or have written anything at any time (lots of discursive interfaces there). Many differences exist among them all. They have very different intentions. Social Media has a certain flair for discourse, as does using a pen or pencil to write out ideas in a notebook which no one is allowed to look at, as does a riot in the street.",
-      "p":{"x":416,"y":419},
+      "c":"c/ And you can click on \"getSTATE\" to see the second style of review, the temporary frozen object which can be saved in a number of ways.",
+      "p":{"x":610,"y":-530},
       "t":0,
-      "u":"intro22",
-      "r":["intro23","intro29"],
-      "d":[2020,6,18,13,14,45],
-      "db":["**"],
-      "_id":"wloGufkYljWntfrg"
-    })
-    splashUnits.push({
-      "c":"c/ [irresolution] : a third challenge is to the idea of resolution - in the form of a resolved argument without deviation, a final composition, or the belief that fixity can be conceptually achieved...",
-      "p":{"x":1154,"y":873},
-      "t":0,
-      "u":"intro26",
+      "u":"splash1599144897563",
       "r":[],
-      "d":[2020,6,18,13,31,15],
+      "d":[2020,9,3,16,54,57],
       "db":["**"],
-      "_id":"zYiDkGG2WO466P8V"
+      "_id":"IR1ugKlrNPvQzbqQ"
     })
+
     splashUnits.push({
-      "c":"c/ But, before this gets too long (which isn't really a problem),  you should test out each of the steps and actions out so that when you're in the full database everything makes more sense.\n\n",
-      "p":{"x":627,"y":1512},
+      "c":"c/ {adiscourse.net} is a discourse tactic without resolution, a jump between two structures - a subversion.",
+      "p":{"x":551,"y":2575},
       "t":0,
-      "u":"intro1592486711884",
-      "r":["intro1592488799565"],
-      "d":[2020,6,18,15,25,11],
+      "u":"splash1599141381678",
+      "r":["splash1599141899687","splash1599142219550"],
+      "d":[2020,9,3,15,56,21],
       "db":["**"],
-      "_id":"62Y9kunnpNIqNovT"
+      "_id":"ODie4QN8TQep2zWd"
     })
+
     splashUnits.push({
-      "c":"c/ <adiscourse.net> is both an alternative to these usual modes of producing critical discourse, as well as an opening to deconstruct what \"modes of discourse production\" really are.  Very often the work of composing concepts and thoughts is thrown to the idea of a genius moment, but we all know that's bullshit. Instead, there are a whole process of material events (labor acts) which contribute to the output of discourse in whatever format...",
-      "p":{"x":325,"y":1221},
+      "c":"c/ Viewing it from an Object-Oriented Ontology/Philosophy, perhaps this is because it _withdraws_ - as all objects do - even as I work on the code which produces the interactions on the screen. I can only understand it contingently from the point of interface I occupy at any given time.",
+      "p":{"x":370,"y":964},
       "t":0,
-      "u":"intro1592486128168",
-      "r":["intro1592486711884","intro27"],
-      "d":[2020,6,18,15,15,28],
+      "u":"splash1599139529473",
+      "r":["splash1599138823187","splash1599140090457"],
+      "d":[2020,9,3,15,25,29],
       "db":["**"],
-      "_id":"m7ZlUeu2SClOSNqE"
+      "_id":"OEyofWTOO8Td9A4f"
     })
+
     splashUnits.push({
-      "c":"c/ #1 : drag your cursor while having the LEFT-MOUSE-BUTTON engaged. Do you see those blue circles? They are some drawn remnants you're leaving behind, but also sending out. If you see different markers appear which you haven't drawn... that's because its other people using the interface. ",
-      "p":{"x":1178,"y":1469},
+      "c":"c/ And so with a full understanding or not, the intention here is a dialogical exchange (between server and client, between human and human, etc.) which neither tries to impress with individual erudition, nor ignore content in preference for underlying data.",
+      "p":{"x":755,"y":3631},
       "t":0,
-      "u":"intro1592487165230",
-      "r":["intro1592486711884"],
-      "d":[2020,6,18,15,32,45],
-      "db":["**"],
-      "_id":"sCEBHI5TYb1KKJeg"
-    })
-    splashUnits.push({
-      "c":"q/ \"different types of input have different attributes, which allow for the intermixing of attempts at composition (aquamarine), quotes/references (black), and responses (reddish). Each of these elements are pretty central to discursive production, and the usage of each is a bit emergent, since it's all based on collaborative use.\" // grayson daniel bailey, adiscourse.net, a few days after turning 30",
-      "p":{"x":1460,"y":1859},
-      "t":0,
-      "u":"intro1592487556253",
+      "u":"splash1599142592736",
       "r":[],
-      "d":[2020,6,18,15,39,16],
+      "d":[2020,9,3,16,16,32],
       "db":["**"],
-      "_id":"MZt3NRXgxp0wkqPy"
+      "_id":"QZm7crUVjedPsn5c"
     })
+
     splashUnits.push({
-      "c":"c/ #2 : Go on over to the left side of the screen and press the Geist Plane button.\nThe background changes and suddenly there's some instructions over there in the bottom left...\n\n...These explain how to provide input like your currently reading.",
-      "p":{"x":1099,"y":1693},
+      "c":"c/ I have been working on a project for the past four months (June - September 2020) which I do not fully understand: {adiscourse.net}",
+      "p":{"x":483,"y":803},
       "t":0,
-      "u":"intro1592487328632",
-      "r":["intro1592487556253","intro1592486711884"],
-      "d":[2020,6,18,15,35,28],
+      "u":"splash1599138823187",
+      "r":["splash1599139961230","splash1599138689680"],
+      "d":[2020,9,3,15,13,43],
       "db":["**"],
-      "_id":"tS3x9vkMmcs99F1i"
+      "_id":"Qpvqygtj9cWqUzv0"
     })
+
     splashUnits.push({
-      "c":"c/ #3 : lets make some relations! Once you've input a few different elements, try relating them if they are conceptually comparable or if one is derivative of the other or if one is trying to dispute the other. First, click the Relation Plane button, then click two elements to relate them.",
-      "p":{"x":571,"y":1748},
+      "c":"r/ What are those golden lines, you ask? Relation sort of things - you can investigate how that works after engaging the \"verbindungs-face\" button.",
+      "p":{"x":681,"y":-241},
       "t":0,
-      "u":"intro1592487751332",
-      "r":["intro1592486711884","intro1592488124638","intro1592487906533"],
-      "d":[2020,6,18,15,42,31],
+      "u":"splash1599143564816",
+      "r":["splash1599143493208"],
+      "d":[2020,9,3,16,32,44],
       "db":["**"],
-      "_id":"9v4iJODfGQFqwjNF"
+      "_id":"VshiDZ9VrjZGtg42"
     })
+
     splashUnits.push({
-      "c":"r/ these relations exist all the time within networks and human communication - usually its in the form of metadata or another structure of information which couches comments within threads, an original post within a reblog, or whatever have you. ",
-      "p":{"x":814,"y":2041},
+      "c":"c/ From the view of Discourse, it's also inevitable - the overdetermined field of meaning spits in the face of fixed understanding.",
+      "p":{"x":951,"y":1032},
       "t":0,
-      "u":"intro1592487906533",
+      "u":"splash1599139961230",
+      "r":["splash1599140090457"],
+      "d":[2020,9,3,15,32,41],
+      "db":["**"],
+      "_id":"W6p25iuRZ5OX2In8"
+    })
+
+    splashUnits.push({
+      "c":"c/ Nothing you input on this screen will be persistent, but everything you type in the discourse spaces will be very persistent... If you wish to return to this intro, you'll need to refresh the screen and enter the interface again.",
+      "p":{"x":1702,"y":-436},
+      "t":0,
+      "u":"splash1599144190282",
+      "r":["splash1599144897563"],
+      "d":[2020,9,3,16,43,10],
+      "db":["**"],
+      "_id":"X3D71VYSKxmGVFws"
+    })
+
+    splashUnits.push({
+      "c":"c/ Anarchist in a Colin Ward / post-structural sense: anarchism as a \"social and political philosophy out of the natural and spontaneous tendency of human beings to associate together for their mutual benefit.\"^^Colin Ward, Anarchy in Action, 1996, 19",
+      "p":{"x":1039,"y":1407},
+      "t":0,
+      "u":"splash1599140311443",
+      "r":["splash1599140577690"],
+      "d":[2020,9,3,15,38,31],
+      "db":["**"],
+      "_id":"X7sC6zn4QmiEYYop"
+    })
+
+    splashUnits.push({
+      "c":"c/ In contrast to the normal functions of academic discourse, there is no pyramid structure of passing knowledge and there is no final tome which to raise up as a conclusion.",
+      "p":{"x":322,"y":2092},
+      "t":0,
+      "u":"splash1599140846456",
+      "r":["splash1599141257360"],
+      "d":[2020,9,3,15,47,26],
+      "db":["**"],
+      "_id":"ZxzYNWIssQDdD2Vg"
+    })
+
+    splashUnits.push({
+      "c":"r/ and of course this makes understanding something, a fairly \"order from above\" action, rather difficult.",
+      "p":{"x":1055,"y":1623},
+      "t":0,
+      "u":"splash1599140633622",
       "r":[],
-      "d":[2020,6,18,15,45,6],
+      "d":[2020,9,3,15,43,53],
       "db":["**"],
-      "_id":"UVVVfr2037oqEcKO"
+      "_id":"aWWlrYierthcu7qy"
     })
+
     splashUnits.push({
-      "c":"r/ notice how things move about a bit when they get cramped, but only when scrolling? That's so that overlapping can be minimized without depending on constant animation. It's also an aesthetic choice, as everything is...",
-      "p":{"x":161,"y":1597},
+      "c":"c/ And anarchist in the destructive way - a way that Colin Ward still agrees with - and is described by Simon Critchley as \"a radical disturbance of the state, a disruption of the state's attempt to set itself or erect itself into a whole (s'eriger en Tout). In our terms, anarchy is the creation of interstitial distance within the state, the continual questioning from below of any attempt to establish order from above.\"^^Simon Critchley, Infinitely Demanding, 2012, 123",
+      "p":{"x":481,"y":1534},
       "t":0,
-      "u":"intro1592488124638",
+      "u":"splash1599140577690",
+      "r":["splash1599140633622","splash1599140762960"],
+      "d":[2020,9,3,15,42,57],
+      "db":["**"],
+      "_id":"c78L7HOfAT5zn223"
+    })
+
+    splashUnits.push({
+      "c":"c/ Before clicking that big beautiful \"loadDiscourses\" button, I would suggest screwing on this space and seeing what all these other buttons do  - explore {adiscourse.net} a bit from the confines of an intro screen!",
+      "p":{"x":1319,"y":-56},
+      "t":0,
+      "u":"splash1599142898040",
+      "r":["splash1599143493208","splash1599144190282"],
+      "d":[2020,9,3,16,21,38],
+      "db":["**"],
+      "_id":"eNWTjJww8aSM4cD3"
+    })
+
+    splashUnits.push({
+      "c":"c/ Producing the \"state\" - a frozen simplification. The version which is coherent but not dependable, an output of temporary structure broken from depth.",
+      "p":{"x":955,"y":2894},
+      "t":0,
+      "u":"splash1599142219550",
+      "r":["splash1599142380851"],
+      "d":[2020,9,3,16,10,19],
+      "db":["**"],
+      "_id":"gwOAVzo4WTjp7WH5"
+    })
+
+    splashUnits.push({
+      "c":"q/ \"There are a few different styles of input that have graphical differences, but no underlying difference in structure. Try inputting a few different types after engaging the \"geist-face\" button\"^^me, \"the intro suggestions\", 2020, here",
+      "p":{"x":1251,"y":-267},
+      "t":0,
+      "u":"splash1599143493208",
       "r":[],
-      "d":[2020,6,18,15,48,44],
+      "d":[2020,9,3,16,31,33],
       "db":["**"],
-      "_id":"eijkZgYQayh1hXGN"
+      "_id":"lluf5NW8ORdAXWri"
     })
+
     splashUnits.push({
-      "c":"c/ Now that you've tested some things out, you can move on into the actual database by clicking on the Load Discourses Button, which will take you to an area where you can check out, interact with, and contribute to the database and thematic filters. \n\nNothing on this page will be saved, so the real rubber meets the road moment is in the database. Many other aspects and potentials of the interface are going to be left unexplained - the use of the tool is emergent, meaning that it develops forms of use through being used, rather having a simple \"click this, does that\" style of interaction.\n\nWhile this means that the interface is less intuitive (in a few ways) and less understandable (in a few ways) than the usual website, that's the point. \n\nIf you have no interest in using a vague interface in collaboratively producing some critical discourse, tschüs!  If you do, let's build it together.",
-      "p":{"x":368,"y":2369},
+      "c":"c/ What it subverts, or at least where it subverts, are the functions of discourse - the styles of discursive production which Foucualt determines to be delimiting forces, the production of stable interiors.",
+      "p":{"x":648,"y":1890},
       "t":0,
-      "u":"intro1592488799565",
+      "u":"splash1599140762960",
+      "r":["splash1599140846456","splash1599141018456"],
+      "d":[2020,9,3,15,46,2],
+      "db":["**"],
+      "_id":"n5EfG2Qvm1HlmUwh"
+    })
+
+    splashUnits.push({
+      "c":"With this result, the symposium is organized - a real-time production of unresolved discourse via material network exchange! While this page might remain fairly organized the others will be organized or disorganized at the discretion of each interaction, generatively producing unit-coherence in a possible network-incoherence - an anarchic organization.",
+      "p":{"x":522,"y":4201},
+      "t":0,
+      "u":"splash1599143256513",
+      "r":["splash1599143377176","splash1599142592736"],
+      "d":[2020,9,3,16,27,36],
+      "db":["**"],
+      "_id":"rG8llhIg3E2o1pZb"
+    })
+
+    splashUnits.push({
+      "c":"r/ I relate this to the game of Go (Weiqi), which is a basic setup with simple rules, but releases a weird amount of potential (\"more potential ending than atoms in the universe\", they say). Even when it was \"solved\" by AlphaGo, it was only the developed styles of play which were mastered, rather than a true understanding of how Go functions or produces space.",
+      "p":{"x":1168,"y":2681},
+      "t":0,
+      "u":"splash1599141899687",
       "r":[],
-      "d":[2020,6,18,15,59,59],
+      "d":[2020,9,3,16,4,59],
       "db":["**"],
-      "_id":"VGViBFsfFndlYGq7"
+      "_id":"sN4rV78wQLwFLcrU"
     })
+
     splashUnits.push({
-      "c":"r/ while it takes a bit too long to provide here, the various breakdowns of 'disciplinary' versus 'political' discourses, as well as the tranformation from \"written/spoken\" significations into overall fields of political  and social interaction is a wild ride. I'd definitely suggest David Howarth's \"Discourse\" as a primer, then jump into the rest.",
-      "p":{"x":968,"y":1073},
+      "c":"Introductory notes by grayson daniel bailey:",
+      "p":{"x":353,"y":681},
       "t":0,
-      "u":"intro1592485929455"
-      ,"r":[],
-      "d":[2020,6,18,15,12,9],
+      "u":"splash1599138689680",
+      "r":[],"d":[2020,9,3,15,11,29],
       "db":["**"],
-      "_id":"2umHtdquele5QeE9"
+      "_id":"sVb1rP2sPCXPBDDm"
     })
+
+    splashUnits.push({
+      "c":"Welcome to the {adiscourse.net} symposium, open from 17:00 CET September 14th until 17:00 CET September 21st 2020.",
+      "p":{"x":220,"y":300},
+      "t":0,
+      "u":"splashDescription0",
+      "r":["splashDescription1"],
+      "d":[2020,9,3,15,54,17],
+      "db":["**"]
+    })
+
+    splashUnits.push({
+      "c":"This is an asynchronous, non-authorial symposium for real-time discourse production through {adiscourse.net} over themes including but not limited to: radical discourse, media, and architecture. There is no correct form of use, there are no rules over relevance or style, there is only the manner which emerges from collaborative contribution and negotiation in digital space.",
+      "p":{"x":800,"y":400},
+      "t":0,
+      "u":"splashDescription1",
+      "r":[],
+      "d":[2020,9,3,15,54,17],
+      "db":["**"]
+    })
+
+
+    splashUnits.push({
+      "c":"Rather than prepared statements, papers, or presentations, the discourse of the symposium is neither academic nor conversational, but a mixture of both without the goal of completion. Have fun and engage.",
+      "p":{"x":1200,"y":600},
+      "t":0,
+      "u":"splashDescription2",
+      "r":["splashDescription1"],
+      "d":[2020,9,3,15,54,17],
+      "db":["**"]
+    })
+
+
+    splashUnits.push({
+      "c":"c/ Instead there is a digital-material space of discursive interaction, a set of operations and objects, which oscillate between smooth streams (the environment) and temporary productions (the examinable state).",
+      "p":{"x":670,"y":2324},
+      "t":0,
+      "u":"splash1599141257360",
+      "r":["splash1599141381678"],
+      "d":[2020,9,3,15,54,17],
+      "db":["**"],
+      "_id":"tAIzMdJqDgCXTemI"
+    })
+
+    splashUnits.push({
+      "c":"c/ In contrast to the so-called \"public forum\" of social media discourse, there is not trending wave which to surf, there is no call to immediate reaction, there is no priority of amplifying the most affective message.",
+      "p":{"x":1064,"y":2072},
+      "t":0,
+      "u":"splash1599141018456",
+      "r":["splash1599141257360"],
+      "d":[2020,9,3,15,50,18],
+      "db":["**"],
+      "_id":"tHUqPXN5S8KNrQBG"
+    })
+
+    splashUnits.push({
+      "c":"c/ There is something very frustrating about this, but inherently anarchic. Everything, even the object you're viewing (stream or state), needs to be negotiated with something else. There is never a simple authority achieved.",
+      "p":{"x":530,"y":3324},
+      "t":0,
+      "u":"splash1599142380851",
+      "r":["splash1599142141019","splash1599142592736"],
+      "d":[2020,9,3,16,13,0],
+      "db":["**"],
+      "_id":"vfsu3Sn684oWEIkT"
+    })
+
     discourses = loadDiscourseUnitsToArray(splashUnits)
     discourses.vis()
   }

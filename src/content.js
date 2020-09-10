@@ -220,7 +220,7 @@ export class discourseSet {
     this.p5 = p5
     this.set = []
     this.pendingRelation = []
-    this.nameSpaces = ["[entire]-vollstaendig"]
+    this.nameSpaces = []
   }
 
   addUnit(c, p, t, u, r, d, db) {
@@ -232,6 +232,7 @@ export class discourseSet {
     for (let each in db) {
       if (!this.nameSpaces.includes(db[each])) {
         this.nameSpaces.push(db[each])
+        console.log(db[each])
       }
     }
     this.nameSpaces.sort()

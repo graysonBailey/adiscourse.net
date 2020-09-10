@@ -207,6 +207,10 @@ const state = new p5((p) => {
       for (let each in origin) {
         if (origin[each].r.length > 0) {
           let theRelated = origin.filter(elem => origin[each].r.includes(elem.u))
+          p.stroke(255,0,51)
+          p.strokeWeight(1)
+
+          p.noFill()
 
 
           for (let those in theRelated) {
@@ -220,7 +224,7 @@ const state = new p5((p) => {
             p.endShape(p.OPEN)
           }
 
-  let externals = []
+          let externals = []
           for(let every in origin[each].r){
 
             if(!idList.includes(origin[each].r[every])){
@@ -231,24 +235,20 @@ const state = new p5((p) => {
 
           if(externals.length>0){
             p.textSize(10)
-            p.stroke(0)
+            p.stroke(255,0,51)
             p.noFill()
             p.strokeWeight(.2)
 
+            let externalsJoined = externals.join(', ')
+
             if(origin[each].p.x >600){
-
               p.text("e x t e r n a l :", origin[each].p.x-300, origin[each].p.y+100)
-              for(let buddies in externals){
-                p.text(externals[buddies], origin[each].p.x-300, origin[each].p.y+100+(12 ))
-              }
 
+                p.text(externalsJoined, origin[each].p.x-300, origin[each].p.y+100+(12 ), 280,300)
             } else{
-
               p.text("e x t e r n a l :", origin[each].p.x+450, origin[each].p.y+100)
-              for(let buddies in externals){
-                p.text(externals[buddies], origin[each].p.x+450, origin[each].p.y+100+(12 ))
-              }
 
+                p.text(externalsJoined, origin[each].p.x+450, origin[each].p.y+100+(12 ), 280, 300)
 
             }
           }

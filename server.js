@@ -9,7 +9,7 @@ var app = express();
 app.use(express.static('dist'));
 var server = app.listen(process.env.PORT || 8080);
 var io = socket(server);
-console.log("My socket server is running Mboy");
+console.log("It's working! It's working!");
 
 var entire = new Datastore({
   filename: 'symp.db',

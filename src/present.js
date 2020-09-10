@@ -32,10 +32,13 @@ export class discursiveOverlay {
     document.body.appendChild(par)
     par.classList.add('checkParent')
 
-    for (let each = 1; each < discourses.nameSpaces.length; each++) {
-      let text = discourses.nameSpaces[each]
+    for (let each = 1; each <= discourses.nameSpaces.length; each++) {
+      let text = discourses.nameSpaces[each-1]
 
-      let tempCheck = this.p5.createCheckbox(each + "-" + text, false).class('spatialChoice').id(discourses.nameSpaces[each]).value(discourses.nameSpaces[each])
+      let tempCheck = this.p5.createCheckbox(each + "-" + text, false)
+      tempCheck.class('spatialChoice')
+      tempCheck.id(discourses.nameSpaces[each-1])
+      tempCheck.value(discourses.nameSpaces[each-1])
       tempCheck.parent(par)
       tempCheck.addClass('checks')
       tempCheck.changed(() => {
