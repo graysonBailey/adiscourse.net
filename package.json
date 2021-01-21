@@ -27,7 +27,7 @@
     "p5": "^1.0.0",
     "p5.js-svg": "^0.5.2",
     "print-js": "^1.0.63",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "devDependencies": {
     "css-loader": "^3.6.0",
