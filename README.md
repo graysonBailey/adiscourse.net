@@ -1,6 +1,6 @@
 # _{adiscourse.net}_
 
-![Image of intro](https://images.squarespace-cdn.com/content/v1/51ccdae9e4b08c2dba697321/1616426954710-YD6K99HOK2K6Z1IDHE7P/adiscourseGif.gif?format=750whttps://images.squarespace-cdn.com/content/v1/51ccdae9e4b08c2dba697321/1616426954710-YD6K99HOK2K6Z1IDHE7P/adiscourseGif.gif?format=750w)
+![Image of intro](https://images.squarespace-cdn.com/content/v1/51ccdae9e4b08c2dba697321/1616426954710-YD6K99HOK2K6Z1IDHE7P/adiscourseGif.gif)
 
 _**{adiscourse.net}**_, in both hidden and overt qualities, is meant to be an anarchic subversion. This seems a funny way to begin an introduction to a thesis document which will inevitably submerge into route technical explanations, precedent studies and the presentation of MediaArchitecture content, but nevertheless the conditions of anarchy are as much involved as the message of any medium, especially if one is to take McLuhan at his word. 
 
