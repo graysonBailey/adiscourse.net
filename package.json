@@ -15,7 +15,7 @@
   "author": "grayson bailey",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "hotkeys-js": "^3.8.1",
     "html-webpack-plugin": "^4.3.0",
     "http": "0.0.1-security",
